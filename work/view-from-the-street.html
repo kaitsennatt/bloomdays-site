@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The View From the Street — Bloom Days sample packet</title>
+<style>
+  html{scroll-behavior:smooth;}
+  :root{--deep:#6E8F86;--deepdark:#4F6B63;--pale:#F3F6F3;--paper:#FBFCFB;--ink:#18211E;--mute:#5B6B66;--hairline:#D9E2DD;--light:#F2F5F1;--pink:#E4A0B4;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 32px;}
+  .cover{background:var(--deep);color:var(--light);padding:56px 0 52px;}
+  .cover .inner{display:grid;grid-template-columns:minmax(0,1fr) clamp(160px,20vw,200px);gap:40px;align-items:center;}
+  @media (max-width:720px){.cover .inner{grid-template-columns:minmax(0,1fr);}}
+  .cover h1{font-size:clamp(32px,5vw,46px);font-weight:800;letter-spacing:-1px;line-height:1.08;}
+  .cover .site{font-size:16px;color:#DCE9E5;margin-top:14px;}
+  .cover .meta{font-size:13.5px;color:#BDD3CD;margin-top:18px;}
+  .cover svg{width:clamp(130px,18vw,170px);height:auto;display:block;margin:0 auto;}
+  .markwrap{text-align:center;width:100%;}
+  .markwrap svg path{transition:opacity .2s;}
+  .markwrap.hovering svg path{opacity:.28;}
+  .markwrap svg path:hover{opacity:1;}
+  .marklabel{font-size:12.5px;line-height:1.4;color:#CBDDD7;margin-top:12px;min-height:36px;transition:color .2s;}
+  .marklabel.on{color:#FFFFFF;}
+  .thumb{width:74px;height:74px;border-radius:9px;object-fit:cover;display:block;background:var(--pale);border:1px solid var(--hairline);cursor:zoom-in;transition:transform .15s;}
+  .thumb:hover{transform:scale(1.04);}
+  .lightbox{position:fixed;inset:0;background:rgba(24,33,30,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:32px;cursor:zoom-out;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:min(900px,92vw);max-height:82vh;border-radius:10px;display:block;}
+  .lightbox .lbcap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:#CFE0DA;font-size:13.5px;padding:0 32px;}
+  .removed{border-top:1px solid var(--hairline);margin-top:22px;padding-top:16px;font-size:14.5px;color:var(--mute);}
+  .removed strong{color:var(--ink);}
+
+  nav.jump{background:var(--deepdark);padding:0;position:sticky;top:0;z-index:10;}
+  nav.jump .wrap{display:flex;flex-wrap:wrap;gap:6px;padding-top:0;padding-bottom:0;}
+  nav.jump a{color:#9FBAB2;text-decoration:none;font-size:13px;font-weight:600;padding:14px 10px 12px;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;}
+  nav.jump a:hover{color:#E6EFEC;}
+  nav.jump a.active{color:#FFFFFF;border-bottom-color:var(--pink);}
+  section{padding:56px 0 0;scroll-margin-top:64px;}
+  h2{font-size:26px;font-weight:800;letter-spacing:-0.6px;margin-bottom:6px;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--deepdark);margin-bottom:8px;}
+  p{font-size:16px;color:#33403B;margin-bottom:12px;}
+  h3{font-size:16px;font-weight:700;margin:22px 0 8px;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;}
+  th{text-align:left;font-size:12px;color:var(--mute);font-weight:700;padding:0 12px 8px 0;border-bottom:1px solid var(--hairline);}
+  td{font-size:14.5px;padding:10px 12px 10px 0;border-bottom:1px solid var(--hairline);vertical-align:top;}
+  .bot{font-style:italic;}
+  .d{display:inline-block;width:13px;height:13px;border-radius:50%;}
+  .dotcell{width:88px;}
+  .well{background:var(--deepdark);color:var(--light);border-radius:14px;padding:28px 30px;margin:18px 0;overflow-x:auto;}
+  .well table{min-width:440px;}
+  .well td{border-bottom:none;padding:7px 0;font-size:14px;color:var(--light);}
+  .well tr:first-child td{font-size:12px;color:#A9C0B9;}
+  .well .fed td{border-top:1px solid #67857C;padding-top:12px;font-weight:600;font-size:13px;}
+  .fdot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#A9C0B9;}
+  .pol{display:inline-block;width:19px;height:19px;vertical-align:-4px;margin-right:2px;}
+  .polkey{font-size:12px;color:#A9C0B9;margin-top:12px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .polkey span{display:inline-flex;align-items:center;gap:5px;}
+  .well .note{font-size:13px;color:#A9C0B9;margin:14px 0 0;}
+  .callout{background:var(--pale);border-left:3px solid var(--deep);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#33403B;}
+  .flag{background:#FBEEF2;border-left:3px solid var(--pink);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#5A2E3C;}
+  ol,ul{padding-left:22px;margin:10px 0;}
+  li{font-size:15px;margin-bottom:7px;}
+  svg.plan{width:100%;height:auto;display:block;margin:16px 0;background:#fff;border:1px solid var(--hairline);border-radius:12px;}
+  footer{background:var(--deep);color:var(--light);margin-top:64px;padding:44px 0;font-size:13.5px;}
+  footer svg{width:34px;height:34px;display:block;margin-bottom:14px;}
+  footer a{color:#DCE9E5;}
+</style>
+</head>
+<body>
+
+<div class="cover"><div class="wrap inner">
+  <div>
+    <h1>The View From the Street</h1>
+    <p class="site">The front foundation bed · A 1920s colonial, Rowayton CT · zone 7b · south-facing, full sun</p>
+    <p class="meta">Roughly 30 ft of bed, about 4 ft deep, read from the street and from the porch above.<br>Designed August 2026 · planting spring 2027</p>
+  </div>
+  <div class="markwrap" id="markwrap">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seven arcs drawn from this bed's bloom windows"><title>This bed's bloom, April to October</title>
+    <path d="M 100.00 74.00 A 26.00 26.00 0 0 1 119.06 82.32" fill="none" stroke="#EFDCC0" stroke-width="7.5" stroke-linecap="round" data-label="Narcissus 'Salome' · April"/>
+    <path d="M 100.00 63.00 A 37.00 37.00 0 0 1 135.81 90.69" fill="none" stroke="#6B5A73" stroke-width="7.5" stroke-linecap="round" data-label="Fritillaria persica · April into May"/>
+    <path d="M 135.19 67.35 A 48.00 48.00 0 0 1 146.63 111.38" fill="none" stroke="#C9A0BE" stroke-width="7.5" stroke-linecap="round" data-label="Rhododendron · May"/>
+    <path d="M 158.84 104.41 A 59.00 59.00 0 0 1 136.79 146.13" fill="none" stroke="#B9A3C9" stroke-width="7.5" stroke-linecap="round" data-label="Allium christophii · June"/>
+    <path d="M 143.64 154.73 A 70.00 70.00 0 0 1 30.13 95.81" fill="none" stroke="#E8E2CE" stroke-width="7.5" stroke-linecap="round" data-label="Hydrangea paniculata · July to September"/>
+    <path d="M 87.93 180.10 A 81.00 81.00 0 0 1 19.44 108.47" fill="none" stroke="#8E86B5" stroke-width="7.5" stroke-linecap="round" data-label="Liriope 'Big Blue' · August to September"/>
+    <path d="M 86.29 190.97 A 92.00 92.00 0 0 1 54.00 20.33" fill="none" stroke="#B5717E" stroke-width="7.5" stroke-linecap="round" data-label="Sedum 'Matrona' · August to October"/>
+  </svg>
+  <div class="marklabel" id="marklabel">Seven blooms, April to October</div>
+  </div>
+</div></div>
+
+<nav class="jump"><div class="wrap">
+  <a href="#brief">The brief</a><a href="#move">The move</a><a href="#palette">The palette</a><a href="#calendar">Bloom calendar</a><a href="#plan">The plan</a><a href="#sourcing">Sourcing</a><a href="#install">Install</a><a href="#care">Care</a><a href="#flags">Open items</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="brief">
+  <div class="kicker">The brief</div>
+  <h2>Uninspired and kind of bare</h2>
+  <p>That was the description, and it is accurate, but the cause is not what it looks like. The plants in this bed are healthy and correctly chosen. The hydrangeas are happy in full southern sun, the boxwoods are alive, the rhododendron is dense to the ground. Nothing here is failing.</p>
+  <p>What is missing is arrangement and layers. The shrubs sit in an even checkerboard that reads as neither formal nor natural, and beneath them there is nothing at all: no ground layer, no seasonal layer, no spring. A bed of evenly spaced shrubs over bare mulch will read as bare no matter how good the shrubs are.</p>
+  <div class="callout"><strong>So this is not a rip-out.</strong> Every existing shrub stays and gets relocated, one plant leaves, and the two missing layers get added. The bones here are sound. The arrangement is the problem.</div>
+</section>
+
+<section id="move">
+  <div class="kicker">The organizing idea</div>
+  <h2>The porch already tells the bed what to do</h2>
+  <p>Five white columns divide the front of the house into regular bays. It is the strongest geometry on the property and the current planting ignores it completely. Align everything to those bays, hold every mass at a consistent height, and most of the "uninspired" problem is solved before a single new plant arrives. This bed does not need more variety. It needs order.</p>
+  <ul>
+    <li><strong>Hydrangeas relocate into bay-aligned groups</strong> against the skirt, where they hide the white beadboard and pick up the rhythm of the columns above them.</li>
+    <li><strong>Boxwoods group into mounded punctuation</strong> between those bays instead of marching evenly across the bed. This also does something practical: grouping them off a solid skirt gets air moving around them, which matters in a county where boxwood blight is a live risk.</li>
+    <li><strong>The golden mop cypress comes out.</strong> Against cream shingle and white columns, its chartreuse reads as an accident rather than a choice. It is the one plant that fights the house.</li>
+    <li><strong>The rhododendron anchors the far end</strong> and stays exactly as it is.</li>
+  </ul>
+  <div class="callout"><strong>Two vantages, two compositions.</strong> From the street this bed is read in elevation, against the white skirt. From the porch chairs, three feet above it, it is read looking straight down. That second view is why the new palette leans on flat-topped flowers and fine texture: they are what hold up seen from above, and most foundation plantings ignore this entirely.</div>
+</section>
+
+<section id="palette">
+  <div class="kicker">The palette</div>
+  <h2>Fewer plants, bigger masses, stronger forms</h2>
+  <p>Click any photo to see it large. The move here is restraint. Six kinds of plant across thirty feet, each one repeated in large blocks rather than dotted through, and every one chosen for its shape first and its flower second. Nothing wispy, nothing that reads as a meadow. The color that does appear is drawn straight from the winter containers already at this door: bronze, plum, dusty rose, cream.</p>
+  <table>
+    <tr><th class="dotcell"></th><th>Plant</th><th>Bloom</th><th>Why it belongs</th></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hydrangea%20paniculata%2004.JPG?width=300" alt="Panicle hydrangea in bloom" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Hydrangea%20paniculata%2004.JPG?width=1400" data-cap="Panicle hydrangea in bloom"></td><td class="bot">Hydrangea paniculata<br><span style="font-style:normal;color:var(--mute);font-size:13px">Existing · relocated into bay-aligned blocks</span></td><td>Jul–Sep</td><td>White cones held at the same height, repeated on the same rhythm as the columns above them. Repetition is what turns a shrub into architecture. They dry to parchment and stand all winter.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Buxus-sempervirens0815.JPG?width=300" alt="Boxwood foliage" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Buxus-sempervirens0815.JPG?width=1400" data-cap="Boxwood foliage"></td><td class="bot">Boxwood<br><span style="font-style:normal;color:var(--mute);font-size:13px">Existing · regrouped into tight blocks</span></td><td>Evergreen</td><td>Clipped green geometry at the bay junctions. Grouped into deliberate blocks they read as punctuation; spread evenly across the bed they read as filler.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Rhododendron%20catawbiense.jpg?width=300" alt="Rhododendron in bloom" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Rhododendron%20catawbiense.jpg?width=1400" data-cap="Photo is R. catawbiense; flower color on site is unconfirmed"></td><td class="bot">Rhododendron<br><span style="font-style:normal;color:var(--mute);font-size:13px">Existing · unmoved</span></td><td>May</td><td>Dense, glossy, evergreen, holding the far end of the composition and framing the bed's left edge. It earns its place in May and holds its structure the other eleven months.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Liriope%20muscari%20-%20Fleurs-2.jpg?width=300" alt="Liriope muscari in flower" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Liriope%20muscari%20-%20Fleurs-2.jpg?width=1400" data-cap="Liriope muscari in bloom; 'Big Blue' is the larger, darker-leaved selection"></td><td class="bot">Liriope muscari 'Big Blue'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Front edge · new</span></td><td>Aug–Sep</td><td>A continuous band of dark strap foliage along the entire front edge, evergreen in this zone and crisp as a drawn line. It gives the bed the hard edge a soft groundcover never would, and it is what you look down onto from the porch.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sedum%20Matrona%2011zz.jpg?width=300" alt="Sedum Matrona" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Sedum%20Matrona%2011zz.jpg?width=1400" data-cap="Sedum Matrona"></td><td class="bot">Hylotelephium 'Matrona'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Mid layer · new</span></td><td>Aug–Oct</td><td>Upright burgundy stems all summer, then flat plates of dusty rose that darken to rust and stand through winter beside the dried hydrangeas. Sculptural in every season, including the dead one.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Allium%20christophii%20%27Rien%20Poortvliet%27%20Flower%20Head%201753px.jpg?width=300" alt="Allium christophii sphere" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Allium%20christophii%20%27Rien%20Poortvliet%27%20Flower%20Head%201753px.jpg?width=1400" data-cap="Allium christophii sphere"></td><td class="bot">Allium christophii<br><span style="font-style:normal;color:var(--mute);font-size:13px">Bulb layer · new</span></td><td>June</td><td>Ten-inch silver-lilac spheres floating above the foliage in June, then dried seed heads that hold their shape for months. The most architectural thing a bulb can do, and it fills the one month this bed would otherwise be only green.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fritillaria%20persica%203.jpg?width=300" alt="Fritillaria persica plum bells" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Fritillaria%20persica%203.jpg?width=1400" data-cap="Fritillaria persica plum bells"></td><td class="bot">Fritillaria persica<br><span style="font-style:normal;color:var(--mute);font-size:13px">Bulb layer · new</span></td><td>Apr–May</td><td>Three-foot spires hung with deep plum bells, the color of the winter containers, at a season when nothing else is standing. Deer and rabbits both leave it alone.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Narcissus%20Salome%200zz.jpg?width=300" alt="Narcissus Salome" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Narcissus%20Salome%200zz.jpg?width=1400" data-cap="Narcissus Salome"></td><td class="bot">Narcissus 'Salome'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Bulb layer · new</span></td><td>April</td><td>White petals with a soft apricot cup, planted in tight blocks rather than scattered. It gives the bed a spring, which it has never had.</td></tr>
+  </table>
+  <div class="removed"><strong>Removed: the golden mop cypress.</strong> Against cream shingle and white columns its chartreuse reads as an accident rather than a choice. It is the one plant here that fights the house. Everything else stays and simply moves.</div>
+  <div class="callout"><strong>What is deliberately not here.</strong> No fine-textured or airy perennials, no yarrow, no meadow grasses, no soft flowering groundcover. Those plants are lovely and they belong to a different kind of house. This elevation is crisp, pale and symmetrical, and it wants planting with weight and edges rather than haze.</div>
+</section>
+
+<section id="calendar">
+  <div class="kicker">The bloom calendar</div>
+  <h2>From nothing until July, to something every month</h2>
+  <div class="well">
+    <table>
+      <tr><td style="width:200px"></td><td>Apr</td><td>May</td><td>Jun</td><td>Jul</td><td>Aug</td><td>Sep</td><td>Oct</td></tr>
+      <tr><td>Narcissus 'Salome'</td><td><span class="d" style="background:#EFDCC0"></span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Fritillaria persica</td><td><span class="d" style="background:#6B5A73"></span></td><td><span class="d" style="background:#6B5A73"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Rhododendron</td><td><span class="fdot"></span></td><td><span class="d" style="background:#C9A0BE"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr><td>Allium christophii</td><td></td><td></td><td><span class="d" style="background:#B9A3C9"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td></td><td></td></tr>
+      <tr><td>Hydrangea paniculata</td><td></td><td></td><td></td><td><span class="d" style="background:#E8E2CE"></span></td><td><span class="d" style="background:#E8E2CE"></span></td><td><span class="d" style="background:#E8E2CE"></span></td><td><span class="fdot"></span></td></tr>
+      <tr><td>Liriope 'Big Blue'</td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="d" style="background:#8E86B5"></span></td><td><span class="d" style="background:#8E86B5"></span></td><td><span class="fdot"></span></td></tr>
+      <tr><td>Hylotelephium 'Matrona'</td><td></td><td></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="d" style="background:#B5717E"></span></td><td><span class="d" style="background:#B5717E"></span></td><td><span class="d" style="background:#B5717E"></span></td></tr>
+      <tr><td>Boxwood</td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr class="fed"><td>Who visits</td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="nothing visits"><title>nothing visits</title><circle cx="10" cy="10" r="3.4" stroke="#7E9A92" stroke-width="1.3" stroke-dasharray="2 2.2"/></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td></tr>
+    </table>
+    <div class="polkey"><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg>bees</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg>hummingbirds</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg>butterflies</span></div>
+    <p class="note">April opens with apricot-cupped daffodils and plum fritillaria spires. Rhododendron carries May, allium spheres float through June, hydrangea cones run July into September, and the sedum closes out in dusty rose while the liriope flowers below it. In winter the dried cones, the rust sedum plates, the evergreen liriope band and the boxwood are all still standing. The seven arcs on the cover are these same windows drawn as a chart.</p>
+  </div>
+  <div class="flag"><strong>An honest note about who gets fed.</strong> This is a formal entry bed and its first job is how the house reads from the street, so its ecological contribution is modest by design. Allium and sedum are both genuinely excellent forage, and the rhododendron gives May, but panicle hydrangea offers little and the daffodils none. The real habitat work belongs elsewhere on the property, and the recommendation is the shaded strip along the side and rear of the house, currently bare gravel. That is a separate design and a good one.</div>
+</section>
+
+<section id="plan">
+  <div class="kicker">The plan</div>
+  <h2>Aligned to the bays</h2>
+  <svg class="plan" viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, sans-serif">
+    <rect x="0" y="0" width="900" height="62" fill="#F3F6F3" stroke="#D9E2DD"/>
+    <text x="450" y="26" font-size="12" fill="#8FA39C" text-anchor="middle" letter-spacing="2">PORCH — deck sits ~3 ft above the bed</text>
+    <g fill="#FFFFFF" stroke="#C9D5CF">
+      <rect x="60" y="34" width="16" height="28"/><rect x="240" y="34" width="16" height="28"/><rect x="420" y="34" width="16" height="28"/><rect x="600" y="34" width="16" height="28"/><rect x="780" y="34" width="16" height="28"/>
+    </g>
+    <text x="68" y="30" font-size="9" fill="#8FA39C" text-anchor="middle">column</text>
+    <rect x="0" y="62" width="900" height="26" fill="#EDEFE9" stroke="#D9E2DD"/>
+    <text x="450" y="79" font-size="10.5" fill="#8FA39C" text-anchor="middle">white beadboard skirt — what the planting hides</text>
+
+    <rect x="0" y="88" width="900" height="180" fill="#F7F5EF"/>
+
+    <g fill="#E8E2CE" stroke="#CFC8B4">
+      <circle cx="105" cy="128" r="30"/><circle cx="150" cy="120" r="26"/>
+      <circle cx="465" cy="128" r="30"/><circle cx="510" cy="120" r="26"/>
+      <circle cx="825" cy="126" r="30"/>
+    </g>
+    <text x="127" y="100" font-size="10" fill="#9a9madd" opacity="0"></text>
+    <text x="105" y="132" font-size="9.5" fill="#8a8368" text-anchor="middle">HYDRANGEA</text>
+    <text x="483" y="132" font-size="9.5" fill="#8a8368" text-anchor="middle">HYDRANGEA</text>
+    <text x="825" y="130" font-size="9.5" fill="#8a8368" text-anchor="middle">HYDRANGEA</text>
+
+    <g fill="#4F6B63">
+      <circle cx="285" cy="124" r="19"/><circle cx="318" cy="134" r="16"/><circle cx="252" cy="136" r="15"/>
+      <circle cx="645" cy="124" r="19"/><circle cx="678" cy="134" r="16"/><circle cx="612" cy="136" r="15"/>
+    </g>
+    <text x="285" y="98" font-size="9.5" fill="#4F6B63" text-anchor="middle">BOXWOOD ×3</text>
+    <text x="645" y="98" font-size="9.5" fill="#4F6B63" text-anchor="middle">BOXWOOD ×3</text>
+
+    <ellipse cx="35" cy="150" rx="42" ry="40" fill="#5E8C61" opacity="0.75"/>
+    <text x="35" y="205" font-size="9.5" fill="#4F6B63" text-anchor="middle">RHODO</text>
+
+    <g fill="#B5717E" opacity="0.9">
+      <circle cx="185" cy="172" r="17"/><circle cx="218" cy="184" r="17"/><circle cx="152" cy="186" r="16"/><circle cx="200" cy="202" r="15"/><circle cx="168" cy="158" r="15"/>
+      <circle cx="545" cy="172" r="17"/><circle cx="578" cy="184" r="17"/><circle cx="512" cy="186" r="16"/><circle cx="560" cy="202" r="15"/><circle cx="528" cy="158" r="15"/>
+    </g>
+    <text x="185" y="140" font-size="9.5" fill="#8e5560" text-anchor="middle">SEDUM 'MATRONA' ×9</text>
+    <text x="545" y="140" font-size="9.5" fill="#8e5560" text-anchor="middle">SEDUM 'MATRONA' ×9</text>
+
+    <g fill="#B9A3C9" opacity="0.85">
+      <circle cx="352" cy="176" r="12"/><circle cx="382" cy="166" r="12"/><circle cx="412" cy="178" r="12"/><circle cx="368" cy="198" r="11"/><circle cx="400" cy="198" r="11"/>
+      <circle cx="712" cy="176" r="12"/><circle cx="742" cy="166" r="12"/><circle cx="772" cy="178" r="12"/><circle cx="728" cy="198" r="11"/><circle cx="760" cy="198" r="11"/>
+    </g>
+    <text x="382" y="146" font-size="9.5" fill="#7a689a" text-anchor="middle">ALLIUM ×15</text>
+    <text x="742" y="146" font-size="9.5" fill="#7a689a" text-anchor="middle">ALLIUM ×15</text>
+
+    <g fill="none" stroke="#6B5A73" stroke-width="2" stroke-dasharray="4 4">
+      <ellipse cx="105" cy="196" rx="26" ry="13"/><ellipse cx="465" cy="196" rx="26" ry="13"/><ellipse cx="828" cy="192" rx="26" ry="13"/>
+    </g>
+    <text x="105" y="222" font-size="9.5" fill="#6B5A73" text-anchor="middle">FRITILLARIA</text>
+    <text x="465" y="222" font-size="9.5" fill="#6B5A73" text-anchor="middle">FRITILLARIA</text>
+
+    <g fill="none" stroke="#C9A96A" stroke-width="2" stroke-dasharray="4 4">
+      <ellipse cx="255" cy="212" rx="28" ry="13"/><ellipse cx="615" cy="212" rx="28" ry="13"/><ellipse cx="770" cy="210" rx="28" ry="13"/>
+    </g>
+    <text x="255" y="238" font-size="9.5" fill="#9c8a5e" text-anchor="middle">NARCISSUS</text>
+
+    <rect x="0" y="244" width="900" height="20" fill="#3F4A63"/>
+    <text x="450" y="258" font-size="10.5" fill="#DDE2EE" text-anchor="middle">LIRIOPE 'BIG BLUE' — one continuous band the full length of the front edge, 12" spacing</text>
+
+    <rect x="0" y="268" width="900" height="34" fill="#A9C49B"/>
+    <text x="450" y="290" font-size="11" fill="#41603A" text-anchor="middle">LAWN — the bed keeps its soft spade edge and curve</text>
+
+    <rect x="826" y="88" width="74" height="180" fill="#E6E3DA" stroke="#D9E2DD"/>
+    <text x="863" y="180" font-size="10" fill="#8a8578" text-anchor="middle" transform="rotate(90 863 180)">BLUESTONE WALK</text>
+    <line x1="0" y1="320" x2="900" y2="320" stroke="#C9D5CF"/>
+    <text x="450" y="335" font-size="11" fill="#5B6B66" text-anchor="middle">roughly 30 ft of run, about 4 ft deep · schematic, confirm with a tape before ordering</text>
+  </svg>
+
+  <h3>Quantities and sizes</h3>
+  <table>
+    <tr><th>Plant</th><th>Qty and size</th><th>Placement</th></tr>
+    <tr><td class="bot">Hydrangea paniculata</td><td>existing · relocated</td><td>Grouped against the skirt in alternating bays, all held at the same height. Moved by a crew in early spring while dormant.</td></tr>
+    <tr><td class="bot">Boxwood</td><td>existing · relocated</td><td>Tight blocks of three at the bay junctions, set forward enough for air to move behind them.</td></tr>
+    <tr><td class="bot">Hylotelephium 'Matrona'</td><td>18 · #1 pots</td><td>Two blocks of nine in the mid layer, in front of the hydrangea groups. 18" spacing so they close into a solid mass.</td></tr>
+    <tr><td class="bot">Allium christophii</td><td>30 bulbs</td><td>Two blocks of fifteen between the sedum masses, planted 8" deep the autumn before. Leave the seed heads standing into July.</td></tr>
+    <tr><td class="bot">Liriope muscari 'Big Blue'</td><td>~60 · quarts</td><td>One continuous band the full length of the front edge at 12" spacing. This is the line that makes the bed read as drawn rather than grown.</td></tr>
+    <tr><td class="bot">Fritillaria persica</td><td>15 bulbs</td><td>Three tight groups of five behind the sedum, 6" deep, planted the autumn before. They want good drainage.</td></tr>
+    <tr><td class="bot">Narcissus 'Salome'</td><td>45 bulbs</td><td>Three blocks of fifteen, not scattered. 6" deep, planted the autumn before.</td></tr>
+  </table>
+  <div class="callout"><strong>The containers do the seasonal color.</strong> A pair at the porch steps, planted to echo the bed rather than compete with it: bronze and burgundy in winter as you already do, apricot and cream in spring, something loose and warm in summer. It gives the entry a focal point the bed does not have to provide, and it means the planting itself can stay calm.</div>
+</section>
+
+<section id="sourcing">
+  <div class="kicker">Sourcing</div>
+  <h2>All of it is mainstream</h2>
+  <table>
+    <tr><th>Where</th><th>What</th><th>Notes</th></tr>
+    <tr><td><strong>A good local nursery</strong><br><span style="color:var(--mute);font-size:13px">Rowayton or Norwalk area</span></td><td>'Matrona' sedum, Liriope 'Big Blue'</td><td>Both widely grown. Buy the liriope in quarts rather than gallons; sixty of them adds up and they establish just as fast.</td></tr>
+    <tr><td><strong>Brent &amp; Becky's or John Scheepers</strong><br><span style="color:var(--mute);font-size:13px">mail order, ordered in September</span></td><td>45 Narcissus 'Salome' · 30 Allium christophii · 15 Fritillaria persica</td><td>Fall bulb orders are a separate calendar item and the allium and fritillaria in particular sell out early. All bulbs go in the autumn before the spring planting.</td></tr>
+    <tr><td><strong>A crew, half a day</strong></td><td>Relocating the hydrangeas and boxwoods</td><td>The only part of this that is not a DIY afternoon. Everything else plants by hand.</td></tr>
+  </table>
+</section>
+
+<section id="install">
+  <div class="kicker">Installation</div>
+  <h2>Bulbs this fall, everything else in spring</h2>
+  <ol>
+    <li><strong>This fall:</strong> plant the bulbs. They go in ahead of everything else and they are the reason the bed has an April at all.</li>
+    <li><strong>Early spring, while everything is still dormant:</strong> the crew moves the hydrangeas and boxwoods into their new positions, and the golden mop cypress comes out. Dormant relocation is why this happens in March rather than May.</li>
+    <li><strong>Mark the bays first.</strong> Before anything is dug, stand in the street and check the groups against the columns. This alignment is the whole design; it is worth ten minutes of looking.</li>
+    <li><strong>Then the perennials,</strong> back to front: the sedum blocks first, then the liriope band last so you are not stepping over it. Set the liriope with a taut string line. A wandering edge undoes the whole effect.</li>
+    <li><strong>Plant at grade.</strong> Hole twice the width of the pot, exactly its depth, and water each plant as it goes in rather than all at the end.</li>
+    <li><strong>Mulch two inches,</strong> never against stems. Within two seasons the geranium closes and the mulch becomes unnecessary, which is the point.</li>
+  </ol>
+  <div class="flag"><strong>The irrigation needs a decision before planting.</strong> This bed is on drip, and drip waters points rather than areas. A continuous ground layer planted between existing emitters gets almost nothing. Either the line is extended with additional emitters through the ribbon, or the geranium gets hand-watered through its first summer and is left to fend for itself after that, which it can do once established. The first option is better and it is a small job while the bed is open.</div>
+</section>
+
+<section id="care">
+  <div class="kicker">Care</div>
+  <h2>Three sessions a year</h2>
+  <table>
+    <tr><th>When</th><th>What</th><th>How long</th></tr>
+    <tr><td><strong>Late winter</strong><br><span style="color:var(--mute);font-size:13px">Feb to early Mar</span></td><td>Cut the hydrangeas back by about a third to a strong pair of buds; they bloom on new wood, so this is what keeps the flowers large. Cut the sedum to the ground and shear the liriope back hard before new growth pushes. One light shaping of the boxwoods. This is the one real session.</td><td>2 hrs</td></tr>
+    <tr><td><strong>After the daffodils fade</strong></td><td>Nothing. Let the daffodil foliage yellow on its own; the sedum masses rise around it and cover it, which is why the bulb blocks sit where they do.</td><td>—</td></tr>
+    <tr><td><strong>Midsummer</strong><br><span style="color:var(--mute);font-size:13px">optional</span></td><td>Leave the allium seed heads standing as long as you like them; they hold their spheres for months. Tidy the daffodil foliage once it has fully yellowed.</td><td>30 min</td></tr>
+    <tr><td><strong>Late fall</strong></td><td>Leave it standing. The hydrangea cones, the sedum plates, the evergreen liriope band and the boxwoods are the winter garden. Cutting them down in November is how the bed goes bare again for five months.</td><td>—</td></tr>
+  </table>
+  <div class="callout">No deadheading required, no staking, no spraying. Watch the boxwoods for blight in humid stretches now that they have air around them, and keep the fallen leaves cleared from beneath them, which is the single most useful preventive habit.</div>
+</section>
+
+<section id="flags">
+  <div class="kicker">Open items</div>
+  <h2>Four things to confirm</h2>
+  <ol>
+    <li><strong>A tape on the bed.</strong> The run and depth are scaled from photographs. Quantities move with the real numbers, particularly the geranium ribbon.</li>
+    <li><strong>The drip decision:</strong> extend the line through the ground layer, or hand-water the first summer.</li>
+    <li><strong>Rhododendron flower color.</strong> It has only been seen out of bloom. If it reads hot pink or magenta rather than soft, it wants either relocating or company that can absorb it.</li>
+    <li><strong>Growing-season photographs.</strong> Every photo on file is dormant-season. A few in leaf would confirm the bay alignment and settle the rhododendron question at the same time.</li>
+  </ol>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <strong>BLOOM DAYS</strong> · Ecologically minded, locally beautiful<br>
+  Greenwich, CT · <a href="mailto:kaitlin@bloomdays.co">kaitlin@bloomdays.co</a>
+</div></footer>
+
+
+<div class="lightbox" id="lb"><img id="lbimg" src="" alt=""><div class="lbcap" id="lbcap"></div></div>
+
+<script>
+(function(){
+  var wrap=document.getElementById('markwrap'), lbl=document.getElementById('marklabel');
+  if(wrap&&lbl){
+    var DEF=lbl.textContent;
+    wrap.querySelectorAll('path[data-label]').forEach(function(pth){
+      pth.addEventListener('mouseenter',function(){ lbl.textContent=pth.getAttribute('data-label'); lbl.classList.add('on'); wrap.classList.add('hovering'); });
+      pth.addEventListener('mouseleave',function(){ lbl.textContent=DEF; lbl.classList.remove('on'); wrap.classList.remove('hovering'); });
+    });
+  }
+})();
+(function(){
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
+  document.querySelectorAll('.thumb').forEach(function(t){
+    t.addEventListener('click',function(){ lbimg.src=t.getAttribute('data-full'); lbimg.alt=t.alt; lbcap.textContent=t.getAttribute('data-cap'); lb.classList.add('open'); });
+  });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; }});
+})();
+(function(){
+  var links=[].slice.call(document.querySelectorAll('nav.jump a')), map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var sections=[].slice.call(document.querySelectorAll('section[id]'));
+  function update(){
+    var top=window.scrollY+90, cur=sections[0];
+    sections.forEach(function(s){ if(s.offsetTop<=top) cur=s; });
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(cur&&map[cur.id]) map[cur.id].classList.add('active');
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update); update();
+})();
+</script>
+
+</body>
+</html>

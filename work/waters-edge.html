@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Water's Edge — Bloom Days sample packet</title>
+<style>
+  html{scroll-behavior:smooth;}
+  :root{--deep:#6E8F86;--deepdark:#4F6B63;--pale:#F3F6F3;--paper:#FBFCFB;--ink:#18211E;--mute:#5B6B66;--hairline:#D9E2DD;--light:#F2F5F1;--pink:#E4A0B4;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 32px;}
+  .cover{background:var(--deep);color:var(--light);padding:56px 0 52px;}
+  .cover .inner{display:grid;grid-template-columns:minmax(0,1fr) clamp(160px,20vw,200px);gap:40px;align-items:center;}
+  @media (max-width:720px){.cover .inner{grid-template-columns:minmax(0,1fr);}}
+  .cover h1{font-size:clamp(32px,5vw,46px);font-weight:800;letter-spacing:-1px;line-height:1.08;}
+  .cover .site{font-size:16px;color:#DCE9E5;margin-top:14px;}
+  .cover .meta{font-size:13.5px;color:#BDD3CD;margin-top:18px;}
+  .cover svg{width:clamp(130px,18vw,170px);height:auto;display:block;margin:0 auto;}
+  .markwrap{text-align:center;width:100%;}
+  .markwrap svg path{transition:opacity .2s;}
+  .markwrap.hovering svg path{opacity:.28;}
+  .markwrap svg path:hover{opacity:1;}
+  .marklabel{font-size:12.5px;line-height:1.4;color:#CBDDD7;margin-top:12px;min-height:36px;transition:color .2s;}
+  .marklabel.on{color:#FFFFFF;}
+  .thumb{width:74px;height:74px;border-radius:9px;object-fit:cover;display:block;background:var(--pale);border:1px solid var(--hairline);cursor:zoom-in;transition:transform .15s;}
+  .thumb:hover{transform:scale(1.04);}
+  .lightbox{position:fixed;inset:0;background:rgba(24,33,30,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:32px;cursor:zoom-out;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:min(900px,92vw);max-height:82vh;border-radius:10px;display:block;}
+  .lightbox .lbcap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:#CFE0DA;font-size:13.5px;padding:0 32px;}
+  .removed{border-top:1px solid var(--hairline);margin-top:22px;padding-top:16px;font-size:14.5px;color:var(--mute);}
+  .removed strong{color:var(--ink);}
+
+  nav.jump{background:var(--deepdark);padding:0;position:sticky;top:0;z-index:10;}
+  nav.jump .wrap{display:flex;flex-wrap:wrap;gap:6px;padding-top:0;padding-bottom:0;}
+  nav.jump a{color:#9FBAB2;text-decoration:none;font-size:13px;font-weight:600;padding:14px 10px 12px;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;}
+  nav.jump a:hover{color:#E6EFEC;}
+  nav.jump a.active{color:#FFFFFF;border-bottom-color:var(--pink);}
+  section{padding:56px 0 0;scroll-margin-top:64px;}
+  h2{font-size:26px;font-weight:800;letter-spacing:-0.6px;margin-bottom:6px;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--deepdark);margin-bottom:8px;}
+  p{font-size:16px;color:#33403B;margin-bottom:12px;}
+  h3{font-size:16px;font-weight:700;margin:22px 0 8px;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;}
+  th{text-align:left;font-size:12px;color:var(--mute);font-weight:700;padding:0 12px 8px 0;border-bottom:1px solid var(--hairline);}
+  td{font-size:14.5px;padding:10px 12px 10px 0;border-bottom:1px solid var(--hairline);vertical-align:top;}
+  .bot{font-style:italic;}
+  .d{display:inline-block;width:13px;height:13px;border-radius:50%;}
+  .dotcell{width:88px;}
+  .well{background:var(--deepdark);color:var(--light);border-radius:14px;padding:28px 30px;margin:18px 0;overflow-x:auto;}
+  .well table{min-width:440px;}
+  .well td{border-bottom:none;padding:7px 0;font-size:14px;color:var(--light);}
+  .well tr:first-child td{font-size:12px;color:#A9C0B9;}
+  .well .fed td{border-top:1px solid #67857C;padding-top:12px;font-weight:600;font-size:13px;}
+  .fdot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#A9C0B9;}
+  .pol{display:inline-block;width:19px;height:19px;vertical-align:-4px;margin-right:2px;}
+  .polkey{font-size:12px;color:#A9C0B9;margin-top:12px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .polkey span{display:inline-flex;align-items:center;gap:5px;}
+  .polnone{color:#7E9A92;font-size:15px;}
+  .well .note{font-size:13px;color:#A9C0B9;margin:14px 0 0;}
+  .callout{background:var(--pale);border-left:3px solid var(--deep);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#33403B;}
+  .flag{background:#FBEEF2;border-left:3px solid var(--pink);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#5A2E3C;}
+  ol,ul{padding-left:22px;margin:10px 0;}
+  li{font-size:15px;margin-bottom:7px;}
+  svg.plan{width:100%;height:auto;display:block;margin:16px 0;background:#fff;border:1px solid var(--hairline);border-radius:12px;}
+  footer{background:var(--deep);color:var(--light);margin-top:64px;padding:44px 0;font-size:13.5px;}
+  footer svg{width:34px;height:34px;display:block;margin-bottom:14px;}
+  footer a{color:#DCE9E5;}
+</style>
+</head>
+<body>
+
+<div class="cover"><div class="wrap inner">
+  <div>
+    <h1>The Water's Edge</h1>
+    <p class="site">The pond edge · A private pond, Pound Ridge NY · zone 6b · wet to moist, mixed sun</p>
+    <p class="meta">A soft barrier and a long season of color. No fence, no shrubs.<br>Designed August 2026 · phased planting, spring 2027 and fall 2027</p>
+  </div>
+  <div class="markwrap" id="markwrap">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seven arcs drawn from this garden's bloom windows"><title>This planting's bloom, April to October</title>
+    <path d="M 100.00 74.00 A 26.00 26.00 0 0 1 124.54 91.41" fill="none" stroke="#E3C44A" stroke-width="7.5" stroke-linecap="round" data-label="Golden Alexanders · April to May"/>
+    <path d="M 127.12 74.83 A 37.00 37.00 0 0 1 127.50 124.76" fill="none" stroke="#6B8FD4" stroke-width="7.5" stroke-linecap="round" data-label="Blue flag iris · May to June"/>
+    <path d="M 129.93 137.53 A 48.00 48.00 0 0 1 65.31 133.17" fill="none" stroke="#B08BB5" stroke-width="7.5" stroke-linecap="round" data-label="'Little Joe' Joe Pye · July to August"/>
+    <path d="M 136.79 146.13 A 59.00 59.00 0 0 1 41.32 106.17" fill="none" stroke="#C0392B" stroke-width="7.5" stroke-linecap="round" data-label="Cardinal flower · July to September"/>
+    <path d="M 143.64 154.73 A 70.00 70.00 0 0 1 30.38 107.32" fill="none" stroke="#9DB4A4" stroke-width="7.5" stroke-linecap="round" data-label="Mountain mint · July to September"/>
+    <path d="M 87.93 180.10 A 81.00 81.00 0 0 1 19.14 95.16" fill="none" stroke="#5A3E7A" stroke-width="7.5" stroke-linecap="round" data-label="Ironweed · August to September"/>
+    <path d="M 23.99 151.83 A 92.00 92.00 0 0 1 54.00 20.33" fill="none" stroke="#C8A951" stroke-width="7.5" stroke-linecap="round" data-label="Showy goldenrod · September to October"/>
+  </svg>
+  <div class="marklabel" id="marklabel">Seven blooms, April to October</div>
+  </div>
+</div></div>
+
+<nav class="jump"><div class="wrap">
+  <a href="#brief">The brief</a><a href="#palette">The palette</a><a href="#calendar">Bloom calendar</a><a href="#plan">Zone plan</a><a href="#recipe">Quantities</a><a href="#sourcing">Sourcing</a><a href="#install">Install</a><a href="#care">Care</a><a href="#flags">Flags</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="brief">
+  <div class="kicker">The brief</div>
+  <h2>A barrier you would want to look at</h2>
+  <p>Two things at once: real color at the pond edge, and a planted barrier that discourages two toddlers and a dog from wandering to the water. The town does not allow a fence at the pond, and shrubs are off the table by your own preference. So the barrier has to be herbaceous, dense, and good-looking, which is a harder brief and a better one.</p>
+  <p>The existing cattails, sedges and rushes stay. They already screen the waterline and they do half the work for nothing. Everything new plants behind them, so anyone heading for the water meets two layers before they get there.</p>
+  <div class="callout"><strong>Conditions that shaped every choice.</strong> Deer pressure is heavy here, so every plant in this palette is one deer genuinely refuse rather than one a label calls resistant. Wet to moist soil at the edge. Winter skating happens through the dock opening, which stays clear. Budget on the lower side, planted by you rather than a crew, so everything arrives as plugs and small pots.</div>
+  <div class="flag"><strong>Said plainly, because it matters more than the design.</strong> A perennial barrier is a powerful deterrent from June to October and a visual boundary year round. It is not a wall. In early spring it is emerging stubble, and in winter it is cut down, which is also when the ice gets used. Supervision is the winter system. The planting is the summer one.</div>
+</section>
+
+<section id="palette">
+  <div class="kicker">The palette</div>
+  <h2>Cool spring, hot summer, gold fall</h2>
+  <p>Click any photo to see it large. You were split between the cool palette and the warm one. The pond is long enough that it does not have to choose: iris blue opens the season, cardinal red and mauve run through high summer, and purple and gold close it out. One garden, both palettes, in sequence.</p>
+  <table>
+    <tr><th class="dotcell"></th><th>Plant</th><th>Bloom</th><th>Why it belongs</th></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pörtschach%20Winklern%20Brockweg%20Teich%20mit%20Typha%20latifolia%2006022016%200567.jpg?width=300" alt="Cattails at a pond edge" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Pörtschach%20Winklern%20Brockweg%20Teich%20mit%20Typha%20latifolia%2006022016%200567.jpg?width=1400" data-cap="Photo shows a comparable cattail stand"></td><td class="bot">Cattails, sedges, rushes<br><span style="font-style:normal;color:var(--mute);font-size:13px">Existing · keep, thin at the dock</span></td><td>Structure</td><td>Already an impassable screen at the waterline in season. The new planting sits behind it, which is what makes the barrier two layers deep for no additional cost.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pycnanthemum%20muticum%20kz01.jpg?width=300" alt="Mountain mint silver bracts" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Pycnanthemum%20muticum%20kz01.jpg?width=1400" data-cap="Mountain mint silver bracts"></td><td class="bot">Pycnanthemum muticum<br><span style="font-style:normal;color:var(--mute);font-size:13px">Mountain mint · native</span></td><td>Jul–Sep</td><td>Silvery bracts over an aromatic colonizing mat that knits the barrier solid within two seasons. The single most deer-proof perennial in the Northeast, and in bloom it is the busiest plant on the property.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Iris%20versicolor%20MHNT.BOT.2009.7.16.jpg?width=300" alt="Blue flag iris" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Iris%20versicolor%20MHNT.BOT.2009.7.16.jpg?width=1400" data-cap="Blue flag iris"></td><td class="bot">Iris versicolor<br><span style="font-style:normal;color:var(--mute);font-size:13px">Blue flag iris · native</span></td><td>May–Jun</td><td>Blue-violet at the waterline in late spring, and sword foliage standing upright from April to October. Repeated in drifts down the whole run, it is the structure that makes the rest read as designed rather than grown.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Joe%20Pye%20Weed%20Eupatorium%20dubium%20%27Little%20Joe%27%20Young%20Plant%202000px.jpg?width=300" alt="Little Joe Pye weed" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Joe%20Pye%20Weed%20Eupatorium%20dubium%20%27Little%20Joe%27%20Young%20Plant%202000px.jpg?width=1400" data-cap="Little Joe Pye weed"></td><td class="bot">Eutrochium dubium 'Little Joe'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Dwarf Joe Pye weed · native</span></td><td>Jul–Aug</td><td>Four feet of mauve domes without the flopping of full-sized Joe Pye. This is the chest-high mass that does the actual discouraging, and butterflies cover it in August.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Lobelia%20cardinalis%20-%20Cardinal%20Flower.jpg?width=300" alt="Cardinal flower" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Lobelia%20cardinalis%20-%20Cardinal%20Flower.jpg?width=1400" data-cap="Cardinal flower"></td><td class="bot">Lobelia cardinalis<br><span style="font-style:normal;color:var(--mute);font-size:13px">Cardinal flower · native</span></td><td>Jul–Sep</td><td>Scarlet spikes visible from across the water, and the reason hummingbirds show up. Short-lived by nature, but it self-seeds along wet edges and stays.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Vernonia%20noveboracensis%20(New%20York%20ironweed),%20West%20Greenwich,%20RI%20(32168810295).jpg?width=300" alt="New York ironweed" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Vernonia%20noveboracensis%20(New%20York%20ironweed),%20West%20Greenwich,%20RI%20(32168810295).jpg?width=1400" data-cap="New York ironweed"></td><td class="bot">Vernonia noveboracensis<br><span style="font-style:normal;color:var(--mute);font-size:13px">New York ironweed · native</span></td><td>Aug–Sep</td><td>Six feet of saturated purple as summer turns, exactly when the pond gets used most. Untouched by deer, and the tallest thing in the planting.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Vernonia%20lettermanii%20%27Iron%20butterfly%27%20kz4.jpg?width=300" alt="Iron Butterfly threadleaf ironweed" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Vernonia%20lettermanii%20%27Iron%20butterfly%27%20kz4.jpg?width=1400" data-cap="Iron Butterfly threadleaf ironweed"></td><td class="bot">Vernonia lettermannii 'Iron Butterfly'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Threadleaf ironweed</span></td><td>Aug–Sep</td><td>The same purple in a compact, fine-textured form, used only in the stretch you see from the deck. Tailored where it is read closely, feral where it is not.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Showy%20goldenrod%20plant%20solidago%20speciosa.jpg?width=300" alt="Showy goldenrod" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Showy%20goldenrod%20plant%20solidago%20speciosa.jpg?width=1400" data-cap="Showy goldenrod"></td><td class="bot">Solidago speciosa<br><span style="font-style:normal;color:var(--mute);font-size:13px">Showy goldenrod · native</span></td><td>Sep–Oct</td><td>Upright architectural gold to close the season. This is the well-behaved goldenrod, not the one that sprawls into everything and makes a planting look abandoned.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Golden%20Alexanders%20Zizia%20aurea%20Flowers%203008px.JPG?width=300" alt="Golden Alexanders" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Golden%20Alexanders%20Zizia%20aurea%20Flowers%203008px.JPG?width=1400" data-cap="Golden Alexanders"></td><td class="bot">Zizia aurea<br><span style="font-style:normal;color:var(--mute);font-size:13px">Golden Alexanders · native</span></td><td>Apr–May</td><td>Flat gold umbels in April, when the pond edge has nothing else and the earliest insects have nothing to eat. It is the plant that closes the season's only real gap.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Osmunda%20regalis%20-%20Royal%20fern%2001.jpg?width=300" alt="Royal fern" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Osmunda%20regalis%20-%20Royal%20fern%2001.jpg?width=1400" data-cap="Royal fern"></td><td class="bot">Osmunda regalis<br><span style="font-style:normal;color:var(--mute);font-size:13px">Royal fern · native</span></td><td>Foliage</td><td>Tall, soft and primeval in the shaded stretches under the willows, where flowering plants thin out and only foliage can carry the barrier.</td></tr>
+  </table>
+  <h3>Two optional refinements</h3>
+  <p>Both are non-native and neither is necessary. They exist because polish is a legitimate thing to want, and with both in place the planting is still around three-quarters native.</p>
+  <ul>
+    <li><strong>Siberian iris 'Caesar's Brother'</strong> in the deck-view stretch only, in place of blue flag. Finer blades, silkier deep violet, equally deer-proof and wet-tolerant. It reads more garden and less marsh.</li>
+    <li><strong>Japanese primrose or astilbe</strong> in the willow shade, where the palette is otherwise all green. Candelabra pink in May, in the one place natives offer little.</li>
+  </ul>
+</section>
+
+<section id="calendar">
+  <div class="kicker">The bloom calendar</div>
+  <h2>Something in bloom, and something being fed, every month</h2>
+  <div class="well">
+    <table>
+      <tr><td style="width:210px"></td><td>Apr</td><td>May</td><td>Jun</td><td>Jul</td><td>Aug</td><td>Sep</td><td>Oct</td></tr>
+      <tr><td>Zizia aurea</td><td><span class="d" style="background:#E3C44A"></span></td><td><span class="d" style="background:#E3C44A"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Iris versicolor</td><td><span class="fdot"></span></td><td><span class="d" style="background:#6B8FD4"></span></td><td><span class="d" style="background:#6B8FD4"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr><td>Mountain mint</td><td></td><td></td><td><span class="fdot"></span></td><td><span class="d" style="background:#9DB4A4"></span></td><td><span class="d" style="background:#9DB4A4"></span></td><td><span class="d" style="background:#9DB4A4"></span></td><td></td></tr>
+      <tr><td>'Little Joe'</td><td></td><td></td><td></td><td><span class="d" style="background:#B08BB5"></span></td><td><span class="d" style="background:#B08BB5"></span></td><td></td><td></td></tr>
+      <tr><td>Cardinal flower</td><td></td><td></td><td></td><td><span class="d" style="background:#C0392B"></span></td><td><span class="d" style="background:#C0392B"></span></td><td><span class="d" style="background:#C0392B"></span></td><td></td></tr>
+      <tr><td>Ironweed, both</td><td></td><td></td><td></td><td></td><td><span class="d" style="background:#5A3E7A"></span></td><td><span class="d" style="background:#5A3E7A"></span></td><td></td></tr>
+      <tr><td>Showy goldenrod</td><td></td><td></td><td></td><td></td><td></td><td><span class="d" style="background:#C8A951"></span></td><td><span class="d" style="background:#C8A951"></span></td></tr>
+      <tr><td>Royal fern, cattails</td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr class="fed"><td>Who visits</td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td></tr>
+    </table>
+    <div class="polkey"><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg>bees</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg>hummingbirds</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg>butterflies</span></div>
+    <p class="note">There is no month here that feeds nobody, and not one plant in this palette is decorative only. Mountain mint runs the summer buffet, cardinal flower runs the hummingbird service, Zizia opens the season for the earliest insects, and goldenrod feeds the ones still flying in October. The seven arcs on the cover are these same windows drawn as a chart.</p>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="kicker">The plan</div>
+  <h2>Three zones along the edge</h2>
+  <svg class="plan" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, sans-serif">
+    <rect x="0" y="0" width="900" height="130" fill="#DCE7EC"/>
+    <text x="450" y="62" font-size="14" fill="#7FA0AE" text-anchor="middle" letter-spacing="3">POND</text>
+    <path d="M 0 130 Q 220 118 450 130 T 900 130 L 900 155 Q 680 168 450 155 T 0 155 Z" fill="#C4BBA8" opacity="0.75"/>
+    <text x="60" y="150" font-size="10" fill="#7E7458">cattail and sedge skirt, existing</text>
+    <rect x="415" y="108" width="60" height="30" fill="#B49B78"/>
+    <text x="445" y="100" font-size="11" fill="#8A7250" text-anchor="middle">DOCK — 4' opening stays clear for skating</text>
+    <rect x="0" y="155" width="290" height="60" fill="#E4EBE2"/>
+    <rect x="290" y="155" width="330" height="60" fill="#EDF2EA"/>
+    <rect x="620" y="155" width="280" height="60" fill="#E4EBE2"/>
+    <text x="145" y="180" font-size="12" font-weight="600" fill="#4F6B63" text-anchor="middle">ZONE C — transition, wild</text>
+    <text x="145" y="198" font-size="10.5" fill="#6E8F86" text-anchor="middle">mountain mint · big ironweed · goldenrod · ferns at the willows</text>
+    <text x="455" y="180" font-size="12" font-weight="600" fill="#4F6B63" text-anchor="middle">ZONE B — deck view, composed · ZONE A at the dock, densest</text>
+    <text x="455" y="198" font-size="10.5" fill="#6E8F86" text-anchor="middle">'Little Joe' · cardinal flower · 'Iron Butterfly' · Zizia · goldenrod</text>
+    <text x="760" y="180" font-size="12" font-weight="600" fill="#4F6B63" text-anchor="middle">ZONE C — transition, wild</text>
+    <text x="760" y="198" font-size="10.5" fill="#6E8F86" text-anchor="middle">drifts thin out into the existing vegetation</text>
+    <g fill="#6B8FD4"><circle cx="60" cy="160" r="7"/><circle cx="180" cy="160" r="7"/><circle cx="300" cy="160" r="7"/><circle cx="410" cy="160" r="7"/><circle cx="490" cy="160" r="7"/><circle cx="600" cy="160" r="7"/><circle cx="720" cy="160" r="7"/><circle cx="840" cy="160" r="7"/></g>
+    <text x="620" y="152" font-size="10" fill="#4A6BB0">iris drifts, the metronome, every 12 ft down the whole run</text>
+    <rect x="0" y="215" width="900" height="26" fill="#8FA68E"/>
+    <text x="450" y="232" font-size="11.5" font-weight="600" fill="#2E4238" text-anchor="middle">THE MOWN EDGE — a crisp maintained strip, the entire run</text>
+    <rect x="0" y="241" width="900" height="59" fill="#A9C49B"/>
+    <text x="450" y="275" font-size="12" fill="#41603A" text-anchor="middle">LAWN</text>
+  </svg>
+  <p>Schematic, not to scale: pace off the planted shoreline and the recipe below scales to it. Barrier depth runs four to six feet behind the existing skirt, deeper in Zone B.</p>
+  <h3>Three moves that make it read as designed</h3>
+  <ol>
+    <li><strong>The mown edge.</strong> A crisp maintained lawn strip along the entire planting. One mower pass is the loudest possible signal of intention, and it is what separates a native planting from a place where someone stopped mowing.</li>
+    <li><strong>Iris as architecture.</strong> Blue flag repeated at regular intervals down the whole run. Sword foliage is the boxwood of a wet edge: vertical and structured from April to October, not only in bloom.</li>
+    <li><strong>Composed at the deck, wild at the edges.</strong> Zone B plants in tailored layers with the compact ironweed; the six-foot species version lives out in Zones A and C. Same purple, refined where it is seen closely.</li>
+  </ol>
+</section>
+
+<section id="recipe">
+  <div class="kicker">Quantities</div>
+  <h2>Per ten feet of shoreline</h2>
+  <p>Pace the planted edge in big steps, roughly three feet each, and multiply.</p>
+  <table>
+    <tr><th>Plant</th><th>Size</th><th>Zone B, composed</th><th>Zones A and C, wild</th></tr>
+    <tr><td class="bot">Iris versicolor</td><td>plugs or bare root</td><td>5, one drift per 12 ft</td><td>5</td></tr>
+    <tr><td class="bot">Mountain mint</td><td>plugs</td><td>2</td><td>4</td></tr>
+    <tr><td class="bot">'Little Joe'</td><td>#1 pots</td><td>3</td><td>—</td></tr>
+    <tr><td class="bot">Cardinal flower</td><td>plugs or quarts</td><td>3</td><td>—</td></tr>
+    <tr><td class="bot">'Iron Butterfly' ironweed</td><td>#1 pots</td><td>1</td><td>—</td></tr>
+    <tr><td class="bot">Ironweed, species</td><td>plugs</td><td>—</td><td>1</td></tr>
+    <tr><td class="bot">Showy goldenrod</td><td>plugs</td><td>2</td><td>2</td></tr>
+    <tr><td class="bot">Zizia aurea</td><td>plugs</td><td>2</td><td>2</td></tr>
+    <tr><td class="bot">Royal fern</td><td>#1 pots</td><td colspan="2">3 per module, in the shaded willow stretches only</td></tr>
+    <tr><td><strong>Per module</strong></td><td></td><td><strong>18 plants, about $130–165</strong></td><td><strong>14 plants, about $70–95</strong></td></tr>
+  </table>
+  <div class="callout"><strong>A hundred feet of mixed shoreline runs roughly $1,000 to $1,400.</strong> The two cultivars and the ferns are most of that; everything else is plug-cheap, and a tray brings the per-plant cost under four dollars. <strong>Phased over two seasons:</strong> Zones A and B first, which is the safety barrier and the view, at about sixty percent of the spend. Zone C the following fall.</div>
+</section>
+
+<section id="sourcing">
+  <div class="kicker">Sourcing</div>
+  <h2>Mail order and two stops</h2>
+  <table>
+    <tr><th>Where</th><th>What</th><th>Notes</th></tr>
+    <tr><td><strong>Ernst Conservation Seeds</strong><br><span style="color:var(--mute);font-size:13px">mail order</span></td><td>Plug trays: iris, mountain mint, cardinal flower, species ironweed, goldenrod, Zizia</td><td>Trays of 38 to 50 bring the per-plant cost under four dollars. Order early; native stock commits months ahead.</td></tr>
+    <tr><td><strong>Izel Native Plants</strong><br><span style="color:var(--mute);font-size:13px">mail order</span></td><td>Backup for anything Ernst is short on</td><td>Aggregates native growers and ships to New York.</td></tr>
+    <tr><td><strong>Gossett Brothers</strong><br><span style="color:var(--mute);font-size:13px">South Salem, ten minutes</span></td><td>Royal fern, 'Little Joe', anything heavy</td><td>Call ahead on native stock.</td></tr>
+    <tr><td><strong>Rosedale Nurseries</strong><br><span style="color:var(--mute);font-size:13px">Hawthorne, twenty minutes</span></td><td>'Iron Butterfly', and the optional Siberian iris and primrose if you take the refinements</td><td>Cultivars live at full-service nurseries rather than native specialists.</td></tr>
+  </table>
+  <p>Nothing on this list is more than twenty minutes away or a delivery truck.</p>
+</section>
+
+<section id="install">
+  <div class="kicker">Installation</div>
+  <h2>Planted by hand, over two seasons</h2>
+  <ol>
+    <li><strong>Timing.</strong> Spring, or September into mid-October. Plugs establish quickly in moist soil and run roots for the rest of the season.</li>
+    <li><strong>Layout day.</strong> Pace and flag the zones, then set the mown-edge line first with a garden hose, because it defines everything else. Flag the iris drifts at even intervals before anything else goes in; the metronome gets set first.</li>
+    <li><strong>Prep.</strong> Minimal. Smother the lawn strip behind the skirt with cardboard and two inches of compost a few weeks ahead, or strip the sod on planting day. <strong>No tilling at a pond edge</strong>, which invites erosion and wakes up the weed seed bank.</li>
+    <li><strong>Planting.</strong> Plugs at the spacing above, watered in once. Wettest feet nearest the water: iris and fern. Driest upslope: goldenrod and the compact ironweed.</li>
+    <li><strong>Deer insurance, first six weeks.</strong> Even deer-refused plants get sampled as tender plugs. One repellent spray at planting and one more a month later is the cheapest insurance in this document.</li>
+    <li><strong>No fertilizer and no imported mulch.</strong> Compost only. The existing skirt and the colonizing plants close the ground themselves, which is how it is meant to work.</li>
+    <li><strong>At the water.</strong> Disturb the bank in short stretches and plant the same day. Never leave bare soil at the waterline over a rain.</li>
+  </ol>
+</section>
+
+<section id="care">
+  <div class="kicker">Care</div>
+  <h2>One real workday a year</h2>
+  <table>
+    <tr><th>When</th><th>What</th><th>How long</th></tr>
+    <tr><td><strong>Weekly in season</strong></td><td>Mow the edge strip on the normal lawn pass. This is the design's entire maintenance, and the crisp line is what keeps the planting reading as deliberate.</td><td>no extra time</td></tr>
+    <tr><td><strong>Late March</strong></td><td>The one cut-down: everything to six inches and out of the beds. The seed heads stood all winter for structure and for birds, and cutting in spring rather than fall protects the insects overwintering in the stems.</td><td>2–3 hrs</td></tr>
+    <tr><td><strong>June</strong></td><td>A walk-through: thin the cattails at the dock opening, and spade-edge any mountain mint that has reached past the mown line.</td><td>~1 hr</td></tr>
+    <tr><td><strong>Year one only</strong></td><td>Water the plugs through rainless weeks the first summer, re-spray repellent monthly, and expect the barrier to look sparse. It knits closed in season two.</td><td>—</td></tr>
+  </table>
+  <div class="callout">No deadheading, no staking, no spraying beyond the first-year deer repellent, and no fall cleanup. Fall is the show here: ironweed seed, goldenrod gold, and everything standing. The planting also works for the pond, holding the bank and filtering what runs off the lawn.</div>
+</section>
+
+<section id="flags">
+  <div class="kicker">What we need from you</div>
+  <h2>Four open items</h2>
+  <ol>
+    <li><strong>Pace the shoreline.</strong> Big steps, roughly three feet each, along the stretch you want planted. That single number scales the plan and the budget.</li>
+    <li><strong>Note where the willow shade falls</strong>, which decides where the ferns go.</li>
+    <li><strong>The two refinements: yes or no.</strong> Siberian iris in the deck stretch, and primrose or astilbe in the willow shade.</li>
+    <li><strong>Timing.</strong> Spring planting for the first phase, with Zone C the following fall.</li>
+  </ol>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <strong>BLOOM DAYS</strong> · Ecologically minded, locally beautiful<br>
+  Greenwich, CT · <a href="mailto:kaitlin@bloomdays.co">kaitlin@bloomdays.co</a>
+</div></footer>
+
+
+<div class="lightbox" id="lb"><img id="lbimg" src="" alt=""><div class="lbcap" id="lbcap"></div></div>
+
+<script>
+(function(){
+  var wrap=document.getElementById('markwrap'), lbl=document.getElementById('marklabel');
+  if(wrap&&lbl){
+    var DEF=lbl.textContent;
+    wrap.querySelectorAll('path[data-label]').forEach(function(pth){
+      pth.addEventListener('mouseenter',function(){ lbl.textContent=pth.getAttribute('data-label'); lbl.classList.add('on'); wrap.classList.add('hovering'); });
+      pth.addEventListener('mouseleave',function(){ lbl.textContent=DEF; lbl.classList.remove('on'); wrap.classList.remove('hovering'); });
+    });
+  }
+})();
+(function(){
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
+  document.querySelectorAll('.thumb').forEach(function(t){
+    t.addEventListener('click',function(){ lbimg.src=t.getAttribute('data-full'); lbimg.alt=t.alt; lbcap.textContent=t.getAttribute('data-cap'); lb.classList.add('open'); });
+  });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; }});
+})();
+(function(){
+  var links=[].slice.call(document.querySelectorAll('nav.jump a')), map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var sections=[].slice.call(document.querySelectorAll('section[id]'));
+  function update(){
+    var top=window.scrollY+90, cur=sections[0];
+    sections.forEach(function(s){ if(s.offsetTop<=top) cur=s; });
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(cur&&map[cur.id]) map[cur.id].classList.add('active');
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update); update();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Days: Ecologically minded, locally beautiful</title>
+<meta name="description" content="Garden design for Connecticut, Westchester, and the Hudson Valley. One complete packet per garden. Every plant earns its reason.">
+<style>
+  :root {
+    --deep: #6E8F86; --deepdark: #4F6B63; --pale: #F3F6F3; --paper: #FBFCFB;
+    --ink: #18211E; --mute: #5B6B66; --hairline: #D9E2DD; --light: #F2F5F1;
+    --gold:#E3C44A; --blue:#6B8FD4; --lav:#9B85C9; --pink:#E4A0B4; --scarlet:#C0392B; --purple:#5A3E7A; --goldenrod:#C8A951;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
+  .lockup { display: flex; align-items: center; gap: 11px; }
+  .lockup svg { width: 30px; height: 30px; display: block; }
+  .lockup .wordmark { font-weight: 700; font-size: 15px; letter-spacing: 1.2px; }
+  nav a.link { color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600; border-bottom: 2px solid var(--deep); padding-bottom: 2px; }
+
+  .hero { background: var(--deep); color: var(--light); padding: 92px 0 96px; }
+  .hero .inner { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  @media (max-width: 780px) { .hero .inner { grid-template-columns: 1fr; } .hero .markbig { order: -1; } }
+  .hero h1 { font-size: clamp(40px, 6vw, 66px); font-weight: 800; line-height: 1.05; letter-spacing: -1.4px; }
+  .hero .sub { font-size: 18.5px; margin-top: 24px; max-width: 560px; line-height: 1.6; color: #E4EDE9; }
+  .hero .area { font-size: 14px; margin-top: 22px; color: #C3D5CF; }
+  .markbig svg { width: clamp(150px, 22vw, 220px); height: auto; display: block; }
+  .markbig svg path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw 1.1s ease-out forwards; }
+  .markbig svg path:nth-child(2){animation-delay:.05s} .markbig svg path:nth-child(3){animation-delay:.18s} .markbig svg path:nth-child(4){animation-delay:.31s} .markbig svg path:nth-child(5){animation-delay:.44s} .markbig svg path:nth-child(6){animation-delay:.57s} .markbig svg path:nth-child(7){animation-delay:.7s} .markbig svg path:nth-child(8){animation-delay:.83s}
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .markbig svg path { animation: none; stroke-dashoffset: 0; } }
+
+  .statement { background: var(--deepdark); color: var(--light); padding: 76px 0; }
+  .statement p { font-size: clamp(23px, 3vw, 33px); line-height: 1.35; font-weight: 600; letter-spacing: -0.4px; max-width: 840px; }
+  .statement p b { color: var(--pink); font-weight: 700; }
+
+  section { padding: 84px 0 0; }
+  .band { background: var(--pale); margin-top: 84px; padding: 84px 0; }
+  .band section:first-child { padding-top: 0; }
+  .kicker { font-size: 12.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--deepdark); margin-bottom: 12px; }
+  h2 { font-size: clamp(27px, 3.4vw, 37px); font-weight: 800; letter-spacing: -0.7px; line-height: 1.15; margin-bottom: 16px; }
+  p { font-size: 16.5px; color: #33403B; margin-bottom: 13px; max-width: 660px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; margin-top: 34px; }
+  .card { background: #fff; border: 1px solid var(--hairline); border-radius: 13px; padding: 24px 24px 26px; }
+  .card .d { width: 13px; height: 13px; border-radius: 50%; margin-bottom: 14px; }
+  .card h3 { font-size: 17.5px; font-weight: 700; margin-bottom: 7px; }
+  .card p { font-size: 14.5px; margin: 0; color: #4a5651; }
+
+  .calwell { background: var(--deepdark); border-radius: 14px; padding: 32px 34px; margin-top: 34px; overflow-x: auto; color: var(--light); }
+  .calwell table { border-collapse: collapse; width: 100%; min-width: 430px; }
+  .calwell td { padding: 8px 0; font-size: 14px; }
+  .calwell tr:first-child td { font-size: 12px; color: #A9C0B9; }
+  .bdot { display: inline-block; width: 15px; height: 15px; border-radius: 50%; }
+  .fdot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #A9C0B9; }
+  .calwell .fed td { border-top: 1px solid #67857C; padding-top: 12px; font-weight: 600; font-size: 13px; }
+  .calwell .note { font-size: 13px; color: #A9C0B9; margin: 14px 0 0; }
+  .pol { display:inline-block; width:19px; height:19px; vertical-align:-4px; margin-right:2px; }
+  .polkey { font-size:12px; color:#A9C0B9; margin-top:14px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .polkey span { display:inline-flex; align-items:center; gap:5px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; gap: 20px; } }
+
+  .rule { display: flex; gap: 22px; padding: 24px 0; border-top: 1px solid var(--hairline); align-items: baseline; }
+  .rule .num { font-size: 25px; font-weight: 800; color: var(--deep); flex-shrink: 0; width: 42px; }
+  .rule h3 { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+  .rule p { font-size: 15px; margin: 0; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 38px; margin-top: 36px; }
+  .step .num { font-size: 46px; font-weight: 800; color: var(--deep); line-height: 1; }
+  .step h3 { font-size: 17px; font-weight: 700; margin: 10px 0 7px; }
+  .step p { font-size: 14.5px; margin: 0; }
+
+  .photo img { display: block; width: 100%; height: min(52vh, 470px); object-fit: cover; }
+  .photo .cap { font-size: 13px; color: var(--mute); padding: 12px 32px 0; max-width: 1040px; margin: 0 auto; }
+
+  .cta { background: var(--deep); color: var(--light); margin-top: 88px; padding: 88px 0; }
+  .cta h2 { color: var(--light); }
+  .cta p { color: #D6E4DF; }
+  .cta a.button { display: inline-block; background: var(--light); color: var(--deepdark); text-decoration: none; font-size: 16px; font-weight: 700; padding: 16px 34px; border-radius: 8px; margin-top: 14px; }
+  .cta .fine { font-size: 13px; color: #B6CCC5; margin-top: 40px; }
+  .cta .ctamark { width: 34px; height: 34px; margin-top: 34px; display: block; }
+
+  /* ---- the work ---- */
+  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 18px; margin-top: 36px; }
+  .wcard { background: #fff; border: 1px solid var(--hairline); border-radius: 13px; overflow: hidden; text-decoration: none; color: var(--ink); display: flex; flex-direction: column; transition: border-color .18s, transform .18s; }
+  .wcard:hover { border-color: var(--deep); transform: translateY(-2px); }
+  .wcard .top { background: var(--deepdark); padding: 20px 22px 16px; }
+  .wcard .top svg { width: 74px; height: 74px; display: block; margin: 0 auto 6px; }
+  .wcard .meat { padding: 18px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .wcard h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .wcard .where { font-size: 12.5px; color: var(--mute); margin-bottom: 10px; }
+  .wcard p { font-size: 14.5px; margin: 0 0 14px; color: #4a5651; flex: 1; }
+  .wcard .go { font-size: 13.5px; font-weight: 700; color: var(--deepdark); }
+
+  /* ---- intake form ---- */
+  .intake { background: #fff; border-radius: 14px; padding: 32px 34px 34px; margin-top: 30px; max-width: 620px; }
+  .intake label { display: block; font-size: 13px; font-weight: 700; color: var(--ink); margin: 0 0 5px; }
+  .intake .fld { margin-bottom: 17px; }
+  .intake .hint { font-size: 12.5px; color: var(--mute); font-weight: 500; margin: 0 0 6px; }
+  .intake input[type=text], .intake input[type=email], .intake select, .intake textarea {
+    font: inherit; font-size: 15px; width: 100%; padding: 11px 13px; border: 1px solid var(--hairline);
+    border-radius: 8px; background: var(--paper); color: var(--ink); }
+  .intake textarea { min-height: 92px; resize: vertical; }
+  .intake input:focus, .intake select:focus, .intake textarea:focus { outline: none; border-color: var(--deep); box-shadow: 0 0 0 3px rgba(110,143,134,.15); }
+  .intake .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .intake .two { grid-template-columns: 1fr; gap: 0; } }
+  .intake button { font: inherit; font-size: 16px; font-weight: 700; background: var(--deepdark); color: #fff; border: 0; border-radius: 8px; padding: 15px 34px; cursor: pointer; margin-top: 4px; }
+  .intake button:hover { background: var(--ink); }
+  .intake .after { font-size: 13px; color: var(--mute); margin: 14px 0 0; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="lockup">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bloom Days"><title>Bloom Days</title>
+        <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="wordmark">BLOOM DAYS</span>
+    </div>
+    <a class="link" href="#start">Booking spring 2027</a>
+  </nav>
+</div>
+
+<div class="hero">
+  <div class="wrap inner">
+    <div>
+      <h1>Ecologically minded.<br>Locally beautiful.</h1>
+      <p class="sub">A planting plan built around your site, not a template. Made for the way your neighborhood actually looks: stone walls, woodland edges, relaxed borders that read as beautiful to your neighbors and as habitat to everything else.</p>
+      <p class="area">New England · Mid-Atlantic · South Florida</p>
+    </div>
+    <div class="markbig">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seven arcs, one per bloom, April through October"><title>Seven arcs, one per bloom, April through October</title>
+        <path d="M 100.00 74.00 A 26.00 26.00 0 0 1 126.00 100.00" fill="none" stroke="#E4A0B4" stroke-width="7.5" stroke-linecap="round"/>
+        <path d="M 123.78 71.66 A 37.00 37.00 0 0 1 128.34 123.78" fill="none" stroke="#E3C44A" stroke-width="7.5" stroke-linecap="round"/>
+        <path d="M 147.27 91.66 A 48.00 48.00 0 0 1 108.34 147.27" fill="none" stroke="#6B8FD4" stroke-width="7.5" stroke-linecap="round"/>
+        <path d="M 151.10 129.50 A 59.00 59.00 0 0 1 70.50 151.10" fill="none" stroke="#9B85C9" stroke-width="7.5" stroke-linecap="round"/>
+        <path d="M 123.94 165.78 A 70.00 70.00 0 0 1 34.22 123.94" fill="none" stroke="#C0392B" stroke-width="7.5" stroke-linecap="round"/>
+        <path d="M 72.30 176.12 A 81.00 81.00 0 0 1 23.88 72.30" fill="none" stroke="#C8A951" stroke-width="7.5" stroke-linecap="round"/>
+        <path d="M 20.33 146.00 A 92.00 92.00 0 0 1 54.00 20.33" fill="none" stroke="#5A3E7A" stroke-width="7.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="statement">
+  <div class="wrap">
+    <p>You usually have to choose. A garden that looks designed, or a garden that actually feeds something.<br><b>Bloom Days does both.</b></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="kicker">What you get</div>
+    <h2>One garden, one packet</h2>
+    <p>The complete working documents for a single garden area. A bed, a border, a pond edge, an entry. Ready to order from, plant from, and live with.</p>
+    <div class="cards">
+      <div class="card"><div class="d" style="background:var(--pink)"></div><h3>The palette</h3><p>Every plant with a plain-language reason underneath: what you'll see, and why it survives your site.</p></div>
+      <div class="card"><div class="d" style="background:var(--blue)"></div><h3>The bloom calendar</h3><p>April to October, no dead months, and a second row naming who visits each month: bees, butterflies, hummingbirds.</p></div>
+      <div class="card"><div class="d" style="background:var(--gold)"></div><h3>The planting plan</h3><p>Drawn to your measurements, with quantities and the exact nursery sizes to order.</p></div>
+      <div class="card"><div class="d" style="background:var(--goldenrod)"></div><h3>The sourcing list</h3><p>Growers within an easy drive, plus the wholesale bulb and plug houses that sell to anyone. Plugs and bulbs cost a fraction of potted plants, which is what makes real drifts affordable.</p></div>
+      <div class="card"><div class="d" style="background:var(--scarlet)"></div><h3>The install guide</h3><p>Written for whoever's actually digging: you, or your landscaper.</p></div>
+      <div class="card"><div class="d" style="background:var(--purple)"></div><h3>The elevation</h3><p>The bed drawn side-on, to scale, in April, June, August and October. Four drawings, because one would imply everything blooms at once.</p></div>
+      <div class="card"><div class="d" style="background:var(--lav)"></div><h3>The care plan</h3><p>How many hours a year this bed takes, and in which months. You get the number before you plant, not after.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">A sample</div>
+    <h2>What a bloom calendar looks like here</h2>
+    <p>Each plant's bloom in its true color, and underneath it the row most designers never show you: who actually visits, month by month. Bees, butterflies and hummingbirds want different things, so a bed can be covered in flowers and still be feeding almost nobody.</p>
+    <div class="calwell">
+      <table>
+        <tr><td style="width:150px;"></td><td>Apr</td><td>May</td><td>Jun</td><td>Jul</td><td>Aug</td><td>Sep</td><td>Oct</td></tr>
+        <tr><td>Daffodils</td><td><span class="bdot" style="background:#EDE8D5;"></span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Wild geranium</td><td></td><td><span class="bdot" style="background:var(--pink);"></span></td><td><span class="bdot" style="background:var(--pink);"></span></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Butterfly weed</td><td></td><td></td><td><span class="bdot" style="background:#D97C3A;"></span></td><td><span class="bdot" style="background:#D97C3A;"></span></td><td></td><td></td><td></td></tr>
+        <tr><td>Coneflower</td><td></td><td></td><td></td><td><span class="bdot" style="background:#C56A8B;"></span></td><td><span class="bdot" style="background:#C56A8B;"></span></td><td><span class="bdot" style="background:#C56A8B;"></span></td><td></td></tr>
+        <tr><td>Showy goldenrod</td><td></td><td></td><td></td><td></td><td></td><td><span class="bdot" style="background:var(--goldenrod);"></span></td><td><span class="bdot" style="background:var(--goldenrod);"></span></td></tr>
+        <tr class="fed"><td>Who visits</td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="nothing visits"><title>nothing visits</title><circle cx="10" cy="10" r="3.4" stroke="#7E9A92" stroke-width="1.3" stroke-dasharray="2 2.2"/></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg></td></tr>
+      </table>
+      <div class="polkey"><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg>bees</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg>butterflies</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="nothing visits"><title>nothing visits</title><circle cx="10" cy="10" r="3.4" stroke="#7E9A92" stroke-width="1.3" stroke-dasharray="2 2.2"/></svg>nobody</span></div>
+      <p class="note"><b style="color:#F2F5F1;">Look at April.</b> Daffodils open the season and feed almost nothing, so this sample has a hole in it. That is what the row is for, and it is why this palette is not finished. Yours is built from your site, your deer, your town. The seven arcs in the logo are the same idea: one arc per bloom, drawn from a real palette.</p>
+    </div>
+  </section>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <div class="kicker">Why trust it</div>
+        <h2>Tested at home first</h2>
+      </div>
+      <div>
+        <p>The first client was my own garden. Every rule in my process was learned in my beds in Greenwich before it ever touched a client's: which "deer-proof" plants actually are, how narrow a bed can run before the plan has to change, what a care plan honestly costs in hours. When I hand you a packet, it's the same one I hand myself.</p>
+        <p>You work directly with me, not a project manager, and not an algorithm deciding your plants. Behind me is an AI studio I built myself. It does the checking: every plant against your sun, soil, and browse pressure, every palette against a panel of design standards. I do the choosing.</p>
+        <p>And this practice is of this region, not shipping into it. I know which "deer-resistant" plants actually get eaten in Pound Ridge, which inkberry cultivar dodges the boxwood blight running through Fairfield County, and which nursery on your own road stocks the plants in your plan.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="kicker">The standards</div>
+    <h2>No random acts of gardening</h2>
+    <div style="margin-top:30px">
+      <div class="rule"><div class="num">01</div><div><h3>Deer, rabbits, and wet feet are design inputs</h3><p>If it gets eaten in your town, it isn't in your plan.</p></div></div>
+      <div class="rule"><div class="num">02</div><div><h3>No dead months</h3><p>Something blooms, and something is fed, every month from April to October.</p></div></div>
+      <div class="rule"><div class="num">03</div><div><h3>Native-forward, never dogmatic</h3><p>The test is whether a plant belongs in this region, not where its ancestors lived. If a well-behaved non-native earns its place, it's in.</p></div></div>
+      <div class="rule"><div class="num">04</div><div><h3>Drifts, repetition, clean edges</h3><p>That's what makes natural look deliberate instead of neglected.</p></div></div>
+      <div class="rule"><div class="num">05</div><div><h3>Maintenance honesty</h3><p>The care plan tells you the real annual cost in hours before you plant, not after.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">The work</div>
+    <h2>Three real packets, start to finish</h2>
+    <p>Not excerpts. These are the complete working documents, exactly as they were handed over. Read the reasoning under every plant and decide for yourself whether it holds up.</p>
+    <div class="work">
+
+      <a class="wcard" href="work/everyday-entrance.html">
+        <div class="top"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 100 74 A 26 26 0 0 1 119.06 82.32" fill="none" stroke="#E8E0C8" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 100 63 A 37 37 0 0 1 135.81 90.69" fill="none" stroke="#6B8FD4" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 100 52 A 48 48 0 0 1 147.87 103.59" fill="none" stroke="#8FA9E0" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 143.25 59.87 A 59 59 0 0 1 136.79 146.13" fill="none" stroke="#E4A0B4" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 169.8 105.23 A 70 70 0 0 1 89.57 169.22" fill="none" stroke="#E0A98C" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 150.5 163.33 A 81 81 0 0 1 87.93 180.1" fill="none" stroke="#B9A8D6" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 86.29 190.97 A 92 92 0 0 1 54 20.33" fill="none" stroke="#EFE9D8" stroke-width="8" stroke-linecap="round"/>
+        </svg></div>
+        <div class="meat">
+          <h3>The Everyday Entrance</h3>
+          <div class="where">A white clapboard colonial · Greenwich CT · part shade</div>
+          <p>A skinny bed wrapping a corner, seen forty times a day and never once designed. Two good plants and thirty feet of nothing.</p>
+          <div class="go">Read the packet &rarr;</div>
+        </div>
+      </a>
+
+      <a class="wcard" href="work/waters-edge.html">
+        <div class="top"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 100 74 A 26 26 0 0 1 124.54 91.41" fill="none" stroke="#E3C44A" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 127.12 74.83 A 37 37 0 0 1 127.5 124.76" fill="none" stroke="#6B8FD4" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 129.93 137.53 A 48 48 0 0 1 65.31 133.17" fill="none" stroke="#B08BB5" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 136.79 146.13 A 59 59 0 0 1 41.32 106.17" fill="none" stroke="#C0392B" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 143.64 154.73 A 70 70 0 0 1 30.38 107.32" fill="none" stroke="#9DB4A4" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 87.93 180.1 A 81 81 0 0 1 19.14 95.16" fill="none" stroke="#5A3E7A" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 23.99 151.83 A 92 92 0 0 1 54 20.33" fill="none" stroke="#C8A951" stroke-width="8" stroke-linecap="round"/>
+        </svg></div>
+        <div class="meat">
+          <h3>The Water's Edge</h3>
+          <div class="where">A private pond · Pound Ridge NY · wet, mixed sun</div>
+          <p>Two toddlers, a dog, and a pond the town will not let them fence. The barrier had to be made of flowers.</p>
+          <div class="go">Read the packet &rarr;</div>
+        </div>
+      </a>
+
+      <a class="wcard" href="work/view-from-the-street.html">
+        <div class="top"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 100 74 A 26 26 0 0 1 119.06 82.32" fill="none" stroke="#EFDCC0" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 100 63 A 37 37 0 0 1 135.81 90.69" fill="none" stroke="#6B5A73" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 135.19 67.35 A 48 48 0 0 1 146.63 111.38" fill="none" stroke="#C9A0BE" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 158.84 104.41 A 59 59 0 0 1 136.79 146.13" fill="none" stroke="#B9A3C9" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 143.64 154.73 A 70 70 0 0 1 30.13 95.81" fill="none" stroke="#E8E2CE" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 87.93 180.1 A 81 81 0 0 1 19.44 108.47" fill="none" stroke="#8E86B5" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 86.29 190.97 A 92 92 0 0 1 54 20.33" fill="none" stroke="#B5717E" stroke-width="8" stroke-linecap="round"/>
+        </svg></div>
+        <div class="meat">
+          <h3>The View From the Street</h3>
+          <div class="where">A 1920s colonial · Rowayton CT · full sun</div>
+          <p>Healthy shrubs, correct choices, and still bare. Bare turned out to be a layer problem, not a plant problem.</p>
+          <div class="go">Read the packet &rarr;</div>
+        </div>
+      </a>
+
+    </div>
+    <p style="font-size:13.5px;color:var(--mute);margin-top:20px;">Names and addresses removed at the owners' request. Everything else is exactly as delivered.</p>
+  </section>
+
+  <section>
+    <div class="kicker">The process</div>
+    <h2>Three steps from a space that's bothering you to a plan you can actually plant</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Tell me the spot</h3><p>Six questions on this page, about two minutes. Photos and measurements come later, once we know it is a fit.</p></div>
+      <div class="step"><div class="num">2</div><h3>We talk</h3><p>Fifteen minutes, not a sales call. Your style, and anything tricky: deep shade, deer, the slope you've been ignoring for years. Then we agree on every plant before anything is drawn.</p></div>
+      <div class="step"><div class="num">3</div><h3>Get the packet</h3><p>Your packet arrives in late winter, in time to order plants before the good ones sell out. Then you or your installer plant in spring.</p></div>
+    </div>
+  </section>
+</div>
+
+<div class="cta">
+  <div class="wrap">
+    <div class="kicker" style="color:#BDD3CD;">Booking spring 2027</div>
+    <h2 id="start">Five gardens, designed over the winter</h2>
+    <p style="max-width:560px;">Spring is when things go in the ground, so winter is when they should be designed. I am taking five gardens for spring 2027 at an introductory price of $250. You get the complete packet, the same one on this page, in hand well before planting season, with time to read it, argue with it, and order from it without rushing.</p>
+    <p style="max-width:560px;">Apply now, and I will design over the winter and hand it to you in late winter. In exchange I ask to photograph the bed before you plant and again once it fills in, and to show the work here. Limited to gardens I can drive to from Greenwich, because I need to photograph them. The price goes up after this round.</p>
+
+    <form class="intake" method="POST" action="https://formspree.io/f/xqpkpebb">
+      <input type="hidden" name="_subject" value="Bloom Days — new spring 2027 application">
+      <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+      <div class="two">
+        <div class="fld">
+          <label for="f-name">Your name</label>
+          <input type="text" id="f-name" name="name" required>
+        </div>
+        <div class="fld">
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" required>
+        </div>
+      </div>
+
+      <div class="fld">
+        <label for="f-town">Town</label>
+        <p class="hint">Your deer, your soil and your nurseries are all local. This is the first thing I need.</p>
+        <input type="text" id="f-town" name="town" placeholder="Rowayton, Pound Ridge, Bedford..." required>
+      </div>
+
+      <div class="fld">
+        <label for="f-what">What is the space?</label>
+        <select id="f-what" name="space_type" required>
+          <option value="">Choose one</option>
+          <option>A foundation bed along the house</option>
+          <option>An entry or walkway</option>
+          <option>A border or property edge</option>
+          <option>A pond, stream or wet area</option>
+          <option>A woodland or shady area</option>
+          <option>Something else</option>
+        </select>
+      </div>
+
+      <div class="fld">
+        <label for="f-bother">What bothers you about it?</label>
+        <p class="hint">Plain words are better than garden words. "Bare and boring," "the deer eat everything," "it looks fine in May and dead by July."</p>
+        <textarea id="f-bother" name="whats_wrong" required></textarea>
+      </div>
+
+      <div class="fld">
+        <label for="f-when">When would you plant it?</label>
+        <select id="f-when" name="timeline" required>
+          <option value="">Choose one</option>
+          <option>Spring 2027</option>
+          <option>Fall 2027</option>
+          <option>Not sure yet, still thinking</option>
+        </select>
+      </div>
+
+      <div class="fld">
+        <label for="f-who">Who would do the planting?</label>
+        <p class="hint">No wrong answer. It changes how the install guide is written, and how soon the bed is in the ground.</p>
+        <select id="f-who" name="who_plants" required>
+          <option value="">Choose one</option>
+          <option>Me, myself</option>
+          <option>Me with help from family or friends</option>
+          <option>A landscaper I already work with</option>
+          <option>I would need to find someone</option>
+        </select>
+      </div>
+
+      <button type="submit">Apply for a spring spot</button>
+      <p class="after">$250, and nothing is owed until I have accepted your garden and you have seen what the packet covers. Nothing to dig up right now and no photos needed yet. I read every application myself and everyone hears back within a week.</p>
+    </form>
+    <svg class="ctamark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <p class="fine">Bloom Days · Greenwich, CT · bloomdays.co · <a href="mailto:kaitlin@bloomdays.co" style="color:#D6E4DF;">kaitlin@bloomdays.co</a></p>
+  </div>
+</div>
+
+</body>
+</html>

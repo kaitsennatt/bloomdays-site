@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Everyday Entrance — Bloom Days packet</title>
+<style>
+  :root{--deep:#6E8F86;--deepdark:#4F6B63;--pale:#F3F6F3;--paper:#FBFCFB;--ink:#18211E;--mute:#5B6B66;--hairline:#D9E2DD;--light:#F2F5F1;--pink:#E4A0B4;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 32px;}
+  .cover{background:var(--deep);color:var(--light);padding:56px 0 52px;}
+  .cover .inner{display:grid;grid-template-columns:minmax(0,1fr) clamp(160px,20vw,200px);gap:40px;align-items:center;}
+  @media (max-width:720px){.cover .inner{grid-template-columns:minmax(0,1fr);}}
+  .cover h1{font-size:clamp(32px,5vw,46px);font-weight:800;letter-spacing:-1px;line-height:1.08;}
+  .cover .site{font-size:16px;color:#DCE9E5;margin-top:14px;}
+  .cover .meta{font-size:13.5px;color:#BDD3CD;margin-top:18px;}
+  .cover svg{width:clamp(130px,18vw,170px);height:auto;display:block;margin:0 auto;}
+  .markwrap{text-align:center;width:100%;}
+  .markwrap svg path{transition:opacity .2s;}
+  .markwrap.hovering svg path{opacity:.28;}
+  .markwrap svg path:hover{opacity:1;}
+  .marklabel{font-size:12.5px;line-height:1.4;color:#CBDDD7;margin-top:12px;min-height:36px;transition:color .2s;}
+  .marklabel.on{color:#FFFFFF;}
+
+  nav.jump{background:var(--deepdark);padding:0;position:sticky;top:0;z-index:10;}
+  nav.jump .wrap{display:flex;flex-wrap:wrap;gap:6px;padding-top:0;padding-bottom:0;}
+  nav.jump a{color:#9FBAB2;text-decoration:none;font-size:13px;font-weight:600;padding:14px 10px 12px;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;}
+  nav.jump a:hover{color:#E6EFEC;}
+  nav.jump a.active{color:#FFFFFF;border-bottom-color:var(--pink);}
+
+  section{padding:56px 0 0;scroll-margin-top:64px;}
+  h2{font-size:26px;font-weight:800;letter-spacing:-0.6px;margin-bottom:6px;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--deepdark);margin-bottom:8px;}
+  p{font-size:16px;color:#33403B;margin-bottom:12px;}
+  h3{font-size:16px;font-weight:700;margin:22px 0 8px;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;}
+  th{text-align:left;font-size:12px;color:var(--mute);font-weight:700;padding:0 12px 8px 0;border-bottom:1px solid var(--hairline);}
+  td{font-size:14.5px;padding:10px 12px 10px 0;border-bottom:1px solid var(--hairline);vertical-align:top;}
+  .bot{font-style:italic;}
+  .d{display:inline-block;width:13px;height:13px;border-radius:50%;}
+  .dotcell{width:88px;}
+  .thumb{width:74px;height:74px;border-radius:9px;object-fit:cover;display:block;background:var(--pale);border:1px solid var(--hairline);cursor:zoom-in;transition:transform .15s;}
+  .thumb:hover{transform:scale(1.04);}
+  .lightbox{position:fixed;inset:0;background:rgba(24,33,30,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:32px;cursor:zoom-out;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:min(900px,92vw);max-height:82vh;border-radius:10px;display:block;}
+  .lightbox .lbcap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:#CFE0DA;font-size:13.5px;padding:0 32px;}
+  .well{background:var(--deepdark);color:var(--light);border-radius:14px;padding:28px 30px;margin:18px 0;overflow-x:auto;}
+  .well table{min-width:440px;}
+  .well td{border-bottom:none;padding:7px 0;font-size:14px;color:var(--light);}
+  .well tr:first-child td{font-size:12px;color:#A9C0B9;}
+  .well .fed td{border-top:1px solid #67857C;padding-top:12px;font-weight:600;font-size:13px;}
+  .fdot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#A9C0B9;}
+  .pol{display:inline-block;width:19px;height:19px;vertical-align:-4px;margin-right:2px;}
+  .polkey{font-size:12px;color:#A9C0B9;margin-top:12px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .polkey span{display:inline-flex;align-items:center;gap:5px;}
+  .polnone{color:#7E9A92;font-size:15px;}
+
+  .well .note{font-size:13px;color:#A9C0B9;margin:14px 0 0;}
+  .callout{background:var(--pale);border-left:3px solid var(--deep);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#33403B;}
+  .flag{background:#FBEEF2;border-left:3px solid var(--pink);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#5A2E3C;}
+  .removed{border-top:1px solid var(--hairline);margin-top:22px;padding-top:16px;font-size:14.5px;color:var(--mute);}
+  .removed strong{color:var(--ink);}
+  ol,ul{padding-left:22px;margin:10px 0;}
+  li{font-size:15px;margin-bottom:7px;}
+  svg.plan{width:100%;height:auto;display:block;margin:16px 0;background:#fff;border:1px solid var(--hairline);border-radius:12px;}
+  .elev{background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:22px 24px 18px;margin:16px 0;}
+  .seasonbtns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+  .seasonbtns button{font:inherit;font-size:13px;font-weight:700;color:var(--mute);background:var(--pale);border:1px solid var(--hairline);border-radius:20px;padding:7px 16px;cursor:pointer;transition:all .15s;}
+  .seasonbtns button:hover{color:var(--ink);}
+  .seasonbtns button.on{background:var(--deep);border-color:var(--deep);color:#fff;}
+
+  footer{background:var(--deep);color:var(--light);margin-top:64px;padding:44px 0;font-size:13.5px;}
+  footer svg{width:34px;height:34px;display:block;margin-bottom:14px;}
+  footer a{color:#DCE9E5;}
+</style>
+</head>
+<body>
+
+<div class="cover"><div class="wrap inner">
+  <div>
+    <h1>The Everyday Entrance</h1>
+    <p class="site">The side door bed · A white clapboard colonial, Greenwich CT · part shade, morning sun · zone 7a</p>
+    <p class="meta">Gate leg 12' × 4'6" at its deepest · door leg 12'6" × 2'3" · corner pinch 6"<br>Designed August 2026 · planting October 2026</p>
+  </div>
+  <div class="markwrap" id="markwrap">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seven arcs drawn from this bed's bloom windows"><title>This bed's bloom, April to October</title>
+    <path d="M 100.00 74.00 A 26.00 26.00 0 0 1 119.06 82.32" fill="none" stroke="#E8E0C8" stroke-width="7.5" stroke-linecap="round" data-label="Narcissus 'Thalia' · April"/>
+    <path d="M 100.00 63.00 A 37.00 37.00 0 0 1 135.81 90.69" fill="none" stroke="#6B8FD4" stroke-width="7.5" stroke-linecap="round" data-label="Virginia bluebells · April into May"/>
+    <path d="M 100.00 52.00 A 48.00 48.00 0 0 1 147.87 103.59" fill="none" stroke="#8FA9E0" stroke-width="7.5" stroke-linecap="round" data-label="Brunnera 'Jack Frost' · April to May"/>
+    <path d="M 143.25 59.87 A 59.00 59.00 0 0 1 136.79 146.13" fill="none" stroke="#E4A0B4" stroke-width="7.5" stroke-linecap="round" data-label="Bigroot geranium · May to June"/>
+    <path d="M 169.80 105.23 A 70.00 70.00 0 0 1 89.57 169.22" fill="none" stroke="#E0A98C" stroke-width="7.5" stroke-linecap="round" data-label="Astilbe 'Peach Blossom' · June to July"/>
+    <path d="M 150.50 163.33 A 81.00 81.00 0 0 1 87.93 180.10" fill="none" stroke="#B9A8D6" stroke-width="7.5" stroke-linecap="round" data-label="Hosta scapes · July"/>
+    <path d="M 86.29 190.97 A 92.00 92.00 0 0 1 54.00 20.33" fill="none" stroke="#EFE9D8" stroke-width="7.5" stroke-linecap="round" data-label="Heuchera 'Autumn Bride' · August to October"/>
+  </svg>
+  <div class="marklabel" id="marklabel">Seven blooms, April to October</div>
+  </div>
+</div></div>
+
+<nav class="jump"><div class="wrap">
+  <a href="#brief">The brief</a><a href="#palette">The palette</a><a href="#calendar">Bloom calendar</a><a href="#plan">Planting plan</a><a href="#elevation">Elevation</a><a href="#sourcing">Sourcing</a><a href="#install">Install</a><a href="#care">Care</a><a href="#flags">Open items</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="brief">
+  <div class="kicker">The brief</div>
+  <h2>Two good plants and thirty feet of nothing</h2>
+  <p>What was there: a magnificent variegated hosta anchoring the gate corner, healthy silver <span class="bot">Brunnera</span> at the door end, and between them thirty feet of bare mulch and wandering vinca. It read as inherited foundation planting rather than a design, on the stretch of the property everyone walks past every day.</p>
+  <p>The bed wraps the outside corner of the house in two legs, from the gate around the window bay to the side door and its brick landing. Granite Belgian block against the driveway, brick underfoot, white clapboard above. Good bones, poor planting.</p>
+  <div class="callout"><strong>Conditions that shaped every choice.</strong> Morning sun, shade by afternoon, so this is a part-shade bed. Deer are excluded by the property's own barriers but rabbits and woodchucks are not, so the filter here is rabbit-resistance rather than deer-resistance. Full irrigation on this zone. Low maintenance is a requirement, not a preference. No ornamental grasses anywhere on this property.</div>
+</section>
+
+<section id="palette">
+  <div class="kicker">The palette</div>
+  <h2>Seven plants, and the hosta was already the best one</h2>
+  <p>The design is built around the hosta rather than over it. The geranium arrives by division from the front door, so the two entrances rhyme, and everything else is a short buy list. Click any photo to see it large.</p>
+  <table>
+    <tr><th class="dotcell"></th><th>Plant</th><th>Bloom</th><th>Why it belongs</th></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hosta%20Frances%20Williams%201zz.jpg?width=300" alt="Variegated hosta clump" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Hosta%20Frances%20Williams%201zz.jpg?width=1400" data-cap="Photo shows a similar gold-margined hosta"></td><td class="bot">Hosta<br><span style="font-style:normal;color:var(--mute);font-size:13px">Existing · untouched</span></td><td>Jul scapes</td><td>The bed's best asset was already in it: a broad gold-margined mound holding the gate corner. Lavender scapes in July, and the canopy that covers for the bluebells when they go dormant.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Coastal%20Georgia%20Botanical%20Gardens,%20Inkberry%20ilex%20glabra%20%27Shamrock%27.jpg?width=300" alt="Inkberry holly" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Coastal%20Georgia%20Botanical%20Gardens,%20Inkberry%20ilex%20glabra%20%27Shamrock%27.jpg?width=1400" data-cap="Photo is 'Shamrock'; 'Gem Box' is tighter and rounder"></td><td class="bot">Ilex glabra 'Gem Box'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Inkberry holly · 2 · #3 pots · native</span></td><td>Evergreen</td><td>Rounded, dense, branched to the ground: the boxwood look without Fairfield County's blight problem. It is what keeps the bed from disappearing in January.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Heuchera%20villosa%20Autumn%20Bride%200zz.jpg?width=300" alt="Heuchera Autumn Bride in bloom" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Heuchera%20villosa%20Autumn%20Bride%200zz.jpg?width=1400" data-cap="Heuchera Autumn Bride in bloom"></td><td class="bot">Heuchera villosa 'Autumn Bride'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Hairy alumroot · 3 · #1 pots · native</span></td><td>Aug–Oct</td><td>Big lime leaves all season, then cream plumes that carry the bed from August to frost when everything else is finished. Rabbits leave it alone.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Astilbe%20×%20rosea%20‘Peach%20Blossom’%20JRVdH%2002.jpg?width=300" alt="Astilbe Peach Blossom" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Astilbe%20×%20rosea%20‘Peach%20Blossom’%20JRVdH%2002.jpg?width=1400" data-cap="Astilbe Peach Blossom"></td><td class="bot">Astilbe 'Peach Blossom'<br><span style="font-style:normal;color:var(--mute);font-size:13px">3 · #1 pots</span></td><td>Jun–Jul</td><td>Soft peach plumes in the one stretch of summer the bed would otherwise carry on foliage alone. Sits on the deep gate leg where there is room for it.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Geranium%20macrorrhizum%20Ingwersens%20Variety%202zz.jpg?width=300" alt="Bigroot geranium in flower" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Geranium%20macrorrhizum%20Ingwersens%20Variety%202zz.jpg?width=1400" data-cap="Bigroot geranium in flower"></td><td class="bot">Geranium macrorrhizum<br><span style="font-style:normal;color:var(--mute);font-size:13px">Bigroot geranium · ~8 divisions</span></td><td>May–Jun</td><td>Soft pink over aromatic foliage, in a ribbon along the front edge. A living mulch that closes the ground and that rabbits genuinely refuse, divided from the established colony at the front door.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Brunnera%20macrophylla%20%27Jack%20Frost%27,%20Longwood%20Gardens%202023%2002.jpg?width=300" alt="Brunnera Jack Frost silver foliage" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Brunnera%20macrophylla%20%27Jack%20Frost%27,%20Longwood%20Gardens%202023%2002.jpg?width=1400" data-cap="Brunnera Jack Frost silver foliage"></td><td class="bot">Brunnera macrophylla 'Jack Frost'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Siberian bugloss · 4 new · #1 pots</span></td><td>Apr–May</td><td>A haze of true blue in April over silver-veined leaves that hold all season. Extends the line of the ones already at the door, which are still too young to divide.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mertensia%20virginica.bbg.jpg?width=300" alt="Virginia bluebells" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Mertensia%20virginica.bbg.jpg?width=1400" data-cap="Virginia bluebells"></td><td class="bot">Mertensia virginica<br><span style="font-style:normal;color:var(--mute);font-size:13px">Virginia bluebells · 5 bare roots · native</span></td><td>Apr–May</td><td>Nodding native blue beside the corner, feeding queen bumblebees in April when almost nothing else is open. It vanishes underground by June, exactly where the hosta canopy takes over the ground.</td></tr>
+    <tr><td class="dotcell"><img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Narcissus%20triandrus%20%27Thalia%27%201.JPG?width=300" alt="Narcissus Thalia" data-full="https://commons.wikimedia.org/wiki/Special:FilePath/Narcissus%20triandrus%20%27Thalia%27%201.JPG?width=1400" data-cap="Narcissus Thalia"></td><td class="bot">Narcissus 'Thalia'<br><span style="font-style:normal;color:var(--mute);font-size:13px">Triandrus daffodil · 40 bulbs, plus 10 at the front door</span></td><td>April</td><td>White and fragrant, glowing against white clapboard on the first warm days. Woven in four drifts down the whole run rather than clustered at the ends, and rodent-proof besides.</td></tr>
+  </table>
+  <div class="removed"><strong>Removed: <span class="bot">Vinca minor</span>.</strong> Not because it is ugly. Its job has been given to the geranium, and two groundcovers in one bed is a border war you referee for years. It also escapes into Northeast woodlands.</div>
+</section>
+
+<section id="calendar">
+  <div class="kicker">The bloom calendar</div>
+  <h2>Something in bloom from April to October</h2>
+  <p>Big dot means in bloom, small dot means foliage carrying the month. The bottom row is the one most plans leave out.</p>
+  <div class="well">
+    <table>
+      <tr><td style="width:190px"></td><td>Apr</td><td>May</td><td>Jun</td><td>Jul</td><td>Aug</td><td>Sep</td><td>Oct</td></tr>
+      <tr><td>Narcissus 'Thalia'</td><td><span class="d" style="background:#E8E0C8"></span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Mertensia virginica</td><td><span class="d" style="background:#6B8FD4"></span></td><td><span class="d" style="background:#6B8FD4"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Brunnera 'Jack Frost'</td><td><span class="d" style="background:#8FA9E0"></span></td><td><span class="d" style="background:#8FA9E0"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr><td>Geranium macrorrhizum</td><td><span class="fdot"></span></td><td><span class="d" style="background:#E4A0B4"></span></td><td><span class="d" style="background:#E4A0B4"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr><td>Astilbe 'Peach Blossom'</td><td></td><td></td><td><span class="d" style="background:#E0A98C"></span></td><td><span class="d" style="background:#E0A98C"></span></td><td></td><td></td><td></td></tr>
+      <tr><td>Hosta (scapes)</td><td></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="d" style="background:#B9A8D6"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr><td>Heuchera 'Autumn Bride'</td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="d" style="background:#EFE9D8"></span></td><td><span class="d" style="background:#EFE9D8"></span></td><td><span class="d" style="background:#EFE9D8"></span></td></tr>
+      <tr><td>Ilex 'Gem Box'</td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr>
+      <tr class="fed"><td>Who visits</td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td><td><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg></td></tr>
+    </table>
+    <div class="polkey"><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="bees"><title>bees</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="6.1" cy="7" rx="2.9" ry="1.6" transform="rotate(-34 6.1 7)"/><ellipse cx="13.9" cy="7" rx="2.9" ry="1.6" transform="rotate(34 13.9 7)"/><ellipse cx="10" cy="12" rx="3.2" ry="4.3"/><path d="M6.9 10.7h6.2M7.3 13.5h5.4"/><path d="M8.7 7.8 7.5 5.3M11.3 7.8l1.2-2.5"/></g></svg>bees</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="hummingbirds"><title>hummingbirds</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9.4" cy="11.2" rx="4.3" ry="2.5" transform="rotate(-22 9.4 11.2)"/><circle cx="13.6" cy="7.9" r="2"/><path d="M15.3 7 19.4 5.3"/><path d="M9 9.6C6.6 6.6 4.8 5.6 3.4 6c.6 2.4 2.6 4.6 5 5"/><path d="M5.9 13.2 2.2 15.6M5.6 12.1 2.5 13.3"/></g></svg>hummingbirds</span><span><svg class="pol" viewBox="0 0 20 20" fill="none" role="img" aria-label="butterflies"><title>butterflies</title><g stroke="#CFE0DA" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8.8C7.6 3.3 3.3 3.4 3.2 7c-.1 2.7 3.4 3.3 6.8 2.3z"/><path d="M10 8.8c2.4-5.5 6.7-5.4 6.8-1.8.1 2.7-3.4 3.3-6.8 2.3z"/><path d="M10 10.2c-2.5 1.2-5.2 2.6-4.5 5.2.6 2 3.3.4 4.5-2.6z"/><path d="M10 10.2c2.5 1.2 5.2 2.6 4.5 5.2-.6 2-3.3.4-4.5-2.6z"/><path d="M10 5.7v9.6"/><path d="M9.6 5.7 8.2 3.2M10.4 5.7l1.4-2.5"/></g></svg>butterflies</span></div>
+    <p class="note">This is a bee bed, honestly. Butterflies want sun and open composites, and a shaded entry cannot offer them; what it can offer is early forage when queen bumblebees are the only things flying. April opens with bluebells for those queens and daffodils against the clapboard. The geranium ribbon runs pink through May and June. July is quiet on purpose, carried by hosta scapes over silver, gold and lime. Then cream plumes from August to frost, and the inkberry holds the winter. The seven arcs on the cover are these same windows, in these same colors, drawn as a chart.</p>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="kicker">The planting plan</div>
+  <h2>Where everything goes</h2>
+  <svg class="plan" viewBox="0 0 720 680" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, sans-serif">
+    <rect x="80" y="60" width="380" height="375" fill="#F3F6F3" stroke="#D9E2DD"/>
+    <text x="250" y="243" font-size="13" fill="#8FA39C" letter-spacing="2" text-anchor="middle">HOUSE</text>
+    <text x="250" y="261" font-size="11" fill="#A6B7B1" text-anchor="middle">window-bay corner, the bed wraps around it</text>
+    <g stroke="#D9E2DD" stroke-width="4">
+      <line x1="150" y1="433" x2="200" y2="433"/><line x1="230" y1="433" x2="280" y2="433"/><line x1="310" y1="433" x2="360" y2="433"/>
+      <line x1="458" y1="140" x2="458" y2="190"/><line x1="458" y1="220" x2="458" y2="270"/><line x1="458" y1="300" x2="458" y2="350"/>
+    </g>
+    <rect x="86" y="440" width="22" height="46" fill="#E5EAE6" stroke="#C9D5CF"/>
+    <text x="86" y="510" font-size="11" fill="#5B6B66">GATE</text>
+    <rect x="462" y="62" width="52" height="20" fill="#E5EAE6" stroke="#C9D5CF"/>
+    <text x="530" y="76" font-size="11" fill="#5B6B66">SIDE DOOR</text>
+
+    <path d="M 108 435 C 112 470 120 495 145 510 C 190 535 240 562 300 568 C 360 574 420 552 452 522 C 500 480 528 460 528 420 L 528 90 L 460 90 L 460 435 Z" fill="#EDF2EE" stroke="#8FA68E" stroke-width="2"/>
+    <path d="M 108 435 C 112 470 120 495 145 510 C 190 535 240 562 300 568 C 360 574 420 552 452 522 C 500 480 528 460 528 420 L 528 90" fill="none" stroke="#C4BBA8" stroke-width="6" stroke-dasharray="2 7"/>
+
+    <path d="M 112 440 C 108 475 122 500 150 512 C 180 522 205 512 210 488 C 215 462 200 442 175 438 C 150 434 115 432 112 440 Z" fill="#b9c46a" opacity="0.8"/>
+    <text x="160" y="478" font-size="11" fill="#5e6532" text-anchor="middle">HOSTA</text>
+    <text x="160" y="491" font-size="9.5" fill="#7d854a" text-anchor="middle">existing</text>
+
+    <circle cx="268" cy="512" r="36" fill="#5E8C61" opacity="0.9"/>
+    <circle cx="362" cy="508" r="36" fill="#5E8C61" opacity="0.9"/>
+    <text x="268" y="516" font-size="10" fill="#F2F5F1" text-anchor="middle">GEM BOX</text>
+    <text x="362" y="512" font-size="10" fill="#F2F5F1" text-anchor="middle">GEM BOX</text>
+
+    <ellipse cx="228" cy="470" rx="21" ry="15" fill="#E0A98C"/><ellipse cx="196" cy="500" rx="21" ry="15" fill="#E0A98C"/><ellipse cx="238" cy="440" rx="19" ry="14" fill="#E0A98C"/>
+    <text x="196" y="424" font-size="9.5" fill="#a0714f">ASTILBE ×3</text>
+
+    <circle cx="432" cy="470" r="21" fill="#EFE9D8" stroke="#D9CFB4"/><circle cx="462" cy="490" r="21" fill="#EFE9D8" stroke="#D9CFB4"/><circle cx="468" cy="458" r="21" fill="#EFE9D8" stroke="#D9CFB4"/>
+    <text x="452" y="527" font-size="9.5" fill="#8a7f5f" text-anchor="middle">AUTUMN BRIDE ×3</text>
+
+    <ellipse cx="390" cy="540" rx="26" ry="16" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="390" y="537" font-size="8.5" fill="#4a6bb0" text-anchor="middle">MERTENSIA</text>
+    <text x="390" y="547" font-size="8.5" fill="#4a6bb0" text-anchor="middle">×5</text>
+
+    <ellipse cx="482" cy="112" rx="20" ry="14" fill="#8FA9E0" opacity="0.9"/><ellipse cx="480" cy="180" rx="17" ry="12" fill="#8FA9E0" opacity="0.9"/><ellipse cx="480" cy="250" rx="17" ry="12" fill="#8FA9E0" opacity="0.9"/><ellipse cx="480" cy="320" rx="17" ry="12" fill="#8FA9E0" opacity="0.9"/>
+    <text x="560" y="200" font-size="9.5" fill="#5B6B66">brunnera, existing plus</text>
+    <text x="560" y="213" font-size="9.5" fill="#5B6B66">4 new along the wall</text>
+
+    <ellipse cx="513" cy="130" rx="10" ry="14" fill="#E4A0B4"/><ellipse cx="514" cy="168" rx="10" ry="14" fill="#E4A0B4"/><ellipse cx="513" cy="206" rx="10" ry="14" fill="#E4A0B4"/><ellipse cx="514" cy="244" rx="10" ry="14" fill="#E4A0B4"/><ellipse cx="513" cy="282" rx="10" ry="14" fill="#E4A0B4"/><ellipse cx="514" cy="320" rx="10" ry="14" fill="#E4A0B4"/><ellipse cx="513" cy="358" rx="10" ry="14" fill="#E4A0B4"/><ellipse cx="505" cy="405" rx="11" ry="12" fill="#E4A0B4"/>
+    <text x="560" y="300" font-size="9.5" fill="#a06578">geranium ribbon ×8</text>
+    <text x="560" y="313" font-size="9.5" fill="#a06578">16" spacing, threads the pinch</text>
+
+    <ellipse cx="185" cy="520" rx="26" ry="16" fill="none" stroke="#C9C29E" stroke-width="2" stroke-dasharray="4 4"/>
+    <ellipse cx="318" cy="543" rx="26" ry="15" fill="none" stroke="#C9C29E" stroke-width="2" stroke-dasharray="4 4"/>
+    <ellipse cx="502" cy="250" rx="15" ry="24" fill="none" stroke="#C9C29E" stroke-width="2" stroke-dasharray="4 4"/>
+    <ellipse cx="496" cy="122" rx="15" ry="22" fill="none" stroke="#C9C29E" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="330" y="596" font-size="9.5" fill="#a49c72">'Thalia' — four drifts of 10, woven gate to door</text>
+
+    <line x1="108" y1="620" x2="460" y2="620" stroke="#C9D5CF"/>
+    <text x="284" y="636" font-size="11" fill="#5B6B66" text-anchor="middle">gate leg 12' · 4'6" at its deepest, curving to meet the house</text>
+    <line x1="580" y1="90" x2="580" y2="420" stroke="#C9D5CF"/>
+    <text x="592" y="255" font-size="11" fill="#5B6B66" transform="rotate(90 592 255)" text-anchor="middle">door leg 12'6" · 2'3" deep</text>
+    <text x="470" y="560" font-size="10" fill="#8FA39C">6" pinch — geranium only</text>
+    <line x1="600" y1="620" x2="690" y2="620" stroke="#5B6B66" stroke-width="2"/>
+    <text x="645" y="636" font-size="10" fill="#5B6B66" text-anchor="middle">3 ft</text>
+  </svg>
+
+  <h3>Quantities and spacing</h3>
+  <table>
+    <tr><th>Plant</th><th>Qty and size</th><th>Placement</th></tr>
+    <tr><td class="bot">Ilex glabra 'Gem Box'</td><td>2 · #3 pots</td><td>Both in the gate leg's deep curve, 3'6" centers, held 30" off the cobble edge. The corner measured 6" at its pinch, so there is no third shrub.</td></tr>
+    <tr><td class="bot">Astilbe 'Peach Blossom'</td><td>3 · #1 pots</td><td>Behind and between the shrubs on the deep gate leg, 18" spacing.</td></tr>
+    <tr><td class="bot">Heuchera 'Autumn Bride'</td><td>3 · #1 pots</td><td>Drifted on the gate-leg side of the corner wrap, where depth holds. Reads from both approaches. 20" spacing.</td></tr>
+    <tr><td class="bot">Geranium macrorrhizum</td><td>~8 divisions</td><td>Ribbon along the door leg's front edge at 16" spacing, continuing through the 6" pinch. The only plant narrow enough to stitch the two legs together.</td></tr>
+    <tr><td class="bot">Brunnera 'Jack Frost'</td><td>4 · #1 pots</td><td>Along the door-leg wall under the windows, extending the existing clumps.</td></tr>
+    <tr><td class="bot">Mertensia virginica</td><td>5 bare roots</td><td>One drift beside the corner on the hosta side, where the hosta canopy will cover its dormancy.</td></tr>
+    <tr><td class="bot">Narcissus 'Thalia'</td><td>50 bulbs</td><td>Four drifts of ten woven down the run, 5" deep, 3–4" apart within a drift. The spare ten go by the front-door geranium colony so both doors open together in April.</td></tr>
+  </table>
+</section>
+
+
+<section id="elevation">
+  <div class="kicker">Elevation</div>
+  <h2>What it looks like standing at the gate</h2>
+  <p>A side-on slice through the gate leg, drawn to scale against the window sill. Step through the season: each view shows only what is actually up and at the height it actually is that month. Nothing here pretends the whole bed blooms at once.</p>
+  <div class="elev">
+    <div class="seasonbtns" id="seasonbtns"></div>
+    <svg id="elevsvg" viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;"></svg>
+  </div>
+  <div class="flag"><strong>Placeholder.</strong> Schematic mounds at accurate heights. The hand-rendered version replaces this.</div>
+</section>
+
+<section id="sourcing">
+  <div class="kicker">Sourcing</div>
+  <h2>One local stop, one mail order</h2>
+  <table>
+    <tr><th>Where</th><th>What</th><th>Notes</th></tr>
+    <tr><td><strong>Sam Bridge Nursery</strong><br><span style="color:var(--mute);font-size:13px">Greenwich, minutes away</span></td><td>2 'Gem Box' (#3) · 3 'Autumn Bride' (#1) · 3 astilbe (#1) · 4 brunnera (#1) · 1 male inkberry</td><td>All mainstream stock. Gedney Farms in White Plains and Gossett Brothers in South Salem are the backups if anything is short.</td></tr>
+    <tr><td><strong>Brent &amp; Becky's</strong><br><span style="color:var(--mute);font-size:13px">mail order</span></td><td>50 Narcissus 'Thalia' ($57.75) · 5 Mertensia bare roots</td><td>Order now. Bulbs ship and plant in late October, after the main planting weekend.</td></tr>
+    <tr><td><strong>Free</strong></td><td>~8 geranium divisions</td><td>From the established colony at the front door. Guaranteed to match, and the reason both entrances read as one design.</td></tr>
+  </table>
+  <div class="callout"><strong>Total, roughly $250.</strong> Four kinds of plant, one bag of bulbs, and a groundcover dug from the front door for nothing. The male inkberry is not for this bed: it goes in the privacy line so the two 'Gem Box' actually set their winter berries.</div>
+</section>
+
+<section id="install">
+  <div class="kicker">Installation</div>
+  <h2>One weekend, plus an hour in October</h2>
+  <p>Saturday is shopping and layout, Sunday is digging. Bulbs wait for late October.</p>
+  <h3>Before you start</h3>
+  <ol>
+    <li>Take the before photos: both legs, from the gate, from the door, one wide from the driveway.</li>
+    <li>Test the soil pH where the two shrubs will land. Inkberry wants acid soil and mortar leaches lime; anything much above 6.5 is worth a conversation before the shrubs go in.</li>
+    <li>Lay the plants out in their pots and live with the arrangement for a few hours before anything gets dug.</li>
+  </ol>
+  <h3>Clearing</h3>
+  <ol>
+    <li>Pull the vinca. Fork under the mats, lift, then chase the runners, since it roots at every node. Perfection is not the goal; you will spot-pull stragglers next spring.</li>
+    <li><strong>Vinca goes in the trash, never the compost.</strong> It re-roots from fragments.</li>
+    <li>Pull the old path light, its stake, and its wire. Nothing replaces it.</li>
+    <li>Spread one to two inches of compost over the cleared soil. Do not dig it in; planting will do that.</li>
+  </ol>
+  <h3>Planting</h3>
+  <ol>
+    <li>Shrubs first, then heuchera, astilbe and brunnera, then the geranium divisions. Water each plant as you set it, not all at the end.</li>
+    <li>Hole twice the width of the pot, exactly the depth of the pot. The root flare sits at grade. Planting too deep is the most common way a good shrub dies slowly.</li>
+    <li><strong>Geranium divisions:</strong> the thick rhizomes run along the surface. Cut sections with roots attached, lay them down, barely cover the rhizome. The easiest division in gardening.</li>
+    <li>Two inches of mulch everywhere except against stems and crowns. In two seasons the geranium is the mulch.</li>
+  </ol>
+  <div class="callout"><strong>No fertilizer, at all.</strong> Fall feeding pushes soft growth straight into frost. Compost is the entire soil program here. If anything looks pale next May, a light compost top-dress is the whole toolkit.</div>
+  <h3>Late October, one hour</h3>
+  <p>Fifty 'Thalia' in the four dashed drifts, five inches deep, pointy end up. Five Mertensia roots in their drift beside the corner. No bone meal, since it mostly advertises the bulbs to whatever digs. Water once, then done.</p>
+</section>
+
+<section id="care">
+  <div class="kicker">Care</div>
+  <h2>Four short sessions a year</h2>
+  <table>
+    <tr><th>When</th><th>What</th><th>How long</th></tr>
+    <tr><td><strong>Late winter</strong><br><span style="color:var(--mute);font-size:13px">Feb to early Mar</span></td><td>The one shaping trim on the inkberries, before new growth. Rake winter-tattered leaves off the geranium and heuchera.</td><td>~30 min</td></tr>
+    <tr><td><strong>Late spring</strong><br><span style="color:var(--mute);font-size:13px">after the daffodils fade</span></td><td>Nothing to cut. Daffodil foliage stands until it yellows on its own, about six weeks. The geranium and hosta leaf out around it and hide it, which is why the drifts sit where they do.</td><td>10 min</td></tr>
+    <tr><td><strong>Early summer</strong><br><span style="color:var(--mute);font-size:13px">optional</span></td><td>Shear the geranium ribbon after bloom for a fresh flush of foliage. Skip it in a busy year.</td><td>~20 min</td></tr>
+    <tr><td><strong>Late fall</strong><br><span style="color:var(--mute);font-size:13px">after hard frost</span></td><td>Remove the collapsed hosta foliage. This one is not optional; it goes to mush. Leave everything else standing.</td><td>~30 min</td></tr>
+  </table>
+  <div class="callout"><strong>The nothing list.</strong> No deadheading, ever. No staking. No spraying. No fall cleanup beyond the hosta. No watering after the first year. April, May, August, September and October you walk past and enjoy it.</div>
+  <h3>Year one only</h3>
+  <ul>
+    <li>Watch the inkberry leaves next June. Yellowing between green veins means the pH conversation was needed after all.</li>
+    <li>Spot-pull vinca regrowth as it appears. First season only; the geranium closes ranks by season two.</li>
+    <li>Hand-water the new shrubs in a rainless stretch through the first summer.</li>
+    <li>The geranium divisions may sulk for a few weeks after moving. They are bombproof.</li>
+  </ul>
+</section>
+
+<section id="flags">
+  <div class="kicker">Open items</div>
+  <h2>What is still unresolved</h2>
+  <div class="flag">
+    <strong>Soil pH at the shrub positions.</strong> The only test left before buying. Inkberry is genuinely acid-loving and this bed sits against a foundation, where mortar can push soil alkaline. Above roughly 6.5 and the honest options are to acidify annually, which contradicts the low-maintenance brief, or to choose a pH-indifferent structure plant instead. Below that and the shrubs go in as drawn.
+  </div>
+  <div class="flag">
+    <strong>The brunnera is bought, not divided.</strong> The existing clumps went in early last summer, so they are one season old. Dividing a plant that young sets both halves back and risks losing them; brunnera wants two or three seasons to build the root mass that makes division free. Four new plants now, and the whole group becomes a division source in 2028.
+  </div>
+  <div class="flag">
+    <strong>The astilbe is an addition, not part of the original plan.</strong> Three were added after the summer-color gap was flagged twice independently. They sit on the deep leg where there is room. If the bed reads busy next July, they are the first thing to move.
+  </div>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <strong>BLOOM DAYS</strong> · Ecologically minded, locally beautiful<br>
+  Greenwich, CT · <a href="mailto:kaitlin@bloomdays.co">kaitlin@bloomdays.co</a>
+</div></footer>
+
+<div class="lightbox" id="lb"><img id="lbimg" src="" alt=""><div class="lbcap" id="lbcap"></div></div>
+
+<script>
+
+(function(){
+  var svg=document.getElementById('elevsvg'); if(!svg) return;
+  var PX=3.4, GROUND=286, SILL=36;
+  function y(i){ return GROUND - i*PX; }
+  function rad(d){ return d*Math.PI/180; }
+
+  // a pointed leaf from (x,y) at angle deg, length L, width W
+  function leaf(x,y0,L,W,deg,fill,op){
+    var a=rad(deg), tx=x+L*Math.sin(a), ty=y0-L*Math.cos(a);
+    var mx=(x+tx)/2, my=(y0+ty)/2, px=Math.cos(a)*W/2, py=Math.sin(a)*W/2;
+    return '<path d="M '+x.toFixed(1)+' '+y0.toFixed(1)+' Q '+(mx+px).toFixed(1)+' '+(my+py).toFixed(1)+' '+tx.toFixed(1)+' '+ty.toFixed(1)+
+           ' Q '+(mx-px).toFixed(1)+' '+(my-py).toFixed(1)+' '+x.toFixed(1)+' '+y0.toFixed(1)+'Z" fill="'+fill+'" opacity="'+(op||0.92)+'"/>';
+  }
+  // scalloped rounded leaf (heuchera / geranium / brunnera)
+  function lobe(cx,cy,r,fill,op){
+    var d='M '+(cx-r)+' '+cy, n=7;
+    for(var i=0;i<n;i++){
+      var a0=Math.PI-(i/n)*Math.PI*2, a1=Math.PI-((i+0.5)/n)*Math.PI*2, a2=Math.PI-((i+1)/n)*Math.PI*2;
+      d+=' Q '+(cx+Math.cos(a1)*r*1.25).toFixed(1)+' '+(cy-Math.sin(a1)*r*1.25).toFixed(1)+' '+
+         (cx+Math.cos(a2)*r).toFixed(1)+' '+(cy-Math.sin(a2)*r).toFixed(1);
+    }
+    return '<path d="'+d+'Z" fill="'+fill+'" opacity="'+(op||0.92)+'"/>';
+  }
+
+  function drawPlant(p){
+    var o='', H=p.h*PX, W=p.w, x=p.x, g=GROUND, top=g-H;
+    if(p.form==='evergreen'){
+      o+='<path d="M '+(x-W/2)+' '+g+' C '+(x-W/2)+' '+(top+H*0.15)+' '+(x-W*0.34)+' '+top+' '+x+' '+top+
+         ' C '+(x+W*0.34)+' '+top+' '+(x+W/2)+' '+(top+H*0.15)+' '+(x+W/2)+' '+g+' Z" fill="'+p.c+'" opacity="0.95"/>';
+      for(var i=0;i<26;i++){
+        var rx=x+(Math.random()-0.5)*W*0.82, ry=g-Math.random()*H*0.94;
+        o+='<circle cx="'+rx.toFixed(1)+'" cy="'+ry.toFixed(1)+'" r="2.1" fill="#3E5951" opacity="0.30"/>';
+      }
+    } else if(p.form==='broadleaf'){
+      var n=7;
+      for(var j=0;j<n;j++){
+        var t=(j/(n-1))*2-1, ang=t*72, L=H*(1-Math.abs(t)*0.28), Wl=W*0.30;
+        o+=leaf(x, g, L, Wl, ang, p.c, 0.88);
+        var a=rad(ang);
+        o+='<line x1="'+x+'" y1="'+g+'" x2="'+(x+L*0.86*Math.sin(a)).toFixed(1)+'" y2="'+(g-L*0.86*Math.cos(a)).toFixed(1)+'" stroke="#F2F5F1" stroke-width="0.7" opacity="0.5"/>';
+      }
+    } else if(p.form==='ferny'){
+      var m=6;
+      for(var k=0;k<m;k++){
+        var t2=(k/(m-1))*2-1, ang2=t2*52, L2=H*(1-Math.abs(t2)*0.2);
+        var a2=rad(ang2), ex=x+L2*Math.sin(a2), ey=g-L2*Math.cos(a2);
+        o+='<path d="M '+x+' '+g+' Q '+(x+L2*0.4*Math.sin(a2)).toFixed(1)+' '+(g-L2*0.62).toFixed(1)+' '+ex.toFixed(1)+' '+ey.toFixed(1)+'" fill="none" stroke="'+p.c+'" stroke-width="1.6"/>';
+        for(var q=0.25;q<1;q+=0.16){
+          var lx=x+L2*q*Math.sin(a2)*0.9, ly=g-L2*q*0.95;
+          o+='<ellipse cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" rx="3.6" ry="1.9" fill="'+p.c+'" opacity="0.85" transform="rotate('+(ang2*0.6).toFixed(1)+' '+lx.toFixed(1)+' '+ly.toFixed(1)+')"/>';
+        }
+      }
+    } else if(p.form==='strap'){
+      for(var b=0;b<5;b++){
+        var t3=(b/4)*2-1, ang3=t3*26;
+        o+=leaf(x+t3*W*0.16, g, H*(1-Math.abs(t3)*0.14), W*0.13, ang3, p.c, 0.9);
+      }
+    } else if(p.form==='arching'){
+      for(var c=0;c<4;c++){
+        var t4=(c/3)*2-1, ang4=t4*34, a4=rad(ang4);
+        o+='<path d="M '+x+' '+g+' Q '+(x+H*0.2*Math.sin(a4)).toFixed(1)+' '+(g-H*0.7).toFixed(1)+' '+(x+H*0.5*Math.sin(a4)).toFixed(1)+' '+(g-H*0.92).toFixed(1)+'" fill="none" stroke="'+p.c+'" stroke-width="1.7"/>';
+        o+=leaf(x+t4*W*0.2, g, H*0.42, W*0.2, ang4*1.3, p.c, 0.85);
+      }
+    } else { // lobed
+      var cluster=[[0,0.62],[-0.3,0.44],[0.3,0.44],[-0.16,0.86],[0.18,0.84]];
+      cluster.forEach(function(cc){
+        o+=lobe(x+cc[0]*W, g-H*cc[1], Math.max(4,H*0.30), p.c, 0.9);
+      });
+    }
+    // bloom
+    if(p.spike){
+      var sH=p.spike.h*PX, base=g-H*0.92, tip=base-sH, T=p.spike.type;
+      for(var z=-1;z<=1;z++){
+        var sx=x+z*(W*0.24);
+        o+='<line x1="'+sx.toFixed(1)+'" y1="'+base.toFixed(1)+'" x2="'+sx.toFixed(1)+'" y2="'+(tip+4).toFixed(1)+'" stroke="#7E9E62" stroke-width="1.3"/>';
+        if(T==='plume'){
+          for(var pp=0;pp<7;pp++){
+            var fy=tip+4+pp*(sH*0.11), fw=5.2-pp*0.45;
+            o+='<ellipse cx="'+sx.toFixed(1)+'" cy="'+fy.toFixed(1)+'" rx="'+Math.max(1.4,fw).toFixed(1)+'" ry="2.4" fill="'+p.spike.c+'"/>';
+          }
+        } else if(T==='trumpet'){
+          o+='<ellipse cx="'+sx.toFixed(1)+'" cy="'+(tip+5).toFixed(1)+'" rx="5" ry="3.6" fill="'+p.spike.c+'"/>';
+          o+='<circle cx="'+sx.toFixed(1)+'" cy="'+(tip+5).toFixed(1)+'" r="2" fill="#D8C98E"/>';
+        } else if(T==='bell'){
+          for(var bb=0;bb<3;bb++){
+            o+='<ellipse cx="'+(sx+(bb-1)*3.4).toFixed(1)+'" cy="'+(tip+6+bb*2).toFixed(1)+'" rx="2.6" ry="3.4" fill="'+p.spike.c+'"/>';
+          }
+        } else {
+          for(var dd=0;dd<4;dd++){
+            o+='<circle cx="'+(sx+(dd%2?2.6:-2.6)).toFixed(1)+'" cy="'+(tip+4+dd*2.6).toFixed(1)+'" r="2.3" fill="'+p.spike.c+'"/>';
+          }
+        }
+      }
+    }
+    return o;
+  }
+
+  var IB='#3F5C52', HOSTA='#8FB05E', HOSTAG='#C9B45E', FERN='#7E9E62', LOBE='#8FA870', BRUN='#9FB2A8', GER='#7E9E62';
+  var SEASONS=[
+    {label:'April', plants:[
+      {x:70,w:40,h:7,c:HOSTA,form:'broadleaf'},
+      {x:150,w:72,h:30,c:IB,form:'evergreen'},
+      {x:238,w:40,h:5,c:FERN,form:'ferny'},
+      {x:310,w:72,h:30,c:IB,form:'evergreen'},
+      {x:400,w:44,h:8,c:LOBE,form:'lobed'},
+      {x:466,w:52,h:14,c:BRUN,form:'lobed',spike:{h:5,c:'#8FA9E0',type:'dot'}},
+      {x:112,w:26,h:20,c:LOBE,form:'arching',spike:{h:4,c:'#6B8FD4',type:'bell'}},
+      {x:196,w:24,h:15,c:LOBE,form:'strap',spike:{h:3,c:'#E8E0C8',type:'trumpet'}},
+      {x:352,w:24,h:15,c:LOBE,form:'strap',spike:{h:3,c:'#E8E0C8',type:'trumpet'}},
+      {x:524,w:30,h:9,c:GER,form:'lobed'}
+    ]},
+    {label:'June', plants:[
+      {x:70,w:78,h:26,c:HOSTA,form:'broadleaf'},
+      {x:150,w:74,h:30,c:IB,form:'evergreen'},
+      {x:238,w:54,h:19,c:FERN,form:'ferny',spike:{h:8,c:'#E0A98C',type:'plume'}},
+      {x:310,w:74,h:30,c:IB,form:'evergreen'},
+      {x:400,w:52,h:14,c:LOBE,form:'lobed'},
+      {x:466,w:56,h:15,c:BRUN,form:'lobed'},
+      {x:524,w:38,h:10,c:GER,form:'lobed',spike:{h:4,c:'#E4A0B4',type:'dot'}},
+      {x:120,w:36,h:10,c:GER,form:'lobed',spike:{h:4,c:'#E4A0B4',type:'dot'}}
+    ]},
+    {label:'August', plants:[
+      {x:70,w:82,h:28,c:HOSTA,form:'broadleaf'},
+      {x:150,w:76,h:31,c:IB,form:'evergreen'},
+      {x:238,w:56,h:19,c:FERN,form:'ferny'},
+      {x:310,w:76,h:31,c:IB,form:'evergreen'},
+      {x:400,w:56,h:15,c:'#93B36B',form:'lobed',spike:{h:12,c:'#EFE9D8',type:'plume'}},
+      {x:466,w:56,h:14,c:BRUN,form:'lobed'},
+      {x:524,w:40,h:10,c:GER,form:'lobed'},
+      {x:120,w:38,h:10,c:GER,form:'lobed'}
+    ]},
+    {label:'October', plants:[
+      {x:70,w:78,h:24,c:HOSTAG,form:'broadleaf'},
+      {x:150,w:76,h:31,c:IB,form:'evergreen'},
+      {x:238,w:50,h:16,c:'#9E9A6A',form:'ferny'},
+      {x:310,w:76,h:31,c:IB,form:'evergreen'},
+      {x:400,w:54,h:15,c:'#93B36B',form:'lobed',spike:{h:12,c:'#EFE9D8',type:'plume'}},
+      {x:466,w:52,h:12,c:BRUN,form:'lobed'},
+      {x:524,w:40,h:10,c:GER,form:'lobed'},
+      {x:120,w:38,h:10,c:GER,form:'lobed'}
+    ]}
+  ];
+
+  function draw(i){
+    var S=SEASONS[i], o='';
+    o+='<rect x="0" y="0" width="580" height="'+GROUND+'" fill="#FBFCFB"/>';
+    o+='<rect x="0" y="0" width="580" height="'+y(SILL)+'" fill="#F3F6F3"/>';
+    o+='<line x1="0" y1="'+y(SILL)+'" x2="580" y2="'+y(SILL)+'" stroke="#C9D5CF" stroke-width="1.5" stroke-dasharray="6 5"/>';
+    o+='<text x="574" y="'+(y(SILL)-7)+'" font-size="10.5" fill="#8FA39C" text-anchor="end" font-family="Helvetica Neue,sans-serif">window sill, about 3 ft</text>';
+    for(var f=1;f<=3;f++){
+      o+='<line x1="0" y1="'+y(f*12)+'" x2="580" y2="'+y(f*12)+'" stroke="#EEF1EC" stroke-width="1"/>';
+      o+='<text x="6" y="'+(y(f*12)-4)+'" font-size="9.5" fill="#BCC7C2" font-family="Helvetica Neue,sans-serif">'+f+' ft</text>';
+    }
+    o+='<rect x="0" y="'+GROUND+'" width="580" height="6" fill="#8B7F6B"/>';
+    o+='<rect x="0" y="'+(GROUND+6)+'" width="580" height="18" fill="#4A4A46"/>';
+    o+='<text x="10" y="'+(GROUND+19)+'" font-size="10" fill="#9A9A94" font-family="Helvetica Neue,sans-serif">driveway</text>';
+    S.plants.slice().sort(function(a,b){return b.h-a.h;}).forEach(function(p){ o+=drawPlant(p); });
+    svg.innerHTML=o;
+    [].slice.call(document.querySelectorAll('#seasonbtns button')).forEach(function(b,bi){ b.classList.toggle('on',bi===i); });
+  }
+  document.getElementById('seasonbtns').innerHTML=SEASONS.map(function(s,i){return '<button data-i="'+i+'">'+s.label+'</button>';}).join('');
+  [].slice.call(document.querySelectorAll('#seasonbtns button')).forEach(function(b){
+    b.addEventListener('click',function(){ draw(parseInt(b.getAttribute('data-i'),10)); });
+  });
+  draw(1);
+})();
+
+(function(){
+  var wrap=document.getElementById('markwrap'), lbl=document.getElementById('marklabel');
+  if(wrap&&lbl){
+    var DEF='Seven blooms, April to October';
+    wrap.querySelectorAll('path[data-label]').forEach(function(pth){
+      pth.addEventListener('mouseenter',function(){
+        lbl.textContent=pth.getAttribute('data-label'); lbl.classList.add('on'); wrap.classList.add('hovering');
+      });
+      pth.addEventListener('mouseleave',function(){
+        lbl.textContent=DEF; lbl.classList.remove('on'); wrap.classList.remove('hovering');
+      });
+    });
+  }
+})();
+(function(){
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
+  document.querySelectorAll('.thumb').forEach(function(t){
+    t.addEventListener('click',function(){
+      lbimg.src=t.getAttribute('data-full'); lbimg.alt=t.alt;
+      lbcap.textContent=t.getAttribute('data-cap'); lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; }});
+})();
+(function(){
+  var links = [].slice.call(document.querySelectorAll('nav.jump a'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var sections = [].slice.call(document.querySelectorAll('section[id]'));
+  function update(){
+    var top = window.scrollY + 90;
+    var current = sections[0];
+    sections.forEach(function(s){ if (s.offsetTop <= top) current = s; });
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if (current && map[current.id]) map[current.id].classList.add('active');
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+
+</body>
+</html>
