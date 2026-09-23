@@ -34,8 +34,8 @@
   @media (prefers-reduced-motion: reduce) { .markbig svg path { animation: none; stroke-dashoffset: 0; } }
 
   .statement { background: var(--deepdark); color: var(--light); padding: 76px 0; }
-  .statement p { font-size: clamp(23px, 3vw, 33px); line-height: 1.35; font-weight: 600; letter-spacing: -0.4px; max-width: 840px; }
-  .statement p b { color: var(--pink); font-weight: 700; }
+  .statement p { font-size: clamp(22px, 2.8vw, 30px); line-height: 1.45; font-weight: 500; letter-spacing: -0.2px; max-width: 760px; color: #FFFFFF; }
+  .statement p b { color: #FFFFFF; font-weight: 700; border-bottom: 3px solid var(--pink); padding-bottom: 2px; }
 
   section { padding: 84px 0 0; }
   .band { background: var(--pale); margin-top: 84px; padding: 84px 0; }
@@ -91,7 +91,7 @@
   .seasons .cap b { color: var(--ink); }
 
   /* ---- the work ---- */
-  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 18px; margin-top: 36px; }
+  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 18px; margin-top: 36px; max-width: 440px; }
   .wcard { background: #fff; border: 1px solid var(--hairline); border-radius: 13px; overflow: hidden; text-decoration: none; color: var(--ink); display: flex; flex-direction: column; transition: border-color .18s, transform .18s; }
   .wcard:hover { border-color: var(--deep); transform: translateY(-2px); }
   .wcard .top { background: var(--deepdark); padding: 20px 22px 16px; }
@@ -143,8 +143,8 @@
   <div class="wrap inner">
     <div>
       <h1>Ecologically minded.<br>Locally beautiful.</h1>
-      <p class="sub">A planting plan built around your site, not a template. Made for the way your neighborhood actually looks: stone walls, woodland edges, relaxed borders that read as beautiful to your neighbors and as habitat to everything else.</p>
-      <p class="area">New England · Mid-Atlantic · South Florida</p>
+      <p class="sub">A planting plan built around your site. Made for the way your neighborhood actually looks, that reads as beautiful to your neighbors and as habitat to everything else.</p>
+      <p class="area">New England · Mid-Atlantic · more regions soon</p>
     </div>
     <div class="markbig">
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Seven arcs, one per bloom, April through October"><title>Seven arcs, one per bloom, April through October</title>
@@ -164,12 +164,12 @@
 
 <div class="seasons">
   <img src="four-seasons.jpg" alt="The same garden bed drawn four times, in February, April, May and August">
-  <p class="cap"><b>The same bed, four times.</b> Every Bloom Days plan is drawn across the season, not as one flattering picture — because a garden is four different pictures, and you should see all of them before you plant it.</p>
+  <p class="cap"><b>The same bed, through the season.</b> Every Bloom Days plan is drawn across the season, not as one flattering picture, because a garden evolves, and you should see the whole vision before you plant it.</p>
 </div>
 
 <div class="statement">
   <div class="wrap">
-    <p>You usually have to choose. A garden that looks designed, or a garden that actually feeds something.<br><b>Bloom Days does both.</b></p>
+    <p>You usually have to choose. A garden that looks designed, or a garden that attracts pollinators.<br><b>Bloom Days does both.</b></p>
   </div>
 </div>
 
@@ -179,7 +179,7 @@
     <h2>One garden, one packet</h2>
     <p>The complete working documents for a single garden area. A bed, a border, a pond edge, an entry. Ready to order from, plant from, and live with.</p>
     <div class="cards">
-      <div class="card"><div class="d" style="background:var(--pink)"></div><h3>The palette</h3><p>Every plant with a plain-language reason underneath: what you'll see, and why it survives your site.</p></div>
+      <div class="card"><div class="d" style="background:var(--pink)"></div><h3>The palette</h3><p>Every plant with plain-language reasoning underneath: what you'll see, and why it survives your site.</p></div>
       <div class="card"><div class="d" style="background:var(--blue)"></div><h3>The bloom calendar</h3><p>April to October, no dead months, and a second row naming who visits each month: bees, butterflies, hummingbirds.</p></div>
       <div class="card"><div class="d" style="background:var(--gold)"></div><h3>The planting plan</h3><p>Drawn to your measurements, with quantities and the exact nursery sizes to order.</p></div>
       <div class="card"><div class="d" style="background:var(--goldenrod)"></div><h3>The sourcing list</h3><p>Growers within an easy drive, plus the wholesale bulb and plug houses that sell to anyone. Plugs and bulbs cost a fraction of potted plants, which is what makes real drifts affordable.</p></div>
@@ -214,12 +214,12 @@
     <div class="grid2">
       <div>
         <div class="kicker">Why trust it</div>
-        <h2>A person with a very good assistant</h2>
+        <h2>A person with a very good (AI) assistant</h2>
       </div>
       <div>
-        <p>A full-service designer in this county charges $3,000 and up for a bed like yours. Most of that is not design. It is hours: checking whether a plant takes wet clay, whether the deer on your road eat it, whether its bloom window leaves July empty. I built an AI studio to do that part. It checks every plant against your sun, soil and browse pressure, and every palette against a panel of design standards. That is why a Bloom Days packet costs $250, not $3,000.</p>
-        <p>What it does not do is choose. The plants in your plan are my picks, made standing in your bed, and every one comes with a reason in plain language you can argue with. The rules I choose by were learned in my own garden in Greenwich before they touched a client's: which "deer-proof" plants actually are, how narrow a bed can run before the plan has to change, what a care plan honestly costs in hours.</p>
-        <p>And this practice is of this region, not shipping into it. I know which "deer-resistant" plants actually get eaten in Pound Ridge, which inkberry cultivar dodges the boxwood blight running through Fairfield County, and which nursery on your own road stocks the plants in your plan.</p>
+        <p>A full-service designer can charge thousands for a plan like this. Most of that is not design. It is hours: checking whether a plant takes wet clay, whether the deer on your road eat it, whether its bloom window leaves July empty. I built an AI studio to do that part. It checks every plant against your sun, soil and browse pressure, and every palette against a panel of design standards. That is why a Bloom Days packet costs $250, not $3,000.</p>
+        <p>What it does not do is choose. The plants in your plan are my picks, and every one comes with a reason in plain language. The rules I choose by were learned in my own garden, and from the storied designers whose work we can all learn from.</p>
+        <p>We are starting small in this region before we expand. We live here and know what works here: which "deer-resistant" plants actually get eaten in Pound Ridge, which inkberry cultivar dodges the boxwood blight running through Fairfield County, and which nursery on your own road stocks the plants in your plan.</p>
       </div>
     </div>
   </div>
@@ -227,11 +227,11 @@
 
 <div class="wrap">
   <section>
-    <div class="kicker">The standards</div>
+    <div class="kicker">Our values</div>
     <h2>No random acts of gardening</h2>
     <div style="margin-top:30px">
-      <div class="rule"><div class="num">01</div><div><h3>Deer, rabbits, and wet feet are design inputs</h3><p>If it gets eaten in your town, it isn't in your plan.</p></div></div>
-      <div class="rule"><div class="num">02</div><div><h3>No dead months</h3><p>Something blooms, and something is fed, every month from April to October.</p></div></div>
+      <div class="rule"><div class="num">01</div><div><h3>Deer, rabbits, and wet feet are design inputs</h3><p>Inputs such as deer or rabbit pressure shape the plan from the start. If it gets eaten in your town, it isn't in your plan.</p></div></div>
+      <div class="rule"><div class="num">02</div><div><h3>Blooms every month (our signature)</h3><p>Something blooms, and pollinators are happy, every month from April to October.</p></div></div>
       <div class="rule"><div class="num">03</div><div><h3>Native-forward, never dogmatic</h3><p>The test is whether a plant belongs in this region, not where its ancestors lived. If a well-behaved non-native earns its place, it's in.</p></div></div>
       <div class="rule"><div class="num">04</div><div><h3>Drifts, repetition, clean edges</h3><p>That's what makes natural look deliberate instead of neglected.</p></div></div>
       <div class="rule"><div class="num">05</div><div><h3>Maintenance honesty</h3><p>The care plan tells you the real annual cost in hours before you plant, not after.</p></div></div>
@@ -240,45 +240,9 @@
 
   <section>
     <div class="kicker">The work</div>
-    <h2>Three real packets, start to finish</h2>
-    <p>Not excerpts. These are the complete working documents, exactly as they were handed over. Read the reasoning under every plant and decide for yourself whether it holds up.</p>
+    <h2>A real packet, start to finish</h2>
+    <p>Not an excerpt. This is the complete working document, exactly as it was handed over. Read the reasoning under every plant and decide for yourself whether it holds up.</p>
     <div class="work">
-
-      <a class="wcard" href="work/everyday-entrance.html">
-        <div class="top"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M 100 74 A 26 26 0 0 1 119.06 82.32" fill="none" stroke="#E8E0C8" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 100 63 A 37 37 0 0 1 135.81 90.69" fill="none" stroke="#6B8FD4" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 100 52 A 48 48 0 0 1 147.87 103.59" fill="none" stroke="#8FA9E0" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 143.25 59.87 A 59 59 0 0 1 136.79 146.13" fill="none" stroke="#E4A0B4" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 169.8 105.23 A 70 70 0 0 1 89.57 169.22" fill="none" stroke="#E0A98C" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 150.5 163.33 A 81 81 0 0 1 87.93 180.1" fill="none" stroke="#B9A8D6" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 86.29 190.97 A 92 92 0 0 1 54 20.33" fill="none" stroke="#EFE9D8" stroke-width="8" stroke-linecap="round"/>
-        </svg></div>
-        <div class="meat">
-          <h3>The Everyday Entrance</h3>
-          <div class="where">A white clapboard colonial · Greenwich CT · part shade</div>
-          <p>A skinny bed wrapping a corner, seen forty times a day and never once designed. Two good plants and thirty feet of nothing.</p>
-          <div class="go">Read the packet &rarr;</div>
-        </div>
-      </a>
-
-      <a class="wcard" href="work/waters-edge.html">
-        <div class="top"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M 100 74 A 26 26 0 0 1 124.54 91.41" fill="none" stroke="#E3C44A" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 127.12 74.83 A 37 37 0 0 1 127.5 124.76" fill="none" stroke="#6B8FD4" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 129.93 137.53 A 48 48 0 0 1 65.31 133.17" fill="none" stroke="#B08BB5" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 136.79 146.13 A 59 59 0 0 1 41.32 106.17" fill="none" stroke="#C0392B" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 143.64 154.73 A 70 70 0 0 1 30.38 107.32" fill="none" stroke="#9DB4A4" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 87.93 180.1 A 81 81 0 0 1 19.14 95.16" fill="none" stroke="#5A3E7A" stroke-width="8" stroke-linecap="round"/>
-          <path d="M 23.99 151.83 A 92 92 0 0 1 54 20.33" fill="none" stroke="#C8A951" stroke-width="8" stroke-linecap="round"/>
-        </svg></div>
-        <div class="meat">
-          <h3>The Water's Edge</h3>
-          <div class="where">A private pond · Pound Ridge NY · wet, mixed sun</div>
-          <p>Two toddlers, a dog, and a pond the town will not let them fence. The barrier had to be made of flowers.</p>
-          <div class="go">Read the packet &rarr;</div>
-        </div>
-      </a>
 
       <a class="wcard" href="work/view-from-the-street.html">
         <div class="top"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -299,7 +263,7 @@
       </a>
 
     </div>
-    <p style="font-size:13.5px;color:var(--mute);margin-top:20px;">Names and addresses removed at the owners' request. Everything else is exactly as delivered.</p>
+    <p style="font-size:13.5px;color:var(--mute);margin-top:20px;">Name and address removed at the owner's request. Everything else is exactly as delivered.</p>
   </section>
 
   <section>
@@ -307,8 +271,8 @@
     <h2>Three steps from a space that's bothering you to a plan you can actually plant</h2>
     <div class="steps">
       <div class="step"><div class="num">1</div><h3>Join the list</h3><p>Six questions on this page, about two minutes. Photos and measurements come later, once we both know it is a fit.</p></div>
-      <div class="step"><div class="num">2</div><h3>We talk, in January</h3><p>Fifteen minutes, not a sales call. Your style, and anything tricky: deep shade, deer, the slope you've been ignoring for years. Then we agree on every plant before anything is drawn.</p></div>
-      <div class="step"><div class="num">3</div><h3>Get the packet</h3><p>Your packet arrives in late winter, in time to order plants before the good ones sell out. Then you or your installer plant in spring.</p></div>
+      <div class="step"><div class="num">2</div><h3>We talk for 15 minutes</h3><p>Not a sales call. Your style, and anything tricky: deep shade, deer, the slope you've been ignoring for years. Then we agree on every plant before anything is drawn.</p></div>
+      <div class="step"><div class="num">3</div><h3>Get the packet</h3><p>Your packet arrives in time to order plants before the good ones sell out. Then you or your installer plant in spring.</p></div>
     </div>
   </section>
 </div>
@@ -316,9 +280,9 @@
 <div class="cta">
   <div class="wrap">
     <div class="kicker" style="color:#BDD3CD;">The spring list</div>
-    <h2 id="start">Five gardens, designed this winter</h2>
-    <p style="max-width:560px;">Spring is when things go in the ground, so winter is when they should be designed. I am taking five gardens for spring 2027 at <strong style="color:#fff;">$250 each</strong>, and I choose them in January so there is time to design properly and order plants before the good ones sell out.</p>
-    <p style="max-width:560px;">Join the list now and you hear from me first. Nothing is owed and nothing is decided — you are telling me about the spot so that when January comes I already know whether it is one I can help with.</p>
+    <h2 id="start">Gardens designed this winter</h2>
+    <p style="max-width:560px;">Spring is when things go in the ground, so winter is when they should be designed. I am taking a small number of gardens for spring 2027 at <strong style="color:#fff;">$250 each</strong>, and I choose them as I have capacity so there is time to design properly and order plants before the good ones sell out.</p>
+    <p style="max-width:560px;">Join the list now and you hear from me first. Nothing is owed and nothing is decided. You are telling me you want a spot so I can reach out as I have capacity.</p>
     <p style="max-width:560px;"><strong style="color:#fff;">The price goes up after these five.</strong> Connecticut, Westchester and the Hudson Valley, because knowing your deer, your soil and which nursery on your road stocks the plants is most of what you are paying for.</p>
 
     <form class="intake" method="POST" action="https://formspree.io/f/xqpkpebb">
@@ -358,6 +322,12 @@
         <label for="f-bother">What bothers you about it?</label>
         <p class="hint">Plain words are better than garden words. "Bare and boring," "the deer eat everything," "it looks fine in May and dead by July."</p>
         <textarea id="f-bother" name="whats_wrong" required></textarea>
+      </div>
+
+      <div class="fld">
+        <label for="f-goal">What are you hoping for?</label>
+        <p class="hint">The other half of the question. "Something to look at from the kitchen window," "less to weed," "I want the bees back."</p>
+        <textarea id="f-goal" name="goal"></textarea>
       </div>
 
       <div class="fld">
