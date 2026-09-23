@@ -84,7 +84,7 @@ Designed Around Your Deer
 No Dead Months, April to Oct
 Read a Real Packet First
 Booking Spring 2027
-$450 Introductory Price
+$250 Introductory Price
 One Bed, One Complete Plan
 Local to Fairfield County
 ```
@@ -93,7 +93,7 @@ Local to Fairfield County
 ```
 A complete plan for one bed: palette, bloom calendar, sourcing list, care plan.
 Read three real packets before you decide. Greenwich, Rowayton, Pound Ridge.
-Designed over the winter, planted in spring. Five gardens at $450 each.
+Designed over the winter, planted in spring. Five gardens at $250 each.
 Which deer-resistant plants actually get eaten in your town. I know. Ask me.
 ```
 
