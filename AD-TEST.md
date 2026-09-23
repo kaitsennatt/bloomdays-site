@@ -1,5 +1,15 @@
 # The $50 search test — paste-ready
 
+> ## STATUS — Sep 23 2026, late evening
+> **Published.** Campaign `Spring List Test — Fairfield Sep 2026` exists, Enabled, status *Eligible (Learning)*, $3.50/day, Sep 23 → Oct 5, all settings verified (Search only, 7 towns presence-only, AI Max off, 13 phrase keywords, $250 in the ad).
+>
+> **Not serving, and cannot yet.** Red banner: *"Your account cannot show ads — enter your billing information."* Every billing route (Fix it, Billing → Summary/Settings/Payment methods) lands on *"Your account's access level doesn't include billing information"* — despite Kaitlin being the account's only user and Admin. A personal Google Payments profile exists (0392-4445-9365) but the Ads account is not linked to it. This is a Google-side account state, not a settings error. **Fix:** (1) sign out/in and check in the morning in case "Fix it" completed and the banner lags; (2) if still there, **Google Ads support chat** (Help → Contact us) — they enable billing on stuck new accounts in one session.
+>
+> **Negative keywords NOT in yet.** Attempted; blocked with *"You can't make changes because the campaign was set to read-only."* The campaigns table still shows *Drafts in progress: 1* but the draft URL is gone (consumed by publish) — the lock is publish finalizing or billing-gated. The full list below is ready to paste; add the moment the lock lifts, **before** ads serve. Consider saving it as a named list (*Bloom Days hardscape and lawn exclusions*) for reuse in March.
+>
+> **Net risk tonight: zero.** Nothing can spend until billing works.
+
+
 **What this test is for:** finding out whether anyone in Fairfield County is searching
 for this at all, and building the machinery so March 1 is a button rather than a project.
 **September is the worst month of the year to measure garden-design demand** — search
