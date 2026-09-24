@@ -1,14 +1,13 @@
 # The $50 search test — paste-ready
 
-> ## STATUS — Sep 23 2026, late evening
-> **Published.** Campaign `Spring List Test — Fairfield Sep 2026` exists, Enabled, status *Eligible (Learning)*, $3.50/day, Sep 23 → Oct 5, all settings verified (Search only, 7 towns presence-only, AI Max off, 13 phrase keywords, $250 in the ad).
+> ## STATUS — Sep 23 2026, late
+> **Old account 447-108-7704 is CLOSED** (billing stuck in "unsupported"; support could not be reached). **New account: Bloom Days, 367-329-7874 (ocid 8559053945).**
 >
-> **Not serving, and cannot yet.** Red banner: *"Your account cannot show ads — enter your billing information."* Every billing route (Fix it, Billing → Summary/Settings/Payment methods) lands on *"Your account's access level doesn't include billing information"* — despite Kaitlin being the account's only user and Admin. A personal Google Payments profile exists (0392-4445-9365) but the Ads account is not linked to it. This is a Google-side account state, not a settings error. **Fix:** (1) sign out/in and check in the morning in case "Fix it" completed and the banner lags; (2) if still there, **Google Ads support chat** (Help → Contact us) — they enable billing on stuck new accounts in one session.
+> **Rebuilt in the new account:** conversion action "Submit lead form" (page load, URL starts with `bloomdays.co/thanks.html`, Primary, via Google tag **AW-18470433707**). The Google tag is now in `<head>` of `index.html` and `thanks.html` (it never was on the site before; the old account's conversion could never have fired). **Kaitlin must push the site** for it to count.
 >
-> **Negative keywords NOT in yet.** Attempted; blocked with *"You can't make changes because the campaign was set to read-only."* The campaigns table still shows *Drafts in progress: 1* but the draft URL is gone (consumed by publish) — the lock is publish finalizing or billing-gated. The full list below is ready to paste; add the moment the lock lifts, **before** ads serve. Consider saving it as a named list (*Bloom Days hardscape and lawn exclusions*) for reuse in March.
+> **Campaign draft** `Spring List Test - Fairfield Sep 2026` (campaignId 281499264440834): Search only (Partners + Display off), 10 towns presence-only, English, Sep 23 → Oct 5, AI Max off, 13 phrase keywords, 10 headlines, 4 descriptions, path `spring-2027`, bidding = Clicks. **Blocked at Budget step by a "Confirm it's you" identity check (hers).** Still to do after the check: $3.50/day, $2.50 CPC cap, publish (hers), billing card (hers), negatives list.
 >
-> **Net risk tonight: zero.** Nothing can spend until billing works.
-
+> **Decision Sep 23 (Kaitlin): stay at $50.** She asked if $50 reads demand; answer: no, and it is not meant to. $50 ≈ 15–25 clicks ≈ 0–1 form fills. It reads (1) impressions = is anyone searching these terms here in September, and (2) whether the plumbing works before March. Two customers would need ~$300–500 over 4–6 weeks (4 form fills at ~3–4% from ~100–130 clicks), and the same money buys far more in Feb–Mar than in Sep. Plan: run $50 now; if impressions are more than a trickle, consider $10/day; if near zero, hold the budget for February.
 
 **What this test is for:** finding out whether anyone in Fairfield County is searching
 for this at all, and building the machinery so March 1 is a button rather than a project.
@@ -102,8 +101,8 @@ Local to Fairfield County
 **Descriptions**
 ```
 A complete plan for one bed: palette, bloom calendar, sourcing list, care plan.
-Read three real packets before you decide. Greenwich, Rowayton, Pound Ridge.
-Designed over the winter, planted in spring. Five gardens at $250 each.
+Read a real packet, start to finish, before you decide. Greenwich, Rowayton, Pound Ridge.
+Designed over the winter, planted in spring. Introductory price $250 per garden.
 Which deer-resistant plants actually get eaten in your town. I know. Ask me.
 ```
 
