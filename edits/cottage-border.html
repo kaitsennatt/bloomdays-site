@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cottage Border · a Bloom Days Edit</title>
+<style>
+  html{scroll-behavior:smooth;}
+  :root{--deep:#6E8F86;--deepdark:#4F6B63;--pale:#F3F6F3;--paper:#FBFCFB;--ink:#18211E;--mute:#5B6B66;--hairline:#D9E2DD;--light:#F2F5F1;--pink:#E4A0B4;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 32px;}
+  .cover{background:var(--deep);color:var(--light);padding:56px 0 52px;}
+  .cover .inner{display:grid;grid-template-columns:minmax(0,1fr) clamp(160px,20vw,200px);gap:40px;align-items:center;}
+  @media (max-width:720px){.cover .inner{grid-template-columns:minmax(0,1fr);}}
+  .cover h1{font-size:clamp(32px,5vw,46px);font-weight:800;letter-spacing:-1px;line-height:1.08;}
+  .cover .site{font-size:16px;color:#DCE9E5;margin-top:14px;}
+  .cover .meta{font-size:13.5px;color:#BDD3CD;margin-top:18px;}
+  .cover svg{width:clamp(130px,18vw,170px);height:auto;display:block;margin:0 auto;}
+  .markwrap{text-align:center;width:100%;}
+  .markwrap svg path{transition:opacity .2s;}
+  .markwrap.hovering svg path{opacity:.28;}
+  .markwrap svg path:hover{opacity:1;}
+  .marklabel{font-size:12.5px;line-height:1.4;color:#CBDDD7;margin-top:12px;min-height:36px;transition:color .2s;}
+  .marklabel.on{color:#FFFFFF;}
+  .thumb{width:150px;height:150px;border-radius:10px;object-fit:cover;display:block;background:var(--pale);border:1px solid var(--hairline);cursor:zoom-in;transition:transform .15s;}
+  .thumb:hover{transform:scale(1.04);}
+  .lightbox{position:fixed;inset:0;background:rgba(24,33,30,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:32px;cursor:zoom-out;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:min(900px,92vw);max-height:82vh;border-radius:10px;display:block;}
+  .lightbox .lbcap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:#CFE0DA;font-size:13.5px;padding:0 32px;}
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0 6px;}
+  @media(max-width:700px){.strip{grid-template-columns:repeat(2,1fr);}}
+  .strip figure{margin:0;}
+  .strip img{width:100%;height:190px;object-fit:cover;border-radius:10px;border:1px solid var(--hairline);display:block;cursor:zoom-in;}
+  .strip figcaption{font-size:12.5px;color:var(--mute);margin-top:6px;}
+  .nophoto{width:150px;height:150px;border-radius:10px;border:1px dashed var(--hairline);
+    background:var(--pale);color:var(--mute);font-size:12px;display:flex;align-items:center;
+    justify-content:center;text-align:center;line-height:1.35}
+  .removed{border-top:1px solid var(--hairline);margin-top:22px;padding-top:16px;font-size:14.5px;color:var(--mute);}
+  .removed strong{color:var(--ink);}
+
+  nav.jump{background:var(--deepdark);padding:0;position:sticky;top:0;z-index:10;}
+  nav.jump .wrap{display:flex;flex-wrap:wrap;gap:6px;padding-top:0;padding-bottom:0;}
+  nav.jump a{color:#9FBAB2;text-decoration:none;font-size:13px;font-weight:600;padding:14px 10px 12px;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;}
+  nav.jump a:hover{color:#E6EFEC;}
+  nav.jump a.active{color:#FFFFFF;border-bottom-color:var(--pink);}
+  section{padding:56px 0 0;scroll-margin-top:64px;}
+  h2{font-size:26px;font-weight:800;letter-spacing:-0.6px;margin-bottom:6px;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--deepdark);margin-bottom:8px;}
+  p{font-size:16px;color:#33403B;margin-bottom:12px;}
+  h3{font-size:16px;font-weight:700;margin:22px 0 8px;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;}
+  th{text-align:left;font-size:12px;color:var(--mute);font-weight:700;padding:0 12px 8px 0;border-bottom:1px solid var(--hairline);}
+  td{font-size:14.5px;padding:10px 12px 10px 0;border-bottom:1px solid var(--hairline);vertical-align:top;}
+  .bot{font-style:italic;}
+  .d{display:inline-block;width:13px;height:13px;border-radius:50%;}
+  .dotcell{width:166px;}
+  .well{background:var(--deepdark);color:var(--light);border-radius:14px;padding:28px 30px;margin:18px 0;overflow-x:auto;}
+  .well table{min-width:440px;}
+  .well td{border-bottom:none;padding:7px 0;font-size:14px;color:var(--light);}
+  .well tr:first-child td{font-size:12px;color:#A9C0B9;}
+  .well .fed td{border-top:1px solid #67857C;padding-top:12px;font-weight:600;font-size:13px;}
+  .fdot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#A9C0B9;}
+  .pol{display:inline-block;width:19px;height:19px;vertical-align:-4px;margin-right:2px;}
+  .polkey{font-size:12px;color:#A9C0B9;margin-top:12px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .polkey span{display:inline-flex;align-items:center;gap:5px;}
+  .well .note{font-size:13px;color:#A9C0B9;margin:14px 0 0;}
+  .callout{background:var(--pale);border-left:3px solid var(--deep);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#33403B;}
+  .flag{background:#FBEEF2;border-left:3px solid var(--pink);padding:14px 18px;margin:16px 0;font-size:14.5px;color:#5A2E3C;}
+  ol,ul{padding-left:22px;margin:10px 0;}
+  li{font-size:15px;margin-bottom:7px;}
+  .planart{margin:16px 0 6px;}
+  .planart img{width:100%;height:auto;display:block;border:1px solid var(--hairline);border-radius:10px;background:#fff;}
+  .planart figcaption{font-size:13.5px;color:var(--mute);margin-top:7px;line-height:1.5;}
+  .planscroll{margin:16px 0;}
+  .planhint{display:none;}
+
+  .elevset{margin:18px 0 4px;}
+  .elev{margin:0 0 20px;}
+  .elev img{width:100%;height:auto;display:block;border:1px solid var(--hairline);border-radius:10px;background:#fff;}
+  .elev figcaption{font-size:13.5px;color:var(--mute);margin-top:7px;line-height:1.5;}
+  .elev .mo{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
+    color:var(--deepdark);background:var(--pale);border-radius:20px;padding:3px 10px;margin-right:9px;
+    vertical-align:1px;}
+  .elevnote{font-size:13.5px;color:var(--mute);margin:2px 0 6px;}
+  svg.plan{width:100%;height:auto;display:block;margin:16px 0;background:#fff;border:1px solid var(--hairline);border-radius:12px;}
+  footer{background:var(--deep);color:var(--light);margin-top:64px;padding:44px 0;font-size:13.5px;}
+  footer svg{width:34px;height:34px;display:block;margin-bottom:14px;}
+  footer a{color:#DCE9E5;}
+
+  /* ---------- mobile ---------- */
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .cover{padding:40px 0 36px;}
+    .cover .inner{gap:26px;}
+    .cover h1{font-size:31px;letter-spacing:-.6px;}
+    .cover .site{font-size:15px;margin-top:12px;}
+    .cover .meta{font-size:13px;margin-top:14px;}
+    .cover svg{width:132px;}
+
+    /* nav: one scrolling line instead of a three-row block */
+    nav.jump .wrap{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;
+      -webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0;padding:0 14px;}
+    nav.jump .wrap::-webkit-scrollbar{display:none;}
+    nav.jump a{white-space:nowrap;font-size:12.5px;padding:13px 10px 11px;}
+    section{padding:40px 0 0;scroll-margin-top:46px;}
+
+    h2{font-size:23px;letter-spacing:-.4px;}
+    h3{font-size:15.5px;}
+    p{font-size:15.5px;}
+    li{font-size:15px;}
+
+    /* option tables become stacked cards */
+    table.opts,table.opts tbody,table.opts tr,table.opts td{display:block;width:100%;}
+    table.opts th{display:none;}
+    table.opts tr:first-child{display:none;}
+    table.opts{margin:16px 0 0;}
+    table.opts tr{border:1px solid var(--hairline);border-radius:14px;overflow:hidden;
+      margin:0 0 16px;background:#fff;}
+    table.opts td{border-bottom:none;padding:0 16px;}
+    table.opts td.dotcell{width:100%;padding:0;}
+    table.opts td.dotcell .thumb,table.opts td.dotcell .nophoto{width:100%;height:200px;
+      border-radius:0;border:none;border-bottom:1px solid var(--hairline);}
+    table.opts td.bot{padding:14px 16px 0;font-size:17px;line-height:1.3;}
+    table.opts td:nth-child(3){display:inline-block;width:auto;margin:10px 16px 0;
+      background:var(--pale);color:var(--deepdark);font-size:11.5px;font-weight:700;
+      letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
+    table.opts td:nth-child(4){padding:10px 16px 16px;font-size:15px;}
+
+    /* what to buy becomes stacked cards */
+    table.buy,table.buy tbody,table.buy tr,table.buy td{display:block;width:100%;}
+    table.buy th{display:none;}
+    table.buy tr:first-child{display:none;}
+    table.buy tr{border-bottom:1px solid var(--hairline);padding:14px 0 6px;}
+    table.buy td{border-bottom:none;padding:0;}
+    table.buy td.bot{font-size:16px;font-weight:700;}
+    table.buy td:nth-child(2){display:inline-block;width:auto;margin:7px 0 8px;
+      background:var(--pale);color:var(--deepdark);font-size:11.5px;font-weight:700;
+      letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
+    table.buy td:nth-child(3){font-size:14.5px;color:#4A5A55;padding-bottom:6px;}
+
+    /* the year: make the whole calendar FIT. the point is seeing the year at once. */
+    .well{padding:18px 12px;border-radius:12px;overflow-x:hidden;}
+    .well table{min-width:0;width:100%;table-layout:fixed;}
+    .well td{padding:6px 1px;font-size:11.5px;text-align:center;}
+    .well tr:first-child td{font-size:10.5px;letter-spacing:0;}
+    .well table tr td:first-child{width:100px !important;text-align:left;font-size:12.5px;
+      line-height:1.25;padding-right:6px;}
+    .well table tr td:first-child span{font-size:10px !important;}
+    .well .fed td{font-size:11.5px;padding-top:10px;}
+    .d{width:11px;height:11px;}
+    .fdot{width:8px;height:8px;}
+    .pol{width:15px;height:15px;vertical-align:-3px;margin-right:0;}
+    .well .note{font-size:12px;}
+    .polkey{gap:9px;font-size:11px;}
+
+    /* the plan drawing: scroll it at a readable size instead of shrinking it to nothing */
+    .planscroll{overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+      margin:16px -20px 0;padding:0 20px;}
+    .planscroll svg.plan{width:760px;max-width:none;margin:0;}
+    .planhint{display:block;font-size:12px;color:var(--mute);margin:8px 0 0;}
+
+    .elevset{margin:14px 0 2px;}
+    .elev{margin:0 0 16px;}
+    .elev figcaption{font-size:13px;}
+    .elev .mo{display:table;margin:0 0 5px;}
+
+    .strip{gap:10px;}
+    .strip img{height:150px;}
+    .strip figcaption{font-size:12px;}
+    .callout,.flag{padding:12px 14px;font-size:14.5px;}
+    .lightbox{padding:16px;}
+    .lightbox .lbcap{padding:0 16px;font-size:12.5px;bottom:16px;}
+    footer{padding:34px 0;margin-top:44px;}
+  }
+
+</style>
+</head>
+<body>
+<div class="cover"><div class="wrap inner">
+  <div>
+    <p class="site" style="margin-bottom:6px">The Edits &#183; No. 2</p>
+    <h1>The Cottage Border</h1>
+    <p class="site">A sunny bed against a wall &#183; zone 6b to 7a &#183; deer country</p>
+    <p class="meta">16 ft of bed, 4 ft deep, with a fence, wall or house behind it and a path or lawn in front.<br>The English border, translated for here, with everything a Connecticut deer eats taken out.<br><span style="color:#A9C0B9;font-size:12.5px">Version 1 &#183; September 2026 &#183; a template, not a site visit</span></p>
+  </div>
+  <div class="markwrap" id="markwrap">
+  <svg viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="This bed's bloom, April to October"><path d="M 100.00 84.00 A 16.0 16.0 0 0 1 108.71 86.58" fill="none" stroke="#E3C44A" stroke-width="6" stroke-linecap="round" data-label="Narcissus &#x27;Thalia&#x27;, April"/><path d="M 115.19 80.90 A 24.4 24.4 0 0 1 124.39 99.15" fill="none" stroke="#5A3E7A" stroke-width="6" stroke-linecap="round" data-label="Allium &#x27;Purple Sensation&#x27;, May"/><path d="M 126.87 81.19 A 32.8 32.8 0 1 1 82.26 72.41" fill="none" stroke="#9B85C9" stroke-width="6" stroke-linecap="round" data-label="catmint, May-Jun-Jul-Aug-Sep"/><path d="M 133.75 76.37 A 41.2 41.2 0 0 1 112.56 139.24" fill="none" stroke="#E4A0B4" stroke-width="6" stroke-linecap="round" data-label="cranesbill, May-Jun"/><path d="M 146.61 116.96 A 49.6 49.6 0 1 1 73.17 58.28" fill="none" stroke="#9B85C9" stroke-width="6" stroke-linecap="round" data-label="clematis, Jun-Jul-Aug-Sep"/><path d="M 154.50 119.84 A 58.0 58.0 0 0 1 117.68 155.24" fill="none" stroke="#E4A0B4" stroke-width="6" stroke-linecap="round" data-label="peony, Jun"/><path d="M 162.40 122.71 A 66.4 66.4 0 1 1 64.08 44.16" fill="none" stroke="#5A3E7A" stroke-width="6" stroke-linecap="round" data-label="meadow sage, Jun-Aug-Sep"/><path d="M 119.36 172.25 A 74.8 74.8 0 0 1 62.60 35.22" fill="none" stroke="#C3D5CF" stroke-width="6" stroke-linecap="round" data-label="dwarf panicle hydrangea, Jul-Aug-Sep-Oct"/><path d="M 121.53 180.37 A 83.2 83.2 0 0 1 54.99 30.03" fill="none" stroke="#C0392B" stroke-width="6" stroke-linecap="round" data-label="purple coneflower, Jul-Aug-Sep"/><path d="M 54.20 20.67 A 91.6 91.6 0 0 1 54.20 20.67" fill="none" stroke="#6B8FD4" stroke-width="6" stroke-linecap="round" data-label="aromatic aster, Oct"/></svg>
+  <div class="marklabel" id="marklabel">This bed, April to October. Hover an arc.</div>
+  </div>
+</div></div>
+
+<nav class="jump"><div class="wrap">
+  <a href="#what">What this is</a><a href="#look">The look</a><a href="#plants">The plants</a><a href="#calendar">The year</a><a href="#plan">The plan</a><a href="#care">Care</a><a href="#yours">Make it yours</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="what">
+  <div class="kicker">What this is</div>
+  <h2>A real plan for a bed I have not seen</h2>
+  <p><strong>This is the same packet I make for a client, built for a bed that exists in a lot of towns around here.</strong> A 16 by 4 ft strip against something, in full sun or sun until mid-afternoon, in a place where deer walk through at night. If that is your bed, this plan will work in it. If it is not quite your bed, the notes below say what changes.</p>
+  <p><strong>What I can promise:</strong> every plant here is hardy in zone 6b, rarely or never browsed, sold by a nursery you can drive to or a grower who ships, and chosen for a reason I have written down. <strong>What I cannot know:</strong> your soil, your exact light, and how bad your deer are. The custom version starts with a visit, and that is the whole difference between $25 and $250.</p>
+  <div class="callout"><strong>Why the cottage border.</strong> It is the most searched garden look in America this year, and almost none of it survives a Connecticut deer. Roses, hostas, tulips, phlox: gone by July. What is left is the discipline underneath the abundance, and that turns out to be the part that matters.</div>
+  <div class="flag"><strong>If your bed is in shade, stop here.</strong> Under six hours of sun the peony and salvia flop and the coneflower sulks. The Woodland Edge Edit, coming in January, is the one for you.</div>
+</section>
+
+<section id="look">
+  <div class="kicker">The look</div>
+  <h2>Abundance on a strict grid</h2>
+  <p><strong>The romance works because the bones are hard.</strong> A straight front edge you keep crisp, a wall behind, and one thing going up in the middle. Everything loose sits inside that frame.</p>
+  <p><strong>Something goes up.</strong> A cottage border always has a vertical. Here it is a clematis on a 6 ft obelisk at the centre back, because the rose the archetype wants is deer food.</p>
+  <p><strong>The colour stays warm and soft.</strong> Blush, dusty rose, cream, silver leaf, and one plum note so it never goes sweet. Nothing primary.</p>
+  <p><strong>The middle does the work.</strong> Drifts of five and seven carry June to September. Fewer kinds, bigger groups, so it reads from the lawn and not just from the path.</p>
+  <p><strong>It is honest about winter.</strong> This border rests from November to March. What holds it is the hydrangea heads, the coneflower seedheads, the obelisk, and the geranium's red winter leaf along the front.</p>
+</section>
+
+<section id="plants">
+  <div class="kicker">The plants</div>
+  <h2>Eight plants and two bulbs</h2>
+  <div class="strip"><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Bobo_paniculata_in_June.jpg/640px-Bobo_paniculata_in_June.jpg" alt="dwarf panicle hydrangea" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Bobo_paniculata_in_June.jpg/640px-Bobo_paniculata_in_June.jpg" data-cap="Hydrangea paniculata &#x27;Bobo&#x27;. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>1 · dwarf panicle hydrangea</b><br><span style="color:var(--mute)">Hydrangea paniculata &#x27;Bobo&#x27;</span></figcaption></figure><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Clematis_%27Betty_Corning%27_01.jpg/640px-Clematis_%27Betty_Corning%27_01.jpg" alt="clematis" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Clematis_%27Betty_Corning%27_01.jpg/640px-Clematis_%27Betty_Corning%27_01.jpg" data-cap="Clematis &#x27;Betty Corning&#x27; on an obelisk. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>2 · clematis</b><br><span style="color:var(--mute)">Clematis &#x27;Betty Corning&#x27; on an obelisk</span></figcaption></figure><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Paeonia_%27Sarah_Bernhardt%27_-_geograph.org.uk_-_5814198.jpg/640px-Paeonia_%27Sarah_Bernhardt%27_-_geograph.org.uk_-_5814198.jpg" alt="peony" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Paeonia_%27Sarah_Bernhardt%27_-_geograph.org.uk_-_5814198.jpg/640px-Paeonia_%27Sarah_Bernhardt%27_-_geograph.org.uk_-_5814198.jpg" data-cap="Paeonia &#x27;Sarah Bernhardt&#x27;. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>3 · peony</b><br><span style="color:var(--mute)">Paeonia &#x27;Sarah Bernhardt&#x27;</span></figcaption></figure><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Salvia_nemorosa_%27Caradonna%27_kz01.jpg/640px-Salvia_nemorosa_%27Caradonna%27_kz01.jpg" alt="meadow sage" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Salvia_nemorosa_%27Caradonna%27_kz01.jpg/640px-Salvia_nemorosa_%27Caradonna%27_kz01.jpg" data-cap="Salvia nemorosa &#x27;Caradonna&#x27;. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>4 · meadow sage</b><br><span style="color:var(--mute)">Salvia nemorosa &#x27;Caradonna&#x27;</span></figcaption></figure><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Echinacea_purpurea_Magnus_8zz.jpg/640px-Echinacea_purpurea_Magnus_8zz.jpg" alt="purple coneflower" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Echinacea_purpurea_Magnus_8zz.jpg/640px-Echinacea_purpurea_Magnus_8zz.jpg" data-cap="Echinacea purpurea &#x27;Magnus&#x27;. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>5 · purple coneflower</b><br><span style="color:var(--mute)">Echinacea purpurea &#x27;Magnus&#x27;</span></figcaption></figure><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Symphyotrichum_oblongifolium_10587916.jpg/640px-Symphyotrichum_oblongifolium_10587916.jpg" alt="aromatic aster" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Symphyotrichum_oblongifolium_10587916.jpg/640px-Symphyotrichum_oblongifolium_10587916.jpg" data-cap="Symphyotrichum oblongifolium &#x27;Raydon&#x27;s Favorite&#x27;. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>6 · aromatic aster</b><br><span style="color:var(--mute)">Symphyotrichum oblongifolium &#x27;Raydon&#x27;s Favorite&#x27;</span></figcaption></figure><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Catmint_flower_bed_Kurpark_Bad_Klosterlausnitz.jpg/640px-Catmint_flower_bed_Kurpark_Bad_Klosterlausnitz.jpg" alt="catmint" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Catmint_flower_bed_Kurpark_Bad_Klosterlausnitz.jpg/640px-Catmint_flower_bed_Kurpark_Bad_Klosterlausnitz.jpg" data-cap="Nepeta &#x27;Cat&#x27;s Pajamas&#x27;. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>7 · catmint</b><br><span style="color:var(--mute)">Nepeta &#x27;Cat&#x27;s Pajamas&#x27;</span></figcaption></figure><figure><img class="strip-img thumb" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Geranium_cantabrigiense_%27Karmina%27.JPG/640px-Geranium_cantabrigiense_%27Karmina%27.JPG" alt="cranesbill" data-full="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Geranium_cantabrigiense_%27Karmina%27.JPG/640px-Geranium_cantabrigiense_%27Karmina%27.JPG" data-cap="Geranium x cantabrigiense &#x27;Karmina&#x27;. Photo: Wikimedia Commons, to be replaced with my own."><figcaption><b>8 · cranesbill</b><br><span style="color:var(--mute)">Geranium x cantabrigiense &#x27;Karmina&#x27;</span></figcaption></figure></div>
+  <p style="font-size:13.5px;color:var(--mute);margin-top:2px">Tap a photo to enlarge. These are stand-ins from Wikimedia Commons until I photograph my own.</p>
+  <p><strong>1. dwarf panicle hydrangea</strong> <span style="color:var(--mute)">Hydrangea paniculata &#x27;Bobo&#x27; · 36 in tall · 2 plants</span><br>White cones in July that blush pink by September and dry to parchment for the winter. Three feet, no staking, and the one shrub that gives a border its bones without a hedge. <span style="color:var(--mute)">Blooms Jul, Aug, Sep, Oct. Deer: rarely. Feeds: bees on the fertile florets.</span></p><p><strong>2. clematis</strong> <span style="color:var(--mute)">Clematis &#x27;Betty Corning&#x27; on an obelisk · 84 in tall · 1 plants</span><br>Lilac-blue bells the size of a thimble from June to September, lightly scented, climbing the obelisk at the centre of the bed. Cut it to a foot in March and it does it again. <span style="color:var(--mute)">Blooms Jun, Jul, Aug, Sep. Deer: rarely. Feeds: a little; this one is for you.</span></p><p><strong>3. peony</strong> <span style="color:var(--mute)">Paeonia &#x27;Sarah Bernhardt&#x27; · 36 in tall · 2 plants</span><br>The blush double peony from every June wedding, and it lives fifty years. Deer never touch it. Give it a ring support in May or the rain will lay it down. <span style="color:var(--mute)">Blooms Jun. Deer: never. Feeds: ants, not much else; the honest one.</span></p><p><strong>4. meadow sage</strong> <span style="color:var(--mute)">Salvia nemorosa &#x27;Caradonna&#x27; · 24 in tall · 5 plants</span><br>Plum-purple spikes on black stems in June, the one saturated note in the bed. Shear after flowering and it comes back in August. Bees work it the whole time. <span style="color:var(--mute)">Blooms Jun, Aug, Sep. Deer: never. Feeds: bees, heavily.</span></p><p><strong>5. purple coneflower</strong> <span style="color:var(--mute)">Echinacea purpurea &#x27;Magnus&#x27; · 30 in tall · 3 plants</span><br>Rose-pink daisies from July into September, then dark seedheads the goldfinches strip in October. Leave them standing for the winter picture. <span style="color:var(--mute)">Blooms Jul, Aug, Sep. Deer: occasionally. Feeds: bees and butterflies; goldfinches on the seed.</span></p><p><strong>6. aromatic aster</strong> <span style="color:var(--mute)">Symphyotrichum oblongifolium &#x27;Raydon&#x27;s Favorite&#x27; · 30 in tall · 2 plants</span><br>A lavender-blue dome that opens in October when nearly everything else is done, and smells of balsam when you brush it. The last nectar of the year. <span style="color:var(--mute)">Blooms Oct. Deer: occasionally. Feeds: late bees and monarchs on the way south.</span></p><p><strong>7. catmint</strong> <span style="color:var(--mute)">Nepeta &#x27;Cat&#x27;s Pajamas&#x27; · 14 in tall · 6 plants</span><br>Grey-green mounds with lavender spikes from May to frost, spilling over the front edge the way a cottage border should. Shear once in July. Deer and rabbits leave it alone. <span style="color:var(--mute)">Blooms May, Jun, Jul, Aug, Sep. Deer: never. Feeds: bees, all season.</span></p><p><strong>8. cranesbill</strong> <span style="color:var(--mute)">Geranium x cantabrigiense &#x27;Karmina&#x27; · 10 in tall · 6 plants</span><br>A tidy front-edge mat, pink in May and June, leaves that go red in November and hold through winter. It keeps the edge clean while the middle is loud. <span style="color:var(--mute)">Blooms May, Jun. Deer: never. Feeds: small bees.</span></p>
+  <p><strong>b. Allium 'Purple Sensation'</strong> <span style="color:var(--mute)">25 bulbs</span><br>Four-inch violet spheres on 30 in stems in May, in fives between the peonies. The plum note before the salvia takes over. Deer never touch them.</p>
+  <p><strong>b. Narcissus 'Thalia'</strong> <span style="color:var(--mute)">40 bulbs</span><br>Cream, not yellow, two or three nodding flowers a stem, woven through the middle in April. If it sells out, 'Starlight Sensation' is the same job with more flowers per bulb.</p>
+  <div class="callout"><strong>The honest paragraph.</strong> Two of the eight are native, the coneflower and the aster. The rest are well-behaved non-natives that earn their place: the catmint and salvia are among the heaviest-worked bee plants in any garden, and the peony and clematis are for you. If you want the native share higher, swap the catmint for short-toothed mountain mint and give it a ring of edging, because it spreads.</div>
+</section>
+
+<section id="calendar">
+  <div class="kicker">The year</div>
+  <h2>Something in flower from April to October</h2>
+  <h3>The bed through the year</h3>
+  <div class="elevset">
+    <figure class="elev"><div style="aspect-ratio:4/1;background:repeating-linear-gradient(45deg,#EEF3F0,#EEF3F0 10px,#E4ECE8 10px,#E4ECE8 20px);border:1.5px dashed #B9CCC5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#4F6B63;font-weight:700">ELEVATION · JUNE · from Cottage_Border_Render_Prompts.md</div><figcaption><span class="mo">June</span>Peonies open, salvia at full plum, catmint spilling over the edge. The fullest month.</figcaption></figure>
+    <figure class="elev"><div style="aspect-ratio:4/1;background:repeating-linear-gradient(45deg,#EEF3F0,#EEF3F0 10px,#E4ECE8 10px,#E4ECE8 20px);border:1.5px dashed #B9CCC5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#4F6B63;font-weight:700">ELEVATION · AUGUST · from Cottage_Border_Render_Prompts.md</div><figcaption><span class="mo">August</span>Coneflowers are the event, hydrangea cones just opening, second flush on the salvia and catmint.</figcaption></figure>
+    <figure class="elev"><div style="aspect-ratio:4/1;background:repeating-linear-gradient(45deg,#EEF3F0,#EEF3F0 10px,#E4ECE8 10px,#E4ECE8 20px);border:1.5px dashed #B9CCC5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#4F6B63;font-weight:700">ELEVATION · OCTOBER · from Cottage_Border_Render_Prompts.md</div><figcaption><span class="mo">October</span>Asters in flower, hydrangea heads gone pink and parchment, coneflower seedheads standing.</figcaption></figure>
+    <figure class="elev"><div style="aspect-ratio:4/1;background:repeating-linear-gradient(45deg,#EEF3F0,#EEF3F0 10px,#E4ECE8 10px,#E4ECE8 20px);border:1.5px dashed #B9CCC5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#4F6B63;font-weight:700">ELEVATION · FEBRUARY · from Cottage_Border_Render_Prompts.md</div><figcaption><span class="mo">February</span>The honest one. Bare hydrangea frameworks with dried cones, seedheads, the obelisk, red geranium leaf along the front.</figcaption></figure>
+  </div>
+  <p class="elevnote">Drawn to the same scale from the same spot on the path, so you can compare one month against another.</p>
+  <div class="well cal"><table><tr><td style="width:210px"></td><td>Apr</td><td>May</td><td>Jun</td><td>Jul</td><td>Aug</td><td>Sep</td><td>Oct</td></tr><tr><td>Narcissus &#x27;Thalia&#x27;</td><td><span class="d" style="background:#E3C44A"></span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Allium &#x27;Purple Sensation&#x27;</td><td></td><td><span class="d" style="background:#5A3E7A"></span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>catmint</td><td><span class="fdot"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="fdot"></span></td></tr><tr><td>cranesbill</td><td><span class="fdot"></span></td><td><span class="d" style="background:#E4A0B4"></span></td><td><span class="d" style="background:#E4A0B4"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr><tr><td>clematis</td><td></td><td><span class="fdot"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="d" style="background:#9B85C9"></span></td><td><span class="fdot"></span></td></tr><tr><td>peony</td><td></td><td><span class="fdot"></span></td><td><span class="d" style="background:#E4A0B4"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td><td><span class="fdot"></span></td></tr><tr><td>meadow sage</td><td></td><td><span class="fdot"></span></td><td><span class="d" style="background:#5A3E7A"></span></td><td><span class="fdot"></span></td><td><span class="d" style="background:#5A3E7A"></span></td><td><span class="d" style="background:#5A3E7A"></span></td><td><span class="fdot"></span></td></tr><tr><td>dwarf panicle hydrangea</td><td></td><td></td><td><span class="fdot"></span></td><td><span class="d" style="background:#E8E2CE"></span></td><td><span class="d" style="background:#E8E2CE"></span></td><td><span class="d" style="background:#E8E2CE"></span></td><td><span class="d" style="background:#E8E2CE"></span></td></tr><tr><td>purple coneflower</td><td></td><td></td><td><span class="fdot"></span></td><td><span class="d" style="background:#C0392B"></span></td><td><span class="d" style="background:#C0392B"></span></td><td><span class="d" style="background:#C0392B"></span></td><td><span class="fdot"></span></td></tr><tr><td>aromatic aster</td><td></td><td></td><td></td><td></td><td></td><td><span class="fdot"></span></td><td><span class="d" style="background:#6B8FD4"></span></td></tr><tr class="fed"><td>Who visits</td><td>·</td><td>●●</td><td>●●</td><td>●●</td><td>●●</td><td>●●</td><td>●●</td></tr></table>
+    <p class="note">Big dot means in flower. Small dot means the plant is there doing its job with foliage. Nothing is drawn for November to March because nothing is in flower, and I would rather show you that than pretend.</p>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="kicker">The plan</div>
+  <h2>Where it all goes</h2>
+  <p>Looking straight down. One square is one foot. Each circle is a plant at planting distance, numbered to the list above. The dashed ovals are the bulb drifts. The diamond is the obelisk.</p>
+  <div class="planscroll"><svg viewBox="0 0 904 280" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Helvetica,Arial,sans-serif"><rect x="36" y="36" width="832" height="208" fill="#FBFCFB" stroke="#D9E2DD"/><line x1="36" y1="36" x2="36" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="88" y1="36" x2="88" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="140" y1="36" x2="140" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="192" y1="36" x2="192" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="244" y1="36" x2="244" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="296" y1="36" x2="296" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="348" y1="36" x2="348" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="400" y1="36" x2="400" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="452" y1="36" x2="452" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="504" y1="36" x2="504" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="556" y1="36" x2="556" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="608" y1="36" x2="608" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="660" y1="36" x2="660" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="712" y1="36" x2="712" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="764" y1="36" x2="764" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="816" y1="36" x2="816" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="868" y1="36" x2="868" y2="244" stroke="#E6EDE9" stroke-width="1"/><line x1="36" y1="36" x2="868" y2="36" stroke="#E6EDE9" stroke-width="1"/><line x1="36" y1="88" x2="868" y2="88" stroke="#E6EDE9" stroke-width="1"/><line x1="36" y1="140" x2="868" y2="140" stroke="#E6EDE9" stroke-width="1"/><line x1="36" y1="192" x2="868" y2="192" stroke="#E6EDE9" stroke-width="1"/><line x1="36" y1="244" x2="868" y2="244" stroke="#E6EDE9" stroke-width="1"/><text x="452.0" y="272" font-size="11" fill="#5B6B66" text-anchor="middle">16 ft · front edge (path or lawn)</text><text x="452.0" y="24" font-size="11" fill="#5B6B66" text-anchor="middle">back: wall, fence or house</text><text x="14" y="140.0" font-size="11" fill="#5B6B66" text-anchor="middle" transform="rotate(-90 14 140.0)">4 ft</text><ellipse cx="244" cy="140.0" rx="46.800000000000004" ry="23.400000000000002" fill="none" stroke="#C8A951" stroke-dasharray="4 3" stroke-width="1.5"/><ellipse cx="426.0" cy="119.2" rx="46.800000000000004" ry="23.400000000000002" fill="none" stroke="#C8A951" stroke-dasharray="4 3" stroke-width="1.5"/><ellipse cx="556" cy="145.2" rx="46.800000000000004" ry="23.400000000000002" fill="none" stroke="#C8A951" stroke-dasharray="4 3" stroke-width="1.5"/><ellipse cx="712" cy="119.2" rx="46.800000000000004" ry="23.400000000000002" fill="none" stroke="#C8A951" stroke-dasharray="4 3" stroke-width="1.5"/><circle cx="129.6" cy="82.8" r="66.3" fill="#F3F6F3" fill-opacity="0.92" stroke="#4F6B63" stroke-width="1"/><text x="129.6" y="86.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">1</text><circle cx="774.4" cy="82.8" r="66.3" fill="#F3F6F3" fill-opacity="0.92" stroke="#4F6B63" stroke-width="1"/><text x="774.4" y="86.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">1</text><circle cx="275.2" cy="85.4" r="66.3" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="275.2" y="89.4" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">3</text><circle cx="628.8" cy="85.4" r="66.3" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="628.8" y="89.4" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">3</text><circle cx="332.4" cy="145.2" r="66.3" fill="#6B8FD4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="332.4" y="149.2" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">6</text><circle cx="571.6" cy="145.2" r="66.3" fill="#6B8FD4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="571.6" y="149.2" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">6</text><circle cx="452.0" cy="82.8" r="55.2" fill="#9B85C9" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="452.0" y="86.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">2</text><circle cx="160.8" cy="147.8" r="44.2" fill="#C0392B" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="160.8" y="151.8" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">5</text><circle cx="415.6" cy="147.8" r="44.2" fill="#C0392B" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="415.6" y="151.8" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">5</text><circle cx="743.2" cy="147.8" r="44.2" fill="#C0392B" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="743.2" y="151.8" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">5</text><circle cx="82.8" cy="145.2" r="33.1" fill="#5A3E7A" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="82.8" y="149.2" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text><circle cx="244.0" cy="145.2" r="33.1" fill="#5A3E7A" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="244.0" y="149.2" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text><circle cx="488.4" cy="147.8" r="33.1" fill="#5A3E7A" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="488.4" y="151.8" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text><circle cx="654.8" cy="145.2" r="33.1" fill="#5A3E7A" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="654.8" y="149.2" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text><circle cx="821.2" cy="145.2" r="33.1" fill="#5A3E7A" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="821.2" y="149.2" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text><circle cx="145.2" cy="210.2" r="33.1" fill="#9B85C9" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="145.2" y="214.2" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">7</text><circle cx="285.6" cy="210.2" r="33.1" fill="#9B85C9" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="285.6" y="214.2" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">7</text><circle cx="426.0" cy="211.8" r="33.1" fill="#9B85C9" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="426.0" y="215.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">7</text><circle cx="566.4" cy="210.2" r="33.1" fill="#9B85C9" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="566.4" y="214.2" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">7</text><circle cx="706.8" cy="210.2" r="33.1" fill="#9B85C9" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="706.8" y="214.2" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">7</text><circle cx="836.8" cy="210.2" r="33.1" fill="#9B85C9" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="836.8" y="214.2" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">7</text><circle cx="77.6" cy="212.8" r="25.8" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="77.6" y="216.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">8</text><circle cx="218.0" cy="212.8" r="25.8" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="218.0" y="216.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">8</text><circle cx="358.4" cy="212.8" r="25.8" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="358.4" y="216.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">8</text><circle cx="498.8" cy="212.8" r="25.8" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="498.8" y="216.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">8</text><circle cx="639.2" cy="212.8" r="25.8" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="639.2" y="216.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">8</text><circle cx="779.6" cy="212.8" r="25.8" fill="#E4A0B4" fill-opacity="0.92" stroke="none" stroke-width="1"/><text x="779.6" y="216.8" font-size="12" font-weight="700" fill="#18211E" text-anchor="middle">8</text><rect x="445" y="75.8" width="14" height="14" fill="none" stroke="#18211E" stroke-width="1.5" transform="rotate(45 452 82.8)"/></svg></div>
+  <p class="planhint">Swipe the drawing sideways to see the whole bed.</p>
+  <p style="font-size:14px;color:var(--mute)">27 plants and 65 bulbs. To make the bed shorter, drop the right-hand 4 ft: one hydrangea, one salvia, one coneflower, one catmint, two geranium. Longer: repeat the middle 8 ft.</p>
+  <h3>What to buy</h3>
+  <table class="buy"><tr><th>Plant</th><th>Quantity and size</th><th>Notes</th></tr><tr><td class="bot">1 · dwarf panicle hydrangea</td><td>2 · #3</td><td>Hydrangea paniculata &#x27;Bobo&#x27;. About $45 each at a good independent nursery.</td></tr><tr><td class="bot">2 · clematis</td><td>1 · #1 + 6 ft obelisk</td><td>Clematis &#x27;Betty Corning&#x27; on an obelisk. About $25 each at a good independent nursery.</td></tr><tr><td class="bot">3 · peony</td><td>2 · #2</td><td>Paeonia &#x27;Sarah Bernhardt&#x27;. About $30 each at a good independent nursery.</td></tr><tr><td class="bot">4 · meadow sage</td><td>5 · #1</td><td>Salvia nemorosa &#x27;Caradonna&#x27;. About $14 each at a good independent nursery.</td></tr><tr><td class="bot">5 · purple coneflower</td><td>3 · #1</td><td>Echinacea purpurea &#x27;Magnus&#x27;. About $14 each at a good independent nursery.</td></tr><tr><td class="bot">6 · aromatic aster</td><td>2 · #1</td><td>Symphyotrichum oblongifolium &#x27;Raydon&#x27;s Favorite&#x27;. About $14 each at a good independent nursery.</td></tr><tr><td class="bot">7 · catmint</td><td>6 · #1</td><td>Nepeta &#x27;Cat&#x27;s Pajamas&#x27;. About $12 each at a good independent nursery.</td></tr><tr><td class="bot">8 · cranesbill</td><td>6 · #1</td><td>Geranium x cantabrigiense &#x27;Karmina&#x27;. About $12 each at a good independent nursery.</td></tr><tr><td class="bot">Allium &#x27;Purple Sensation&#x27;</td><td>25 bulbs</td><td>In fives between the peonies and salvia; the plum note in may. Van Engelen for a hundred, Brent and Becky's for fewer. Order in September, plant in October, 6 in deep.</td></tr><tr><td class="bot">Narcissus &#x27;Starlight Sensation&#x27;</td><td>40 bulbs</td><td>Four drifts of ten woven through the middle; cream, not yellow. Van Engelen for a hundred, Brent and Becky's for fewer. Order in September, plant in October, 6 in deep.</td></tr><tr><td class="bot">Obelisk</td><td>1 · 6 ft steel</td><td>For the clematis. About $90. Set it before the peonies leaf out.</td></tr>
+  <tr><td class="bot">Total</td><td>about $596</td><td>Nursery retail, autumn 2026. Mail order is often cheaper for the bulbs and dearer for the pots. Perennials in September or May; bulbs in October.</td></tr></table>
+</section>
+
+<section id="care">
+  <div class="kicker">Care</div>
+  <h2>Four sessions a year</h2>
+  <ol>
+    <li><strong>March.</strong> Cut everything to the ground except the hydrangea (to 12 in) and the geranium (leave it). Clematis to 12 in. Two inches of compost, no fertiliser. An hour.</li>
+    <li><strong>May.</strong> Peony rings on before the buds get heavy. In the first year, water weekly and deep from now to September. After that, only in a drought.</li>
+    <li><strong>July.</strong> Shear the catmint and the salvia by half once the first flush is over. Both come back. Deadhead the peonies.</li>
+    <li><strong>November.</strong> Nothing. Leave the seedheads and the hydrangea heads. If you like it tidier, cut the coneflower and aster to 6 in and leave the rest.</li>
+  </ol>
+  <p><strong>Where control lets go.</strong> Nowhere, by default. If you want the cottage looseness, let three Verbena bonariensis seed at the front edge and pull what you do not want in May.</p>
+</section>
+
+<section id="yours">
+  <div class="kicker">Make it yours</div>
+  <h2>Two ways to have this</h2>
+  <p><strong>The plan, $25.</strong> Everything on this page as a PDF you can print and take to the nursery: the plan on a 1 ft grid, the buy list, the calendar, the four care sessions, and the page that says what to change if your bed is different. <a href="ETSY_LISTING_URL">On Etsy.</a></p>
+  <p><strong>A plan for your actual bed, from $250.</strong> I come and look, or you send photos and measurements, and the plan is built around your light, your soil and your deer. Same format, your garden. I take a small number each season. <a href="https://bloomdays.co/#start">Ask for a spot.</a></p>
+  <p style="color:var(--mute);font-size:14px">Next Edit: The Prairie, in January. Previous: The White Spring, bulbs for October.</p>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <strong>BLOOM DAYS</strong> · Ecologically minded, locally beautiful<br>
+  Greenwich, CT · <a href="mailto:kaitlin@bloomdays.co">kaitlin@bloomdays.co</a>
+</div></footer>
+
+
+
+<div class="lightbox" id="lb"><img id="lbimg" src="" alt=""><div class="lbcap" id="lbcap"></div></div>
+
+<script>
+(function(){
+  var wrap=document.getElementById('markwrap'), lbl=document.getElementById('marklabel');
+  if(wrap&&lbl){
+    var DEF=lbl.textContent;
+    wrap.querySelectorAll('path[data-label]').forEach(function(pth){
+      pth.addEventListener('mouseenter',function(){ lbl.textContent=pth.getAttribute('data-label'); lbl.classList.add('on'); wrap.classList.add('hovering'); });
+      pth.addEventListener('mouseleave',function(){ lbl.textContent=DEF; lbl.classList.remove('on'); wrap.classList.remove('hovering'); });
+    });
+  }
+})();
+(function(){
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
+  document.querySelectorAll('.thumb').forEach(function(t){
+    t.addEventListener('click',function(){ lbimg.src=t.getAttribute('data-full'); lbimg.alt=t.alt; lbcap.textContent=t.getAttribute('data-cap'); lb.classList.add('open'); });
+  });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; }});
+})();
+(function(){
+  var links=[].slice.call(document.querySelectorAll('nav.jump a')), map={};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var sections=[].slice.call(document.querySelectorAll('section[id]'));
+  function update(){
+    var top=window.scrollY+90, cur=sections[0];
+    sections.forEach(function(s){ if(s.offsetTop<=top) cur=s; });
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(cur&&map[cur.id]) map[cur.id].classList.add('active');
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update); update();
+})();
+</script>
+
+</body>
+</html>
