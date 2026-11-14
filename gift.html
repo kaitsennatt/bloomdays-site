@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18470433707"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18470433707');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Give a garden plan · Bloom Days</title>
+<meta name="description" content="Give someone a garden that blooms all season. A Bloom Days planting plan for one bed, $250, as a gift card they use when they are ready.">
+<meta property="og:title" content="Give a garden plan · Bloom Days">
+<meta property="og:description" content="A planting plan for one bed, with a bloom calendar built in. $250, as a gift.">
+<style>
+  :root {
+    --deep: #6E8F86; --deepdark: #4F6B63; --pale: #F3F6F3; --paper: #FBFCFB;
+    --ink: #18211E; --mute: #5B6B66; --hairline: #D9E2DD; --light: #F2F5F1;
+    --gold:#E3C44A; --blue:#6B8FD4; --lav:#9B85C9; --pink:#E4A0B4; --scarlet:#C0392B; --purple:#5A3E7A; --goldenrod:#C8A951;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
+  .lockup { display: flex; align-items: center; gap: 11px; }
+  .lockup svg { width: 30px; height: 30px; display: block; }
+  .lockup .wordmark { font-weight: 700; font-size: 15px; letter-spacing: 1.2px; }
+  nav a.link { color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600; border-bottom: 2px solid var(--deep); padding-bottom: 2px; }
+
+  .hero { background: var(--deep); color: var(--light); padding: 92px 0 96px; }
+  .hero .inner { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  @media (max-width: 780px) { .hero .inner { grid-template-columns: 1fr; } .hero .markbig { order: -1; } }
+  .hero h1 { font-size: clamp(40px, 6vw, 66px); font-weight: 800; line-height: 1.05; letter-spacing: -1.4px; }
+  .hero .sub { font-size: 18.5px; margin-top: 24px; max-width: 560px; line-height: 1.6; color: #E4EDE9; }
+  .hero .area { font-size: 14px; margin-top: 22px; color: #C3D5CF; }
+  .markbig svg { width: clamp(150px, 22vw, 220px); height: auto; display: block; }
+  .markbig svg path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw 1.1s ease-out forwards; }
+  .markbig svg path:nth-child(2){animation-delay:.05s} .markbig svg path:nth-child(3){animation-delay:.18s} .markbig svg path:nth-child(4){animation-delay:.31s} .markbig svg path:nth-child(5){animation-delay:.44s} .markbig svg path:nth-child(6){animation-delay:.57s} .markbig svg path:nth-child(7){animation-delay:.7s} .markbig svg path:nth-child(8){animation-delay:.83s}
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .markbig svg path { animation: none; stroke-dashoffset: 0; } }
+
+  .statement { background: var(--deepdark); color: var(--light); padding: 76px 0; }
+  .statement p { font-size: clamp(22px, 2.8vw, 30px); line-height: 1.45; font-weight: 500; letter-spacing: -0.2px; max-width: 760px; color: #FFFFFF; }
+  .statement p b { color: #FFFFFF; font-weight: 700; border-bottom: 3px solid var(--pink); padding-bottom: 2px; }
+
+  section { padding: 84px 0 0; }
+  .band { background: var(--pale); margin-top: 84px; padding: 84px 0; }
+  .band section:first-child { padding-top: 0; }
+  .kicker { font-size: 12.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--deepdark); margin-bottom: 12px; }
+  h2 { font-size: clamp(27px, 3.4vw, 37px); font-weight: 800; letter-spacing: -0.7px; line-height: 1.15; margin-bottom: 16px; }
+  p { font-size: 16.5px; color: #33403B; margin-bottom: 13px; max-width: 660px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; margin-top: 34px; }
+  .card { background: #fff; border: 1px solid var(--hairline); border-radius: 13px; padding: 24px 24px 26px; }
+  .card .d { width: 13px; height: 13px; border-radius: 50%; margin-bottom: 14px; }
+  .card h3 { font-size: 17.5px; font-weight: 700; margin-bottom: 7px; }
+  .card p { font-size: 14.5px; margin: 0; color: #4a5651; }
+
+  .calwell { background: var(--deepdark); border-radius: 14px; padding: 32px 34px; margin-top: 34px; overflow-x: auto; color: var(--light); }
+  .calwell table { border-collapse: collapse; width: 100%; min-width: 430px; }
+  .calwell td { padding: 8px 0; font-size: 14px; }
+  .calwell tr:first-child td { font-size: 12px; color: #A9C0B9; }
+  .bdot { display: inline-block; width: 15px; height: 15px; border-radius: 50%; }
+  .fdot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #A9C0B9; }
+  .calwell .fed td { border-top: 1px solid #67857C; padding-top: 12px; font-weight: 600; font-size: 13px; }
+  .calwell .note { font-size: 13px; color: #A9C0B9; margin: 14px 0 0; }
+  .pol { display:inline-block; width:19px; height:19px; vertical-align:-4px; margin-right:2px; }
+  .polkey { font-size:12px; color:#A9C0B9; margin-top:14px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .polkey span { display:inline-flex; align-items:center; gap:5px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; gap: 20px; } }
+
+  .rule { display: flex; gap: 22px; padding: 24px 0; border-top: 1px solid var(--hairline); align-items: baseline; }
+  .rule .num { font-size: 25px; font-weight: 800; color: var(--deep); flex-shrink: 0; width: 42px; }
+  .rule h3 { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+  .rule p { font-size: 15px; margin: 0; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 38px; margin-top: 36px; }
+  .step .num { font-size: 46px; font-weight: 800; color: var(--deep); line-height: 1; }
+  .step h3 { font-size: 17px; font-weight: 700; margin: 10px 0 7px; }
+  .step p { font-size: 14.5px; margin: 0; }
+
+  .photo img { display: block; width: 100%; height: min(52vh, 470px); object-fit: cover; }
+  .photo .cap { font-size: 13px; color: var(--mute); padding: 12px 32px 0; max-width: 1040px; margin: 0 auto; }
+
+  .cta { background: var(--deep); color: var(--light); margin-top: 88px; padding: 88px 0; }
+  .cta h2 { color: var(--light); }
+  .cta p { color: #D6E4DF; }
+  .cta a.button { display: inline-block; background: var(--light); color: var(--deepdark); text-decoration: none; font-size: 16px; font-weight: 700; padding: 16px 34px; border-radius: 8px; margin-top: 14px; }
+  .cta .fine { font-size: 13px; color: #B6CCC5; margin-top: 40px; }
+  .cta .ctamark { width: 34px; height: 34px; margin-top: 34px; display: block; }
+
+  .seasons { background: #fff; padding: 64px 0 60px; }
+  .seasons img { display: block; width: 100%; max-width: 1180px; margin: 0 auto; height: auto; }
+  .seasons .cap { max-width: 620px; margin: 30px auto 0; font-size: 16px; color: #33403B; text-align: center; }
+  .seasons .cap b { color: var(--ink); }
+
+  /* ---- the work ---- */
+  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 18px; margin-top: 36px; max-width: 900px; }
+  .wcard { background: #fff; border: 1px solid var(--hairline); border-radius: 13px; overflow: hidden; text-decoration: none; color: var(--ink); display: flex; flex-direction: column; transition: border-color .18s, transform .18s; }
+  .wcard:hover { border-color: var(--deep); transform: translateY(-2px); }
+  .wcard .top { background: var(--deepdark); padding: 20px 22px 16px; }
+  .wcard .top svg { width: 74px; height: 74px; display: block; margin: 0 auto 6px; }
+  .wcard .meat { padding: 18px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .wcard h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .wcard .where { font-size: 12.5px; color: var(--mute); margin-bottom: 10px; }
+  .wcard p { font-size: 14.5px; margin: 0 0 14px; color: #4a5651; flex: 1; }
+  .wcard .go { font-size: 13.5px; font-weight: 700; color: var(--deepdark); }
+
+  /* ---- intake form ---- */
+  .intake { background: #fff; border-radius: 14px; padding: 32px 34px 34px; margin-top: 30px; max-width: 620px; }
+  .intake label { display: block; font-size: 13px; font-weight: 700; color: var(--ink); margin: 0 0 5px; }
+  .intake .fld { margin-bottom: 17px; }
+  .intake .hint { font-size: 12.5px; color: var(--mute); font-weight: 500; margin: 0 0 6px; }
+  .intake input[type=text], .intake input[type=email], .intake select, .intake textarea {
+    font: inherit; font-size: 15px; width: 100%; padding: 11px 13px; border: 1px solid var(--hairline);
+    border-radius: 8px; background: var(--paper); color: var(--ink); }
+  .intake textarea { min-height: 92px; resize: vertical; }
+  .intake input:focus, .intake select:focus, .intake textarea:focus { outline: none; border-color: var(--deep); box-shadow: 0 0 0 3px rgba(110,143,134,.15); }
+  .intake .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .intake .two { grid-template-columns: 1fr; gap: 0; } }
+  .intake button { font: inherit; font-size: 16px; font-weight: 700; background: var(--deepdark); color: #fff; border: 0; border-radius: 8px; padding: 15px 34px; cursor: pointer; margin-top: 4px; }
+  .intake button:hover { background: var(--ink); }
+  .intake .after { font-size: 13px; color: var(--mute); margin: 14px 0 0; }
+
+  .giftcard { background: var(--pink); border-radius: 18px; padding: 34px 34px 30px; color: var(--ink); max-width: 420px; box-shadow: 0 18px 40px rgba(24,33,30,.18); transform: rotate(2deg); }
+  .giftcard svg { width: 92px; height: 92px; display: block; }
+  .giftcard .to { font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 22px; }
+  .giftcard .big { font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -0.6px; margin-top: 6px; }
+  .giftcard .small { font-size: 14px; margin-top: 14px; color: #3a2f33; }
+  .faq { margin-top: 30px; max-width: 700px; display: grid; gap: 12px; }
+  .faq details { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 16px 20px; }
+  .faq summary { font-weight: 700; cursor: pointer; font-size: 16px; }
+  .faq details p { margin: 10px 0 0; font-size: 15px; }
+  .hero a.button, .cta a.button { display:inline-block; background:var(--light); color:var(--deepdark); text-decoration:none; font-weight:700; padding:15px 30px; border-radius:8px; font-size:16px; }
+  @media (max-width: 780px) { .giftcard { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap"><nav><a class="lockup" href="/" style="text-decoration:none;color:var(--ink)"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bloom Days"><title>Bloom Days</title>
+        <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2" stroke-linecap="round"/>
+      </svg><span class="wordmark">BLOOM DAYS</span></a><a class="link" href="#give">Give a plan</a></nav></div>
+<div class="hero"><div class="wrap"><div class="inner"><div>
+  <h1>Give a garden that blooms all season.</h1>
+  <p class="sub">A Bloom Days plan for one bed: what to plant, how many, where each one goes, and a calendar of when it all blooms. They book it when they're ready, and plant it in spring.</p>
+  <p style="margin-top:28px"><a class="button" id="buy1" href="https://buy.stripe.com/00w14pc9b4WsaOwg2u5sA01">Give a plan · $250</a></p>
+  <p class="area">Delivered by email as a gift card, within a day. Print it or forward it.</p>
+</div>
+<div class="giftcard" aria-hidden="true"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 24.00 17.00 A 7.00 7.00 0 0 1 31.00 24.00" fill="none" stroke="#E4A0B4" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M 30.17 16.65 A 9.60 9.60 0 0 1 31.35 30.17" fill="none" stroke="#E3C44A" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M 36.01 21.88 A 12.20 12.20 0 0 1 26.12 36.01" fill="none" stroke="#6B8FD4" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M 36.82 31.40 A 14.80 14.80 0 0 1 16.60 36.82" fill="none" stroke="#9B85C9" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M 29.95 40.35 A 17.40 17.40 0 0 1 7.65 29.95" fill="none" stroke="#C0392B" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M 17.16 42.79 A 20.00 20.00 0 0 1 5.21 17.16" fill="none" stroke="#C8A951" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M 4.43 35.30 A 22.60 22.60 0 0 1 12.70 4.43" fill="none" stroke="#5A3E7A" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+  <div class="to">A gift for you</div>
+  <div class="big">One garden bed, planned to bloom April to October.</div>
+  <div class="small">Book any time at bloomdays.co. Your plan is ready before spring planting.</div>
+</div></div></div></div>
+<div class="wrap">
+  <section>
+    <div class="kicker">What they get</div>
+    <h2>Their own planting plan, made for their yard</h2>
+    <div class="cards">
+      <div class="card"><div class="d" style="background:var(--pink)"></div><h3>A plant list with reasons</h3><p>Eight to twelve plants chosen for their light, soil and deer, each with a plain reason it belongs.</p></div>
+      <div class="card"><div class="d" style="background:var(--gold)"></div><h3>A bloom calendar</h3><p>What's in flower every month, April to October, so the bed never goes quiet in July.</p></div>
+      <div class="card"><div class="d" style="background:var(--blue)"></div><h3>The layout</h3><p>Every plant placed, with counts and pot sizes, so they or their landscaper can plant it in a weekend.</p></div>
+    </div>
+  </section>
+  <section>
+    <div class="kicker">How it works</div>
+    <h2>Three steps, no wrapping paper</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>You buy the gift</h3><p>Add their name at checkout, and who the card should go to.</p></div>
+      <div class="step"><div class="num">2</div><h3>They get a card</h3><p>A printable gift card arrives by email within a day, to you or straight to them.</p></div>
+      <div class="step"><div class="num">3</div><h3>They book in their own time</h3><p>A 15-minute call, then a plan ready before spring planting. The card never expires.</p></div>
+    </div>
+  </section>
+  <section>
+    <div class="kicker">Questions</div>
+    <h2>The small print, in plain words</h2>
+    <div class="faq">
+      <details><summary>Where do they need to live?</summary><p>Connecticut, Westchester, the Hudson Valley, New England or the Mid-Atlantic. Plans are made for the deer, soil and nurseries where the garden actually is.</p></details>
+      <details><summary>Does it expire?</summary><p>No. They can use it this spring, next fall or the spring after.</p></details>
+      <details><summary>Can I get a refund?</summary><p>Gift cards aren't refundable. They never expire, and if the person you gave it to can't use it, they can pass it on to someone else.</p></details>
+      <details><summary>Does it include the plants?</summary><p>No. The plan tells them exactly what to buy, how many, and where to find it. They or their landscaper do the planting.</p></details>
+      <details><summary>When should I order for the holidays?</summary><p>Order by December 22 and the card arrives before Christmas.</p></details>
+    </div>
+  </section>
+</div>
+<div class="cta" id="give"><div class="wrap">
+  <div class="kicker" style="color:#BDD3CD;">Give a plan</div>
+  <h2>The gift they'll still be enjoying in August</h2>
+  <p style="max-width:560px;">One bed, planned start to finish, $250. Better than a candle, and it blooms.</p>
+  <a class="button" id="buy2" href="https://buy.stripe.com/00w14pc9b4WsaOwg2u5sA01">Give a plan · $250</a>
+  <p class="fine">Questions first? <a href="mailto:kaitlin@bloomdays.co" style="color:#fff">kaitlin@bloomdays.co</a> · Planning your own garden? <a href="plan.html" style="color:#fff">Book a plan for yourself</a>.</p>
+</div></div>
+<footer style="padding:30px 0;color:var(--mute);font-size:13px"><div class="wrap">BLOOM DAYS · Ecologically minded, locally beautiful · <a href="mailto:kaitlin@bloomdays.co">kaitlin@bloomdays.co</a></div></footer>
+</body></html>
